@@ -87,19 +87,16 @@ Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dal
 Berikut merupakan aktivitas-aktivitas utama yang terdapat dalam sistem beserta keterkaitannya dengan *user story*.
 | ID  | Aktivitas | Penjelasan | ID User Story |
 | :-- | :-------- | :--------- | :------------ |
-| A01 | *Membuat Tantangan* | Pembuat tantangan membuat sebuah tantangan Git dengan menentukan permasalahan, kondisi awal repositori, capaian pembelajaran, serta kondisi yang harus dicapai pelajar. | US-01 |
-| A02 | *Menentukan Validasi Tantangan* | Pembuat tantangan menentukan kondisi repositori yang menjadi indikator bahwa tantangan telah berhasil diselesaikan oleh pelajar. | US-01 |
-| A03 | *Membuka Tantangan* | Pelajar memilih dan membuka tantangan yang tersedia untuk mulai mengerjakan permasalahan Git yang diberikan. | US-02 |
-| A04 | *Membaca Deskripsi Masalah* | Pelajar membaca deskripsi, tujuan, dan kondisi permasalahan yang harus diselesaikan pada tantangan. | US-02         |
-| A05 | *Menjalankan Perintah CLI* | Pelajar memasukkan dan mengeksekusi perintah Git maupun perintah terminal lain yang tersedia untuk memecahkan tantangan. | US-02 |
-| A06 | *Meminta Hint* | Pelajar meminta petunjuk ketika mengalami kesulitan dalam menyelesaikan tantangan. | US-02 |
-| A07 | *Mereset Tantangan* | Pelajar mengembalikan kondisi repositori ke keadaan awal untuk mengulangi penyelesaian tantangan. | US-02 |
-| A08 | *Melihat Solusi* | Pelajar menampilkan solusi yang disediakan sistem ketika tidak mampu menyelesaikan tantangan secara mandiri. | US-02 |
-| A09 | *Melakukan Submit* | Pelajar mengirimkan kondisi repositori saat ini untuk diperiksa oleh sistem. | US-02 |
-| A10 | *Memverifikasi Jawaban* | Sistem memeriksa kondisi repositori pelajar berdasarkan aturan validasi yang telah ditentukan oleh pembuat tantangan. | US-02 |
-| A11 | *Menampilkan Hasil Verifikasi* | Sistem menampilkan informasi apakah penyelesaian tantangan pelajar sudah benar atau masih perlu diperbaiki. | US-02 |
-| A12 | *Memperbaiki Penyelesaian* | Pelajar melanjutkan penggunaan CLI dan memperbaiki kondisi repositori berdasarkan hasil verifikasi. | US-02 |
-| A13 | *Melanjutkan ke Tantangan Berikutnya* | Pelajar berpindah ke tantangan berikutnya setelah berhasil menyelesaikan tantangan saat ini. | US-02 |
+| A01 | *Menulis Setup dan Spesifikasi Tantangan* | Pembuat tantangan menuliskan *setup script*, deskripsi, serta spesifikasi kondisi tantangan yang harus diselesaikan oleh pelajar. | US-01 |
+| A02 | *Mengemas dan Menguji Tantangan* | Pembuat tantangan mengemas tantangan dan menguji apakah tantangan dapat dijalankan serta diselesaikan sesuai spesifikasi. | US-01 |
+| A03 | *Mengirim Tantangan ke Pelajar* | Pembuat tantangan menyediakan atau mempublikasikan tantangan agar dapat dikerjakan oleh pelajar. | US-01 |
+| A04 | *Membuka Tantangan* | Pelajar membuka tantangan yang tersedia pada aplikasi. | US-02 |
+| A05 | *Mengerjakan Tantangan* | Pelajar menggunakan CLI dan perintah yang tersedia untuk menyelesaikan permasalahan pada tantangan. | US-02 |
+| A06 | *Mengirim Hasil Pengerjaan* | Pelajar mengirimkan kondisi repositori hasil pengerjaan untuk diperiksa oleh sistem. | US-02 |
+| A07 | *Memverifikasi Hasil Pengerjaan* | Sistem memeriksa kondisi repositori pelajar berdasarkan spesifikasi dan aturan validasi tantangan. | US-02 |
+| A08 | *Memperbaiki Pengerjaan* | Pelajar memperbaiki pengerjaan dan mencoba kembali apabila hasil verifikasi belum sesuai. | US-02 |
+| A09 | *Mensubmit Jawaban* | Pelajar melakukan submit setelah berhasil memenuhi kondisi penyelesaian tantangan. | US-02 |
+| A10 | *Melihat dan Mencatat Hasil* | Pembuat tantangan melihat hasil pengerjaan pelajar dan mencatat nilai atau hasil evaluasinya. | US-01 |
 | ... | ... | ... | ... |
 
 ## 3.4 Model Proses Bisnis
