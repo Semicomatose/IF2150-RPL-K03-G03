@@ -4,20 +4,20 @@
 
 | Informasi | Keterangan |
 |---|---|
-| Kelas | *[03]* |
-| Nomor Kelompok | *[03]* |
-| Nama Kelompok | *[0x43]* |
-| Nama Perangkat Lunak | *[Nama P/L]* |
+| Kelas | [03] |
+| Nomor Kelompok | [03] |
+| Nama Kelompok | [0x43] |
+| Nama Perangkat Lunak | [Commitment Issues] |
 
 **Anggota Kelompok:**
 
 | NIM | Nama |
 |---|---|
-| *[13525012]* | *[Steve Bradley Hoeij]* |
-| *[13525072]* | *[Fahrezy Fitriansyah]* |
-| *[13525084]* | *[Ariq Ulwan Hammam]* |
-| *[13525132]* | *[Zidane Uland Fakhry]* |
-| *[13525135]* | *[Ananda Aulia Nurramadhan]* |
+| [13525012] | [Steve Bradley Hoeij] |
+| [13525072] | [Fahrezy Fitriansyah] |
+| [13525084] | [Ariq Ulwan Hammam] |
+| [13525132] | [Zidane Uland Fakhry] |
+| [13525135] | [Ananda Aulia Nurramadhan] |
 
 ---
 
@@ -52,7 +52,7 @@ Kami yang bertanda tangan di bawah ini menyatakan bahwa seluruh log penggunaan A
 | Tanda Tangan | Nama Anggota |
 | :---: | :--- |
 | <img src="./assets/ttd-anggota1.png" width="100"> | **[13525012 - Steve Bradley Hoeij]** |
-| <img src="./assets/ttd-anggota2.png" width="100"> | **[13525072 - Fahrezy Fitriansyah]* |
-| <img src="./assets/ttd-anggota3.png" width="100"> | **[13525084 - Ariq Ulwan Hammam]*** |
+| <img src="./assets/ttd-anggota2.png" width="100"> | **[13525072 - Fahrezy Fitriansyah]** |
+| <img src="./assets/ttd-anggota3.png" width="100"> | **[13525084 - Ariq Ulwan Hammam]** |
 | <img src="./assets/ttd-anggota4.png" width="100"> | **[13525132 - Zidane Uland Fakhry]** |
 | <img src="./assets/ttd-anggota5.png" width="100"> | **[13525135 - Ananda Aulia Nurramadhan]** |

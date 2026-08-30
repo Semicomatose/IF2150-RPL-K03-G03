@@ -14,16 +14,16 @@ TOPIC BRAINSTORMING
 Dipersiapkan oleh:
 | Informasi | Keterangan |
 | --- | --- |
-| Kelas | *\[03\]* |
-| Kelompok | *\[03\]*  |
+| Kelas | 03 |
+| Kelompok | 03 |
 
 | NIM | Nama |
 |---|---|
-| *[13525012]* | *[Steve Bradley Hoeij]* |
-| *[13525072]* | *[Fahrezy Fitriansyah]* |
-| *[13525084]* | *[Ariq Ulwan Hammam]* |
-| *[13525132]* | *[Zidane Uland Fakhry]* |
-| *[13525135]* | *[Ananda Aulia Nurramadhan]* |
+| [13525012] | [Steve Bradley Hoeij] |
+| [13525072] | [Fahrezy Fitriansyah] |
+| [13525084] | [Ariq Ulwan Hammam] |
+| [13525132] | [Zidane Uland Fakhry] |
+| [13525135] | [Ananda Aulia Nurramadhan] |
 ---
 
 <br>
@@ -80,8 +80,8 @@ Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dal
 
 | ID | Aktor | Kebutuhan / Aktivitas | Tujuan / Nilai |
 | :--- | :--- | :--- | :--- |
-| US-01 | *[Pembuat tantangan]* |  *[Mengajarkan tentang Git]* | *[Hasil pembelajaran pelajar sesuai dengan capaian pembelajaran]* |
-| US-02 | *[Pelajar]* | *[Memahami kegunaan Git]* | *[Menyelesaikan pembelajaran dengan pemahaman baru dan hasil yang memuaskan]* |
+| US-01 | Pembuat tantangan | Mengajarkan tentang Git | Hasil pembelajaran pelajar sesuai dengan capaian pembelajaran |
+| US-02 | Pelajar | Memahami kegunaan Git | Menyelesaikan pembelajaran dengan pemahaman baru dan hasil yang memuaskan |
 
 ## 3.3 Model Proses Bisnis
 
