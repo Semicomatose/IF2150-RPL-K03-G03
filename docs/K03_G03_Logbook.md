@@ -34,7 +34,7 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *30-08-2026* | *Steve Bradley Hoeij* | *Mengisi informasi dasar di template* | *1* | *Done* | *-* |
-| *05-05-2026* | *John Doe* | *Mendesain diagram kelas* | *3* | *Done* | *-* | 
+| *30-08-2026* | *Ananda Aulia Nurramadhan* | *Membuat analisis latar belakang masalah (bab 1.1)* | *2* | *Done* | *-* | 
 | | | | | | | |
 
 **Catatan/Evaluasi Milestone 1:**

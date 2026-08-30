@@ -32,7 +32,9 @@ Dipersiapkan oleh:
 # BAB 1: Analisis Permasalahan
 
 ## 1.1 Latar Belakang Masalah
-Tuliskan deskripsi permasalahan yang kalian pilih secara naratif dan spesifik. Tambahkan keterkaitan permasalahan tersebut dengan Tujuan Pembangunan Berkelanjutan (SDGs) yang telah disepakati. Dukung argumen kalian dengan data yang kredibel, serta jelaskan urgensi mengapa masalah ini perlu dan layak untuk segera diselesaikan.
+Git adalah sistem kendali versi yang memungkinkan penggunanya untuk melacak perubahan pada kode dan mengatur proyek menggunakan perintah sederhana. Git melacak perubahan dalam sebuah proyek, yang disimpan dalam *repository*, dengan *commit*. Sebuah *commit* dapat digunakan untuk mengembalikan ataupun memajukan kode menuju *commit* dalam sejarah *commit*. Hal ini sangat membantu karena *developer* dapat melihat kapan terjadi sebuah kesalahan. Saat menggunakan Git, *developer* dapat bekerja pada salinan *repository* pribadi, kemudian melakukan sinkronisasi proyek ketika selesai melakukan implementasi sehingga mempermudah kolaborasi antara *developer*.
+
+Menurut *Stack Overflow Developer Survey* pada 2022 yang mengakumulasi jawaban dari 70.000 *developer*, 93,87% responden mengadopsi Git sebagai sistem kendali versi. Hal ini menunjukkan popularitas Git dalam dunia profesional. Edukasi terkait Git selaras dengan SDG (*Sustainable Development Goal*) 4, *Quality Education*, secara spesifik target 4.4, yakni meningkatkan jumlah orang yang memiliki keterampilan yang relevan demi kesuksesan finansial. Dengan adanya edukasi Git, seorang *developer* dapat berintegrasi dengan industri secara lebih mulus.
 
 ## 1.2 Analisis Kondisi Saat Ini
 Lakukan analisis terhadap proses yang berjalan saat ini di dunia nyata, baik itu sistem lama ataupun solusi yang sudah ada. Soroti kesenjangan atau celah dari kondisi tersebut yang nantinya akan diselesaikan oleh perangkat lunak kalian.
@@ -83,4 +85,7 @@ Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja p
 <br>
 
 # Referensi
+- Marijan, Bosko. 2021. How Does Git Work?: https://phoenixnap.com/kb/how-git-works
+- Robbins, Jennifer. 2018. "Version Control With Git," *Learning Web Design*
+- Stack Overflow Developer Survey 2022: https://survey.stackoverflow.co/2022/#technology-version-control
 - Diagram UML: https://www.drawio.com/, https://staruml.io/
