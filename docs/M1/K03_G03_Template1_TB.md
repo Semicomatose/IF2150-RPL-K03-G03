@@ -83,13 +83,23 @@ Definisikan apa yang ingin dicapai oleh pengguna saat menggunakan sistem ini dal
 | US-01 | Pembuat tantangan | Mengajarkan tentang Git | Hasil pembelajaran pelajar sesuai dengan capaian pembelajaran |
 | US-02 | Pelajar | Memahami kegunaan Git | Menyelesaikan pembelajaran dengan pemahaman baru dan hasil yang memuaskan |
 
-## 3.3 Model Proses Bisnis
+## 3.3 Deskripsi Aktivitas
+Buatlah daftar seluruh aktivitas yang terdapat dalam sistem solusi, lengkap dengan ID dan penjelasan. Telusuri hubungan aktivitas tersebut dengan *user story* yang sudah dituliskan sebelumnya. Bisa dibuat dalam bentuk tabel.
+| ID | Aktivitas | Penjelasan | ID User Story |
+| :--- | :--- | :--- | :--- |
+| A01 | *Melakukan Pemesanan* | *Pelanggan memulai proses dengan memesan produk.* | *US-01* |
+| A02 | *Memproses Pesanan* | *Sistem memproses dan menyiapkan detail sesuai dengan pesanan.* | *US-02*|
+| ... | ... | ... | ... |
+
+## 3.4 Model Proses Bisnis
+Buatlah *Activity Diagram* atau *Swimlane Diagram* yang menunjukkan alur kerja proses bisnis dari sistem solusi. Diagram ini harus memvisualisasikan bagaimana alur operasional di dunia nyata berjalan lebih efisien dengan adanya interaksi antara aktor (yang didefinisikan pada poin 3.1) dan sistem perangkat lunak. Perhatikan notasi yang digunakan dalam pembuatannya.
+<br>
 
 <p align="center">
-<img alt="Activity Diagram" src="./assets/diagram/diagram-act-1.png" width="70%">
+<img alt="Contoh Activity Diagram" src="./assets/diagram/diagram-act-1.avif" width="70%">
 </p>
 <p align="center">
-<i>Gambar 1. Activity Diagram</i>
+<i>Gambar 1. Contoh Activity Diagram</i>
 </p>
 
 <br>
