@@ -34,7 +34,8 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *30-08-2026* | *Steve Bradley Hoeij* | *Mengisi informasi dasar di template* | *1* | *Done* | *-* |
-| *30-08-2026* | *Ananda Aulia Nurramadhan* | *Membuat analisis latar belakang masalah (bab 1.1)* | *2* | *Done* | *-* | 
+| *30-08-2026* | *Ananda Aulia Nurramadhan* | *Membuat analisis latar belakang masalah (bab 1.1)* | *2* | *Done* | *-* |
+| *30-08-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 3.3 dan menentukan aktivitas sistem berdasarkan user story* | *2* | *Done* | *-* |
 | | | | | | | |
 
 **Catatan/Evaluasi Milestone 1:**
