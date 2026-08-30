@@ -97,7 +97,6 @@ Berikut merupakan aktivitas-aktivitas utama yang terdapat dalam sistem beserta k
 | A08 | *Memperbaiki Pengerjaan* | Pelajar memperbaiki pengerjaan dan mencoba kembali apabila hasil verifikasi belum sesuai. | US-02 |
 | A09 | *Mensubmit Jawaban* | Pelajar melakukan submit setelah berhasil memenuhi kondisi penyelesaian tantangan. | US-02 |
 | A10 | *Melihat dan Mencatat Hasil* | Pembuat tantangan melihat hasil pengerjaan pelajar dan mencatat nilai atau hasil evaluasinya. | US-01 |
-| ... | ... | ... | ... |
 
 ## 3.4 Model Proses Bisnis
 
