@@ -18,6 +18,7 @@
 | [13525084] | [Ariq Ulwan Hammam] |
 | [13525132] | [Zidane Uland Fakhry] |
 | [13525135] | [Ananda Aulia Nurramadhan] |
+| [10124063] | [Dominick Vincent Devict] |
 
 ---
 
@@ -56,3 +57,6 @@ Kami yang bertanda tangan di bawah ini menyatakan bahwa seluruh log penggunaan A
 | <img src="./assets/ttd-anggota3.png" width="100"> | **[13525084 - Ariq Ulwan Hammam]** |
 | <img src="./assets/ttd-anggota4.png" width="100"> | **[13525132 - Zidane Uland Fakhry]** |
 | <img src="./assets/ttd-anggota5.png" width="100"> | **[13525135 - Ananda Aulia Nurramadhan]** |
+| <img src="./assets/ttd-anggota6.png" width="100"> | **[10124063 - Dominick Vincent Devict]** |
+
+
