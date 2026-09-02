@@ -10,7 +10,7 @@
 | **Nomor Kelompok** | 03  |
 | **Nama Kelompok** | 0x43  |
 | **Nama Perangkat Lunak** | Commitment Issues  |
-| **Dokumen** | K03_G03_Template1_TB.md  |
+| **Dokumen** | K03_G03_TB.md  |
 
 ### Anggota Kelompok
 
@@ -21,15 +21,13 @@
 | 13525084 | Ariq Ulwan Hammam |
 | 13525132 | Zidane Uland Fakhry |
 | 13525135 | Ananda Aulia Nurramadhan |
+| 10124063 | Dominick Vincent Devict |
 
 ### Catatan
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
+| Bab 2.2 Asumsi dan Batasan dapat dilengkapi dengan batasan terkait hukum/etika/regulasi, sumber daya, dan ruang lingkup. |
 
 **Notes for this section:**  
 *Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
