@@ -24,7 +24,7 @@
 
 ### Daftar Isi
 * [Milestone 1](#milestone-1)
-* Notes: Copy bagian Daftar Isi seperti Milestone 1 untuk Milestone berikutnya, contoh ``* [Milestone 2](#milestone-2)``. Ketika Daftar isi diklik maka akan langsung diarahkan ke bagian bawah sesuai dengan Milestone tujuan.
+* [Milestone 2](#milestone-2)
 
 
 ---
@@ -37,12 +37,22 @@
 | *30-08-2026* | *Steve Bradley Hoeij* | *Mengisi informasi dasar di template* | *1* | *Done* | *-* |
 | *30-08-2026* | *Ananda Aulia Nurramadhan* | *Membuat analisis latar belakang masalah (bab 1.1)* | *2* | *Done* | *-* |
 | *30-08-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 3.3 dan menentukan aktivitas sistem berdasarkan user story* | *3* | *Done* | *-* |
-| | | | | | | |
 
-**Catatan/Evaluasi Milestone 1:**
-* *(Isi jika ada catatan khusus untuk asisten atau evaluasi singkat kerja tim)*
+**Catatan/Evaluasi Milestone 1:** -
 
 ---
 
+### Milestone 2
+**Periode:** [03/09/2026] - [09/09/2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+**Catatan/Evaluasi Milestone 2:**
+* *(Isi jika ada catatan khusus untuk asisten atau evaluasi singkat kerja tim)*
+
+---
 
 ``Gunakan format penulisan Logbook yang sama untuk setiap Milestone dan pastikan pembuatan Daftar Isi juga sudah sesuai sebelum Logbook dikumpulkan. ``
