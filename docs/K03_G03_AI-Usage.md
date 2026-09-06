@@ -4,21 +4,21 @@
 
 | Informasi | Keterangan |
 |---|---|
-| Kelas | [03] |
-| Nomor Kelompok | [03] |
-| Nama Kelompok | [0x43] |
-| Nama Perangkat Lunak | [Commitment Issues] |
+| Kelas | 03 |
+| Nomor Kelompok | 03 |
+| Nama Kelompok | 0x43 |
+| Nama Perangkat Lunak | Commitment Issues |
 
 **Anggota Kelompok:**
 
 | NIM | Nama |
 |---|---|
-| [13525012] | [Steve Bradley Hoeij] |
-| [13525072] | [Fahrezy Fitriansyah] |
-| [13525084] | [Ariq Ulwan Hammam] |
-| [13525132] | [Zidane Uland Fakhry] |
-| [13525135] | [Ananda Aulia Nurramadhan] |
-| [10124063] | [Dominick Vincent Devict] |
+| 13525012 | Steve Bradley Hoeij |
+| 13525072 | Fahrezy Fitriansyah |
+| 13525084 | Ariq Ulwan Hammam |
+| 13525132 | Zidane Uland Fakhry |
+| 13525135 | Ananda Aulia Nurramadhan |
+| 10124063 | Dominick Vincent Devict |
 
 ---
 
@@ -37,7 +37,6 @@ Silakan catat penggunaan AI yang berdampak signifikan pada pengerjaan tugas (mis
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
 | *Gemini* | *Mengecek relasi antar class* | *"Apakah relasi antara class User dan Order dalam UML ini seharusnya composition atau aggregation?"* | *AI menyarankan composition, tapi setelah dicek kembali ke requirement, kami menggunakan aggregation karena Order masih bisa eksis di history.* |
-| | | | | |
 
 ### Milestone 2
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
