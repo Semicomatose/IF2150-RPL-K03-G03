@@ -7,24 +7,25 @@ REQUIREMENT GATHERING
 </h1>
 <br>
 
-## *Nama Perangkat Lunak*
+## *Commitment Issues*
 
-### Untuk: *[Nama Asisten]*
+### Untuk: Made Branenda Jordhy
 
 Dipersiapkan oleh:
 
 | Informasi | Keterangan |
 | --- | --- |
-| Kelas | *\[Kelas\]* |
-| Kelompok | *\[Nomor Kelompok\]* |
+| Kelas | 03 |
+| Kelompok | 03 |
 
 | NIM | Nama |
 | --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+| 13525012 | Steve Bradley Hoeij |
+| 13525072 | Fahrezy Fitriansyah |
+| 13525084 | Ariq Ulwan Hammam |
+| 13525132 | Zidane Uland Fakhry |
+| 13525135 | Ananda Aulia Nurramadhan |
+| 10124063 | Dominick Vincent Devict |
 
 ---
 
