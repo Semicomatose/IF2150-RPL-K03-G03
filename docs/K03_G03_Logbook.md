@@ -47,7 +47,7 @@
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-|  |  |  |  |  |  |
+| *06-09-2026* | *Ananda Aulia Nurramadhan* | *Menyusun deskripsi umum (bab 1.1)* | *1* | *Done* | *-* |
 |  |  |  |  |  |  |
 
 **Catatan/Evaluasi Milestone 2:**
