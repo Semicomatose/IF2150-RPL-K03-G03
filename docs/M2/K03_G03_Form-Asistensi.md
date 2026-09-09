@@ -4,13 +4,13 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
+| **Hari** | Selasa |
+| **Tanggal** | 08/09/2026 |
 | **Kelas** | 03 |
-| **Nomor Kelompok** | 03  |
-| **Nama Kelompok** | 0x43  |
-| **Nama Perangkat Lunak** | Commitment Issues  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Nomor Kelompok** | 03 |
+| **Nama Kelompok** | 0x43 |
+| **Nama Perangkat Lunak** | Commitment Issues |
+| **Dokumen** | K03_G03_RG.md |
 
 ### Anggota Kelompok
 
@@ -27,13 +27,9 @@
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
-
-**Notes for this section:**  
-*Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
+| 1. Deskripsi sistem mencakup ekspektasi pengguna terhadap sistem, alur kerja sistem yang diinginkan, peran manusia dan perangkat keras, dan harapan untuk solusi. |
+| 2. Kebutuhan aktivitas dapat didasarkan aspek user, business, atau sistem. Masing-masing aktivitas dapat mencakup lebih dari satu kebutuhan. |
+| 3. Pola EARS harus diterapkan dalam penulisan kebutuhan fungsional dan non-fungsional. |
 
 ## Dokumentasi
 
