@@ -48,7 +48,7 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *06-09-2026* | *Ananda Aulia Nurramadhan* | *Menyusun deskripsi umum (bab 1)* | *1* | *Done* | *-* |
-|  |  |  |  |  |  |
+| *08-09-2026—09-09-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 2* | *4* | *On Progress* | *Susah menentukan kategori masing-masing* |
 
 **Catatan/Evaluasi Milestone 2:**
 * *(Isi jika ada catatan khusus untuk asisten atau evaluasi singkat kerja tim)*
