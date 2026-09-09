@@ -34,8 +34,9 @@
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-| *30-08-2026* | *Steve Bradley Hoeij* | *Mengisi informasi dasar di template* | *1* | *Done* | *-* |
+| *30-08-2026* | *Steve Bradley Hoeij* | *Mengisi informasi dasar di template* | *0,1* | *Done* | *-* |
 | *30-08-2026* | *Ananda Aulia Nurramadhan* | *Membuat analisis latar belakang masalah (bab 1.1)* | *2* | *Done* | *-* |
+| *30-08-2026* | *Steve Bradley Hoeij* | *Menulis Bab 1.2, 2.1, 2.2, 3.1, 3.2, serta membuat activity diagram* | *3* | *Done* | *-* |
 | *30-08-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 3.3 dan menentukan aktivitas sistem berdasarkan user story* | *3* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 1:** -
@@ -49,9 +50,9 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *06-09-2026* | *Ananda Aulia Nurramadhan* | *Menyusun deskripsi umum (bab 1)* | *1* | *Done* | *-* |
 | *08-09-2026—09-09-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 2* | *4* | *On Progress* | *Susah menentukan kategori masing-masing* |
+| *09-09-2026* | *Steve Bradley Hoeij* | *Merevisi Bab 1.1 dengan menambahkan perspektif dari masing-masing pengguna, merevisi Bab 2.3 agar menggunakan pola EARS, dan mengisi kebutuhan nonfungsional* | *2* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 2:**
-* *(Isi jika ada catatan khusus untuk asisten atau evaluasi singkat kerja tim)*
 
 ---
 
