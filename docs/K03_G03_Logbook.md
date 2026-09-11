@@ -25,7 +25,7 @@
 ### Daftar Isi
 * [Milestone 1](#milestone-1)
 * [Milestone 2](#milestone-2)
-
+* [Milestone 3](#milestone-3)
 
 ---
 
@@ -53,6 +53,13 @@
 | *09-09-2026* | *Steve Bradley Hoeij* | *Merevisi Bab 1.1 dengan menambahkan perspektif dari masing-masing pengguna, merevisi Bab 2.3 agar menggunakan pola EARS, dan mengisi kebutuhan nonfungsional* | *2* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 2:**
+
+### Milestone 3
+**Periode:** [10/09/2026] - [16/09/2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| ** | ** | ** | ** | ** | ** |
 
 ---
 
