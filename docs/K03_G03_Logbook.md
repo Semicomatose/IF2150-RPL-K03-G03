@@ -52,7 +52,9 @@
 | *08-09-2026—09-09-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 2* | *4* | *On Progress* | *Susah menentukan kategori masing-masing* |
 | *09-09-2026* | *Steve Bradley Hoeij* | *Merevisi Bab 1.1 dengan menambahkan perspektif dari masing-masing pengguna, merevisi Bab 2.3 agar menggunakan pola EARS, dan mengisi kebutuhan nonfungsional* | *2* | *Done* | *-* |
 
-**Catatan/Evaluasi Milestone 2:**
+**Catatan/Evaluasi Milestone 2:** -
+
+---
 
 ### Milestone 3
 **Periode:** [10-09-2026] - [16-09-2026]
@@ -61,6 +63,6 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *11-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi identitas pada template* | *0,25* | *Done* | *-* |
 
----
+**Catatan/Evaluasi Milestone 3:** -
 
-``Gunakan format penulisan Logbook yang sama untuk setiap Milestone dan pastikan pembuatan Daftar Isi juga sudah sesuai sebelum Logbook dikumpulkan. ``
+---
