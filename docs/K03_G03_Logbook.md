@@ -30,7 +30,7 @@
 ---
 
 ### Milestone 1
-**Periode:** [27/08/2026] - [02/09/2026]
+**Periode:** [27-08-2026] - [02-09-2026]
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
@@ -44,7 +44,7 @@
 ---
 
 ### Milestone 2
-**Periode:** [03/09/2026] - [09/09/2026]
+**Periode:** [03-09-2026] - [09-09-2026]
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
@@ -55,11 +55,11 @@
 **Catatan/Evaluasi Milestone 2:**
 
 ### Milestone 3
-**Periode:** [10/09/2026] - [16/09/2026]
+**Periode:** [10-09-2026] - [16-09-2026]
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-| ** | ** | ** | ** | ** | ** |
+| *11-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi identitas pada template* | *0,25* | *Done* | *-* |
 
 ---
 
