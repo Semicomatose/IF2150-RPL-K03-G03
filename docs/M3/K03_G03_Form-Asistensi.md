@@ -4,9 +4,9 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
+| **Hari** | Selasa |
+| **Tanggal** | 15/09/2026 |
+| **Kelas** | 03 |
 | **Nomor Kelompok** | 03 |
 | **Nama Kelompok** | 0x43 |
 | **Nama Perangkat Lunak** | Commitment Issues |
@@ -27,13 +27,10 @@
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
-
-**Notes for this section:**  
-*Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
+| 1. Ruang lingkup UC02 (Mengevaluasi Tantangan) sebaiknya diperluas. |
+| 2. Pertimbangkan *edge case* untuk setiap *use case*. |
+| 3. *include* menandakan bahwa sesuatu wajib dieksekusi, sedangkan *exclude* menandakan bahwa sesuatu hanya dieksekusi dalam kondisi tertentu. |
+| 4. Tambahkan *precondition* pada *use case* apabila diperlukan, misalnya *precondition* user sudah *login*, apabila mengimplementasikan sistem *login*. |
 
 ## Dokumentasi
 
