@@ -62,6 +62,7 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *11-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi identitas pada template* | *0,25* | *Done* | *-* |
+| *16-09-2026* | *Dominick Vincent Devict* | *Menyusun Bab 3.4, UC1 sampai UC4* | *3* | *On Progress* | *Belum yakin mengenai bayangan aplikasi* |
 
 **Catatan/Evaluasi Milestone 3:** -
 
