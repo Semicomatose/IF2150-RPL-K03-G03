@@ -26,6 +26,7 @@
 * [Milestone 1](#milestone-1)
 * [Milestone 2](#milestone-2)
 * [Milestone 3](#milestone-3)
+* [Milestone 4](#milestone-4)
 
 ---
 
@@ -65,5 +66,16 @@
 | *16-09-2026* | *Dominick Vincent Devict* | *Menyusun Bab 3.4, UC1 sampai UC4* | *3* | *On Progress* | *Belum yakin mengenai bayangan aplikasi* |
 
 **Catatan/Evaluasi Milestone 3:** -
+
+---
+
+### Milestone 4
+**Periode:** [17-09-2026] - [23-09-2026]
+
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- | 
+| ** | ** | ** | ** | ** | ** |
+
+**Catatan/Evaluasi Milestone 4:** -
 
 ---
