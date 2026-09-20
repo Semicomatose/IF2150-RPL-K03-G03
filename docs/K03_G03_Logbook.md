@@ -74,7 +74,7 @@
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-| ** | ** | ** | ** | ** | ** |
+| *20-09-2026* | *Ananda Aulia Nurramadhan* | *Memperbarui dokumen (logbook, deklarasi penggunaan AI), mengisi bab 1 dan 2* | *0,2* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 4:** -
 
