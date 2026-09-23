@@ -75,6 +75,7 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
 | *20-09-2026* | *Ananda Aulia Nurramadhan* | *Memperbarui dokumen (logbook, deklarasi penggunaan AI), mengisi bab 1 dan 2* | *0,2* | *Done* | *-* |
+| *23-09-2026* | *Dominick Vincent Devict dan Ananda Aulia Nurramadhan* | *Menyusun Diagram Kelas untuk UC01, UC02, UC03, UC04* | *3* | *On Progress* | *Bingung bagian-bagian diagram kasus* |
 
 **Catatan/Evaluasi Milestone 4:** -
 
