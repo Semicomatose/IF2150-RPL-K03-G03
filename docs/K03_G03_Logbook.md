@@ -88,7 +88,7 @@
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-| ** | ** | ** | ** | ** | ** |
+| *26-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi informasi dasar dan menyalin informasi yang sudah ada dari milestone sebelumnya* | *0,75* | *-* | *-* |
 
 **Catatan/Evaluasi Milestone 5:** -
 
