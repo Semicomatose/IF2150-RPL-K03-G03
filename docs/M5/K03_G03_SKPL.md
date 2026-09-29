@@ -41,10 +41,10 @@ Dipersiapkan oleh:
 # BAB 1: Pendahuluan
 
 ## 1.1 Tujuan Penulisan Dokumen
-Tuliskan dengan ringkas tujuan dokumen SKPL ini dibuat dan siapa saja yang akan menggunakan dokumen ini.
+Dokum SKPL ini dibuat sebagai titik acuan penyusunan perangkat lunak _Commitment Issues_, serta untuk memenuhi spesifikasi milestone 5 pada tugas besar mata kuliah IF2150 - Rekayasa Perangkat Lunak. Dokumen ini diperuntukan para pengembang perangkat lunak, yaitu anggota kelompok G03 dari K03 IF2150 tahun 2026/27, untuk kepentingan proses perancangan _Commitment Issues_, dan semua penilai yang terlibat dalam proses penilaian tugas besar. 
 
 ## 1.2 Lingkup Masalah
-Tuliskan dengan ringkas nama aplikasi dan deskripsi singkatnya. Bagian ini maksimal berisi satu paragraf, dapat diringkas dari BAB 1 *Analisis Permasalahan* pada dokumen *Topic Brainstorming*.
+Git adalah sistem kendali versi yang memungkinkan penggunanya untuk melacak perubahan pada kode dan mengatur proyek menggunakan perintah-perintah sederhana. Menurut Stack Overflow Developer Survey pada 2022 yang mengakumulasi jawaban dari 70.000 developer, 93,87% responden mengadopsi Git sebagai sistem kendali versi. _Commitment Issues_ bertujuan untuk menyediakan sarana pembelajaran interaktif yang menyimulasikan penerapan Git dalam suatu proyek yang realistis, sehingga memberikan pengalaman belajar yang lebih realistis dan mudah diterapkan bagi pelajar. Perangkat lunak ini akan menguji pelajar dalam menghadapi skenario-skenario yang sering ditemukan saat menggunakan Git, salah satunya penanganan konflik.
 
 ## 1.3 Definisi, Istilah, dan Singkatan
 Semua definisi dan singkatan yang digunakan dalam dokumen ini beserta penjelasannya.
