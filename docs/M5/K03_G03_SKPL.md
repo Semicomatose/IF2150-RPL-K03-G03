@@ -111,11 +111,10 @@ Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan 
 | *Pelajar* | *Pengguna ini bertindak sebagai pihak yang belum menguasai atau masih mempelajari Git dan sedang memecahkan masalah yang diberikan Pembuat Tantangan. Karakteristik dari pengguna ini adalah mengutamakan proses pemahaman.* |
 
 ## 2.4 Batasan Perangkat Lunak
-Batasan yang harus dituliskan, di antaranya:
-1. *P/L harus memakai file data/API dari sistem lain (sebutkan, misal Payment Gateway dummy).*
-2. *P/L harus memakai format data yang sama dengan sistem lain.*
-3. *P/L harus berfungsi pada platform tertentu (misal: web browser modern, atau desktop Windows dan Linux).*
-4. *...*
+1. P/L harus menyimpan data informasi pengguna (Pelajar ataupun Pembuat Tantangan) menggunakan Database eksternal.
+2. P/L harus berfungsi pada platform web browser modern.
+3. Satu instansi repository yang disimulasikan oleh sistem hanya digunakan oleh satu Pengguna, baik Pelajar atau Pembuat Tantangan.
+4. Repository yang disimulasikan tidak disimpan pada perangkat pengguna.
 
 ## 2.5 Lingkungan Operasi Perangkat Lunak
 Spesifikasi *operating system* atau lingkungan yang dibutuhkan P/L untuk beroperasi. Bagian ini digunakan untuk memastikan pengguna memiliki spesifikasi yang cukup untuk menjalankan P/L. Misalnya mencakup komponen server, client, OS, DBMS, tetapi tidak menutupi kemungkinan komponen lain.
