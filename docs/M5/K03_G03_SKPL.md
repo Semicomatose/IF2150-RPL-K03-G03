@@ -38,7 +38,7 @@ Dipersiapkan oleh:
 # BAB 1: Pendahuluan
 
 ## 1.1 Tujuan Penulisan Dokumen
-Dokumen SKPL ini dibuat sebagai titik acuan atau panduan selama proses pengembangan perangkat lunak _Commitment Issues_. Dokumen ini diperuntukan para pengembang perangkat lunak _Commitment Issues_ dan semua guru, dosen, atau pengajar lainnya yang ingin menggunakan perangkat lunak dalam proses pengajaran Git.
+Dokumen SKPL ini dibuat sebagai titik acuan atau panduan selama proses pengembangan perangkat lunak _Commitment Issues_. Dokumen ini diperuntukan para pengembang perangkat lunak _Commitment Issues_ dan semua guru, dosen, atau pengajar lainnya yang ingin menggunakan perangkat lunak _Commitment Issues_ dalam proses pengajaran Git.
 
 ## 1.2 Lingkup Masalah
 Git adalah sistem kendali versi yang memungkinkan penggunanya untuk melacak perubahan pada kode dan mengatur proyek menggunakan perintah-perintah sederhana. Menurut Stack Overflow Developer Survey pada 2022 yang mengakumulasi jawaban dari 70.000 developer, 93,87% responden mengadopsi Git sebagai sistem kendali versi. _Commitment Issues_ bertujuan untuk menyediakan sarana pembelajaran interaktif yang menyimulasikan penerapan Git dalam suatu proyek yang realistis, sehingga memberikan pengalaman belajar yang lebih relevan dan mudah diterapkan bagi pelajar. Perangkat lunak ini akan berfokus untuk menguji pelajar dalam menghadapi skenario-skenario yang sering ditemukan saat menggunakan Git, contohnya penanganan konflik.
@@ -97,7 +97,9 @@ Alur kerja sistem dibuat untuk proses bisnis akademik praktikum. Pembuat Tantang
 ## 2.2 Deskripsi Umum Perangkat Lunak
 _Commitment Issues_ merupakan aplikasi pembelajaran Git dimana pelajar dapat mengerjakan berbagai tantangan yang didesain untuk menyimulasikan skenario-skenario realistis yang mungkin ditemukan ketika menggunakan Git. Untuk menyimpan data Pelajar, seperti biodata Pelajar dan riwayat tantangan-tantangan yang sudah pernah diselesaikan atau sedang dikerjakan, sistem akan berinteraksi dengan suatu **Database**. Sistem akan mengirimkan perubahan riwayat pelajar ke **Database** setiap kali Pelajar menyelesaikan suatu tantangan atau keluar dari tampilan pengerjaan tantangan. **Database** juga akan menyimpan data para Pembuat Tantangan, yaitu biodata pengguna dan informasi dari tantangan-tantangan yang pernah dibuat oleh Pembuat Tantangan tersebut. 
 
-Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan sedang mengevaluasi suatu tantangan, Pelajar/Pembuat Tantangan akan mengirimkan command-command Git melalui suatu _Console Line Interface_. Command-command yang dikirim lewat CLI tersebut akan diproses oleh sistem [Teknikalitas cara kerja simulasi repo]. 
+Dalam menginisiasi sebuah repository untuk tantangan, sistem akan mengextract sebuah zip setup yang disusun oleh Pembuat Tantangan. File zip tersebut berisikan data repository Git untuk tantangan tersebut, beserta file-file bash untuk menginisiasi repository tantangan, mengulang tantangan, dan verifikasi jawaban. Repository tantangan disimpan pada environment sandbox yang berada di server sistem. 
+
+Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan sedang mengevaluasi suatu tantangan, Pelajar/Pembuat Tantangan akan mengirimkan command-command Git melalui suatu _Console Line Interface_. Command-command yang dijalankan oleh Pengguna lewat CLI tersebut akan diterima dan dijalankan oleh server pada repository tantangan. Commnand-command yang valid untuk dijalankan oleh server dibatasi oleh sebuah whitelist command. Sehingga, command-command destruktif, seperti ``rm -rf /*``, tidak akan dijalankan dan akan mengembalikan error message ke Pengguna.  
 
 ## 2.3 Pengguna dan Kebutuhan Pengguna Perangkat Lunak
 | Pengguna | Kebutuhan |
@@ -108,8 +110,8 @@ Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan 
 ## 2.4 Batasan Perangkat Lunak
 1. P/L harus menyimpan data informasi pengguna (Pelajar ataupun Pembuat Tantangan) menggunakan Database eksternal.
 2. P/L harus berfungsi pada platform web browser modern.
-3. Satu instansi repository yang disimulasikan oleh sistem hanya digunakan oleh satu Pengguna, baik Pelajar atau Pembuat Tantangan.
-4. Repository yang disimulasikan tidak disimpan pada perangkat pengguna.
+3. Setiap repository tantangan oleh sistem hanya dapat diakses dan digunakan oleh satu Pengguna.
+4. Repository yang disimulasikan tidak tersimpan secara lokal pada perangkat pengguna.
 
 ## 2.5 Lingkungan Operasi Perangkat Lunak
 Spesifikasi *operating system* atau lingkungan yang dibutuhkan P/L untuk beroperasi. Bagian ini digunakan untuk memastikan pengguna memiliki spesifikasi yang cukup untuk menjalankan P/L. Misalnya mencakup komponen server, client, OS, DBMS, tetapi tidak menutupi kemungkinan komponen lain.
