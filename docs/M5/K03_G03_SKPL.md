@@ -56,18 +56,23 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 | *EARS* | *Easy Approach to Requirements Syntax, yaitu pola penulisan kebutuhan agar konsisten dan mudah diuji.* |
 
 ## 1.4 Aturan Penomoran
+Aturan penomoran (ID) yang digunakan dalam dokumen ini adalah sebagai berikut.
+
 Tabel 1.4. Aturan Penomoran
 
+<!--TODO: add description-->
 | Hal/Bagian | Penomoran | Keterangan |
 | :--- | :--- | :--- |
-| *Kebutuhan Fungsional* | *KFXX* | - |
-| *Kebutuhan Non-Fungsional* | *KNFXX* | - |
-| *Aktor* | *AXX* | - |
-| *Use Case* | *UCXX* | - |
-| *Kelas* | *CXX* | - |
+| *Kebutuhan Fungsional* | *KFXX* | KF merupakan singkatan dari kebutuhan fungsional. XX merupakan nomor urut kebutuhan fungsional, dimulai dari 01. Contoh: KF01, KF99, dan sebagainya. |
+| *Kebutuhan Non-Fungsional* | *KNFXX* | KNF merupakan singkatan dari kebutuhan non-fungsional. XX merupakan nomor urut kebutuhan non-fungsional, dimulai dari 01. Contoh: KF01, KF99, dan sebagainya. |
+| *Aktor* | *AXX* | A merupakan singkatan dari aktor. XX merupakan nomor urut aktor yang teridentifikasi di dalam sistem, dimulai dari 01. Contoh: A01, A02, dan sebagainya. |
+| *Use Case* | *UCXX* | UC merupakan singkatan dari use case. XX merupakan nomor urut use case yang teridentifikasi di dalam sistem, dimulai dari 01. Contoh: UC01, UC02, dan sebagainya. |
+| *Kelas* | *CXX* | K merupakan singkatan dari kelas. XX merupakan nomor urut kelas yang teridentifikasi di dalam sistem, dimulai dari 01. Contoh: C01, C02, dan sebagainya. |
 
 ## 1.5 Referensi
-Dokumen ini merujuk statistik penggunaan sistem kendali versi pada Stack Overflow Developer Survey 2022 sebagai dasar untuk analisis kondisi dan formulasi P/L solusi.
+- Chacon, S. & Straub, B. (2014). Pro Git (edisi ke-2). Apress. Tersedia di: [https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
+- Git Practice. (t.thn.). Git Practice: Interactive Git Learning. Diakses pada 30 Agustus 2026, dari [https://git-practice.com](https://git-practice.com)
+- Peter C. (t.thn.). Learn Git Branching. Diambil kembali dari [https://learngitbranching.js.org](https://learngitbranching.js.org)
 
 ## 1.6 Deskripsi Umum Dokumen (Ikhtisar)
 Dokumen ini terdiri atas:
@@ -102,6 +107,8 @@ Dalam menginisiasi sebuah repository untuk tantangan, sistem akan mengextract se
 Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan sedang mengevaluasi suatu tantangan, Pelajar/Pembuat Tantangan akan mengirimkan command-command Git melalui suatu _Console Line Interface_. Command-command yang dijalankan oleh Pengguna lewat CLI tersebut akan diterima dan dijalankan oleh server pada repository tantangan. Commnand-command yang valid untuk dijalankan oleh server dibatasi oleh sebuah whitelist command. Sehingga, command-command destruktif, seperti ``rm -rf /*``, tidak akan dijalankan dan akan mengembalikan error message ke Pengguna.  
 
 ## 2.3 Pengguna dan Kebutuhan Pengguna Perangkat Lunak
+Tabel 2.1. Pengguna dan Kebutuhan Pengguna
+
 | Pengguna | Kebutuhan |
 | :--- | :--- |
 | *Pembuat Tantangan* | *Pengguna ini bertindak sebagai pihak yang sudah menguasai Git dan mendesain capaian pembelajaran, permasalahan, dan aturan validasi. Karakteristik dari pengguna ini adalah mengutamakan ketelitian dalam mendesain tantangan.* |
@@ -114,15 +121,19 @@ Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan 
 4. Repository yang disimulasikan tidak tersimpan secara lokal pada perangkat pengguna.
 
 ## 2.5 Lingkungan Operasi Perangkat Lunak
-Spesifikasi *operating system* atau lingkungan yang dibutuhkan P/L untuk beroperasi. Bagian ini digunakan untuk memastikan pengguna memiliki spesifikasi yang cukup untuk menjalankan P/L. Misalnya mencakup komponen server, client, OS, DBMS, tetapi tidak menutupi kemungkinan komponen lain.
+Spesifikasi dependensi untuk P/L ini.
+
+Tabel 2.2. Lingkungan Operasi P/L
 
 | Komponen | Spesifikasi |
 | :--- | :--- |
-| *Server* | *[contoh: Node.js v20, dijalankan pada layanan cloud]* |
-| *Client* | *[contoh: Web Browser modern (Chrome, Firefox terbaru)]* |
-| *DBMS* | *[contoh: PostgreSQL 15]* |
-| *OS* | *[contoh: Cross-platform (Windows/Linux/MacOS) melalui browser]* |
-| *...* | *...* |
+| *OS Server* | NixOS 25.06 |
+| *Server web* | Nginx |
+| *Runtime & Backend* | NodeJS 24 LTS |
+| *DBMS* | PostgreSQL 18 |
+| *Git* | Git 2.54.0 |
+| *Browser* | Mozilla Firefox 150+ |
+| *OS* | Cross-platform (asalkan mendukung web-browser yang didukung) |
 
 ---
 
@@ -162,12 +173,16 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 # BAB 4: Pemodelan Use Case
 
 ## 4.1 Identifikasi Aktor
+Tabel 4.1. Identifikasi Aktor
+
 | ID Aktor | Aktor | Deskripsi |
 | :--- | :--- | :--- |
 | A01 | *Pembuat Tantangan* | *Pengguna ini bertindak sebagai pihak yang sudah menguasai Git dan mendesain capaian pembelajaran, permasalahan, dan aturan validasi. Karakteristik dari pengguna ini adalah mengutamakan ketelitian dalam mendesain tantangan.* |
 | A02 | *Pelajar* | *Pengguna ini bertindak sebagai pihak yang belum menguasai atau masih memPelajari Git dan sedang memecahkan masalah yang diberikan Pembuat Tantangan. Karakteristik dari pengguna ini adalah mengutamakan proses pemahaman.* |
 
 ## 4.2 Identifikasi Use Case
+Tabel 4.2. Identifikasi Use Case
+
 | ID UC | Nama Use Case | Deskripsi Singkat | Aktor | ID KF |
 | :--- | :--- | :--- | :--- | :--- |
 | *UC01* | *Mengembangkan Tantangan* | *Pembuat Tantangan mengupload berkas yang diperlukan dan menyimpan atau mengelola tantangan.* | *Pembuat Tantangan* | *KF01, KF03* |
@@ -184,6 +199,7 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 </p>
 
 ## 4.4 Skenario Use Case
+
 ### 4.4.1 Skenario UC01
 
 **Nama Use Case:** *Mengembangkan tantangan*
@@ -193,15 +209,15 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 | No | Aksi Aktor | Reaksi Perangkat Lunak |
 | :--- | :--- | :--- |
 | 1 | *Pembuat tantangan memilih menu pembuatan tantangan* | *Sistem menampilkan semua tantangan yang telah dibuat oleh pembuat tantangan* |
-| 2 | *Pembuat tantangan memilih salah satu tantangan* | *Sistem mengarahkan pembuat tantangan ke halaman mengedit tantangan, dimana pembuat tantangan dapat menulis setup script serta mengubah deskripsi atau spesifikasi tantangan* |
+| 2 | *Pembuat tantangan memilih salah satu tantangan* | *Sistem mengarahkan pembuat tantangan ke halaman mengedit tantangan, dimana pembuat tantangan dapat mengunggah berkas tantangan serta mengisi deskripsi atau spesifikasi tantangan* |
 | 3 | *Pembuat tantangan menyimpan perubahan tantangan* | *Sistem menyimpan semua perubahan yang dibuat oleh pembuat tantangan* |
 
-**Skenario Alternatif 1: Menghapus Draf Tantangan**
+**Skenario Alternatif 1: Berkas Tantangan Gagal Diproses**
 
 | No | Aksi Aktor | Reaksi Perangkat Lunak |
 | :--- | :--- | :--- |
-| 1 | *Pembuat tantangan memilih menu pembuatan tantangan* | *Sistem menampilkan semua tantangan yang telah dibuat oleh pembuat tantangan* |
-| 2 | *Pembuat tantangan memilih salah satu tantangan dan menghapusnya* | *Sistem menghapus data tantangan dari penyimpanan dan memperbaharui tantangan yang ditampilkan* |
+| 1 | *Pembuat tantangan mengunggah berkas tantangan yang tidak valid* | *Sistem mendeteksi kegagalan parsing struktur berkas dan menampilkan pesan kesalahan* |
+| 2 | *Pembuat tantangan memperbaiki dengan mengunggah ulang berkas* | *Sistem berhasil memvalidasi struktur berkas dan memperbarui repositori tantangan* |
 
 ### 4.4.2 Skenario UC02
 
@@ -221,9 +237,10 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 | :--- | :--- | :--- |
 | 1 | *Pembuat tantangan memilih menu pengujian tantangan* | *Sistem mengarahkan pembuat tantangan ke tampilan pengujian tantangan, dimana pembuat tantangan dapat mencoba mengerjakan tantangan seperti seorang pelajar* |
 | 2 | *Pembuat tantangan mengirim command* | *Sistem memproses command dan melakukan perubahan ke repository simulasi* |2
-| 3 | *Pembuat tantangan mempublikasikan tantangan* | *Sistem memperbaharui setup script, deskripsi, dan spesifikasi dari tantangan yang sedang dievaluasi* |
+| 3 | *Pembuat tantangan mempublikasikan tantangan* | *Sistem memperbaharui berkas tantangan, deskripsi, dan spesifikasi dari tantangan yang sedang dievaluasi* |
 
 **Skenario Alternatif 2: Menghapus Tantangan yang Sudah Dipublikasikan**
+
 | No | Aksi Aktor | Reaksi Perangkat Lunak |
 | :--- | :--- | :--- |
 | 1 | *Pembuat tantangan memilih menu pengujian tantangan* | *Sistem mengarahkan pembuat tantangan ke tampilan pengujian tantangan* |
@@ -265,12 +282,14 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 **Nama Use Case:** *Cek Riwayat*
 
 **Skenario Normal Pelajar**
+
 | No | Aksi Aktor | Reaksi Perangkat Lunak |
 | :--- | :--- | :--- |
 | 1 | *Pelajar memilih menu riwayat pengerjaan*  | *Sistem mengarahkan pelajar ke tampilan riwayat pengerjaan, yang menampilkan semua tantangan yang sudah pernah dikerjakan* |
 | 2 | *Pelajar memilih salah satu tantangan dari riwayat pengerjaan* | *Sistem menampilkan riwayat konsol dari saat pelajar menyelesaikan tantangan* |
 
 **Skenario Alternatif 1: Pelajar mengulang tantangan**
+
 | No | Aksi Aktor | Reaksi Perangkat Lunak |
 | :--- | :--- | :--- |
 | 1 | *Pelajar memilih menu riwayat pengerjaan*  | *Sistem mengarahkan pelajar ke tampilan riwayat pengerjaan, yang menampilkan semua tantangan yang sudah pernah dikerjakan* |
@@ -282,14 +301,22 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 # BAB 5: Pemodelan Kelas
 
 ## 5.1 Identifikasi Kelas
+Tabel 5.1. Identifikasi Kelas
+
 | ID Kelas | Nama Kelas | Deskripsi Kelas | ID Use Case |
 | :--- | :--- | :--- | :--- |
-| *C01* | *Pelanggan* | *Menyimpan data akun pelanggan yang membuat pesanan.* | *UC01, UC05* |
-| *C02* | *Pesanan* | *Menyimpan data pesanan beserta status pembayarannya.* | *UC01, UC03, UC05* |
-| *C03* | *Keranjang* | *Menyimpan sementara item yang dipilih sebelum checkout.* | *UC01, UC02* |
-| *...* | *...* | *...* | *...* |
+| *C01* | *PembuatTantangan* | *Pengguna yang merancang, menguji, dan merilis tantangan.* | *UC01, UC02, UC04* |
+| *C02* | *Pelajar* | *Pengguna yang memilih, mengerjakan, dan melihat riwayat pengerjaan.* | *UC03, UC04* |
+| *C03* | *Tantangan* | *Menyimpan informasi tentang tantangan seperti judul, deskripsi, dan arsip tantangan.* | *UC01, UC02, UC03* |
+| *C04* | *WindowEdit* | *Antarmuka bagi Pembuat Tantangan untuk mengunggah tantangan.* | *UC01* |
+| *C05* | *EditController* | *Mengontrol proses pengunggahan dan penyimpanan data tantangan baru ke sistem.* | *UC01* |
+| *C06* | *WindowEnvironment* | *Antarmuka pengerjaan tantangan bagi Pelajar serta pengujian tantangan bagi PembuatTantangan.* | *UC02, UC03* |
+| *C07* | *EnvironmentController* | *Mengontrol eksekusi perintah, pengujian, dan pemrosesan solusi.* | *UC02, UC03* |
+| *C08* | *WindowRiwayat* | *Antarmuka untuk menampilkan rekapitulasi nilai dan riwayat pengerjaan.* | *UC04* |
+| *C09* | *RiwayatTantangan* | *Menyimpan catatan hasil pengerjaan, nilai, dan riwayat pengerjaan.* | *UC03, UC04* |
 
 ## 5.2 Diagram Kelas per Use Case
+
 ### 5.2.1 Use Case UC01
 
 **Nama Use Case:** *Mengembangkan Tantangan*
@@ -420,6 +447,8 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 <i>Gambar 7. Diagram Kelas Keseluruhan</i>
 </p>
 
+Tabel 5.2. Kartu Kelas Keseluruhan
+
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
 | *C01* | *PembuatTantangan* | *idUser, nama* | *aksesMenuUnggah(), inputTantangan(), ujiTantangan(), lihatRekapitulasiNilai()* |
@@ -435,6 +464,9 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 ---
 
 # BAB 6: Traceability
+
+Tabel 6.1. Trace Kelas ke Use Case dan Kebutuhan Fungsional
+
 | ID Kelas | ID Use Case | ID KF |
 | :--- | :--- | :--- |
 | *C01* | *UC01, UC02, UC04* | *KF01, KF02, KF11* |
