@@ -88,9 +88,10 @@
 
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- | 
-| *26-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi informasi dasar dan menyalin informasi yang sudah ada dari milestone sebelumnya* | *0,75* | *-* | *-* |
-| *29-09-2026* | *Dominick Vincent Devict* | *Mengisi Bab 1.1 dan 1.2* | *0.5* | *-* | *-* |
-| *29-09-2026* | *Dominick Vincent Devict* | *Mengisi Bab 2.2 dan 2.4* | *2* | *-* | *-* |
+| *26-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi informasi dasar dan menyalin informasi yang sudah ada dari milestone sebelumnya* | *0,75* | *Done* | *-* |
+| *29-09-2026* | *Dominick Vincent Devict* | *Mengisi Bab 1.1 dan 1.2* | *0.5* | *Done* | *-* |
+| *29-09-2026* | *Dominick Vincent Devict* | *Mengisi Bab 2.2 dan 2.4* | *2* | *Done* | *-* |
+| *30-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi Bab 1.5 dan 1.6* | *0,5* | *Done* | *Bingung terkait apa yang dimaksud dengan "referensi", apakah cukup mencantumkan referensi yang pernah digunakan pada milestone-milestone sebelumnya atau referensi yang akan digunakan selama pengembangan P/L, misalnya dokumentasi HTML* |
 
 **Catatan/Evaluasi Milestone 5:** -
 

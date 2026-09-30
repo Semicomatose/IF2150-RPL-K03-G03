@@ -31,10 +31,7 @@ Dipersiapkan oleh:
 
 | Revisi | Deskripsi |
 | :--- | :--- |
-| *A* | *Deskripsikan perubahan yang dilakukan dari dokumen sebelumnya pada dokumen ini. Jika tidak terdapat perubahan, harap kosongkan tabel.* |
-| *B* |  |
-| *C* |  |
-| ... |  |
+| - | - |
 
 <br>
 
@@ -47,8 +44,6 @@ Dokumen SKPL ini dibuat sebagai titik acuan atau panduan selama proses pengemban
 Git adalah sistem kendali versi yang memungkinkan penggunanya untuk melacak perubahan pada kode dan mengatur proyek menggunakan perintah-perintah sederhana. Menurut Stack Overflow Developer Survey pada 2022 yang mengakumulasi jawaban dari 70.000 developer, 93,87% responden mengadopsi Git sebagai sistem kendali versi. _Commitment Issues_ bertujuan untuk menyediakan sarana pembelajaran interaktif yang menyimulasikan penerapan Git dalam suatu proyek yang realistis, sehingga memberikan pengalaman belajar yang lebih relevan dan mudah diterapkan bagi pelajar. Perangkat lunak ini akan berfokus untuk menguji pelajar dalam menghadapi skenario-skenario yang sering ditemukan saat menggunakan Git, contohnya penanganan konflik.
 
 ## 1.3 Definisi, Istilah, dan Singkatan
-Semua definisi dan singkatan yang digunakan dalam dokumen ini beserta penjelasannya.
-
 Tabel 1.3. Definisi Istilah dan Singkatan
 
 | Singkatan, Akronim, atau Istilah | Penjelasan |
@@ -59,27 +54,29 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 | *KNF* | *Singkatan dari Kebutuhan Non-Fungsional.* |
 | *UC* | *Singkatan dari Use Case.* |
 | *EARS* | *Easy Approach to Requirements Syntax, yaitu pola penulisan kebutuhan agar konsisten dan mudah diuji.* |
-| *...* | *...* |
 
 ## 1.4 Aturan Penomoran
-Tuliskan aturan penomoran (ID) yang digunakan dalam dokumen ini. Gunakan pola ID yang **sama** dengan yang sudah dipakai pada dokumen-dokumen sebelumnya, jangan membuat pola baru di dokumen ini.
-
 Tabel 1.4. Aturan Penomoran
 
 | Hal/Bagian | Penomoran | Keterangan |
 | :--- | :--- | :--- |
-| *Kebutuhan Fungsional* | *KFXX* | |
-| *Kebutuhan Non-Fungsional* | *KNFXX* | |
-| *Aktor* | *AXX* | |
-| *Use Case* | *UCXX* | |
-| *Kelas* | *CXX* | |
-| *...* | *...* |
+| *Kebutuhan Fungsional* | *KFXX* | - |
+| *Kebutuhan Non-Fungsional* | *KNFXX* | - |
+| *Aktor* | *AXX* | - |
+| *Use Case* | *UCXX* | - |
+| *Kelas* | *CXX* | - |
 
 ## 1.5 Referensi
-Dokumentasi P/L yang dirujuk oleh dokumen ini. Referensi dapat berupa buku, panduan, ataupun dokumentasi lain yang dipakai dalam pengembangan P/L ini.
+Dokumen ini merujuk statistik penggunaan sistem kendali versi pada Stack Overflow Developer Survey 2022 sebagai dasar untuk analisis kondisi dan formulasi P/L solusi.
 
 ## 1.6 Deskripsi Umum Dokumen (Ikhtisar)
-Tuliskan sistematika pembahasan dokumen SKPL ini secara runut (misalnya: BAB 2 membahas deskripsi umum P/L, BAB 3 membahas kebutuhan fungsional dan non-fungsional, dst).
+Dokumen ini terdiri atas:
+- Bab 1 yang berisi pendahuluan.
+- Bab 2 yang berisi pembahasan terkait P/L, mencakup deskripsi sistem dan P/L, serta batasan dan lingkungan operasi P/L.
+- Bab 3 yang berisi perincian kebutuhan fungsional dan non-fungsional P/L.
+- Bab 4 yang berisi perincian skenario normal dan alternatif (apabila ada) setiap _use case_ P/L yang kemudian dimodelkan menjadi diagram _use case_.
+- Bab 5 yang berisi pemodelan sistem P/L menggunakan kelas, representasi entitas dalam sistem, dalam setiap _use case_ yang kemudian digeneralisasi dalam satu diagram kelas.
+- Bab 6 yang berisi pemodelan hubungan antara setiap kelas dengan _use case_ dan kebutuhan fungsional P/L.
 
 ---
 
@@ -98,8 +95,6 @@ Alur kerja sistem dibuat untuk proses bisnis akademik praktikum. Pembuat Tantang
 </p>
 
 ## 2.2 Deskripsi Umum Perangkat Lunak
-Diisi dengan deskripsi umum perangkat lunak untuk mendukung proses bisnis yang telah diuraikan pada sub-bab sebelumnya. Uraian harus menunjukkan lingkup perangkat lunak, mencakup keterkaitan perangkat lunak dengan sistem lain di luar (misalnya *Payment Gateway* atau layanan pihak ketiga lain yang dipakai).
-
 _Commitment Issues_ merupakan aplikasi pembelajaran Git dimana pelajar dapat mengerjakan berbagai tantangan yang didesain untuk menyimulasikan skenario-skenario realistis yang mungkin ditemukan ketika menggunakan Git. Untuk menyimpan data Pelajar, seperti biodata Pelajar dan riwayat tantangan-tantangan yang sudah pernah diselesaikan atau sedang dikerjakan, sistem akan berinteraksi dengan suatu **Database**. Sistem akan mengirimkan perubahan riwayat pelajar ke **Database** setiap kali Pelajar menyelesaikan suatu tantangan atau keluar dari tampilan pengerjaan tantangan. **Database** juga akan menyimpan data para Pembuat Tantangan, yaitu biodata pengguna dan informasi dari tantangan-tantangan yang pernah dibuat oleh Pembuat Tantangan tersebut. 
 
 Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan sedang mengevaluasi suatu tantangan, Pelajar/Pembuat Tantangan akan mengirimkan command-command Git melalui suatu _Console Line Interface_. Command-command yang dikirim lewat CLI tersebut akan diproses oleh sistem [Teknikalitas cara kerja simulasi repo]. 
@@ -165,16 +160,12 @@ Tabel 3.2. Kebutuhan Non-Fungsional
 # BAB 4: Pemodelan Use Case
 
 ## 4.1 Identifikasi Aktor
-Salin ulang daftar aktor final dari BAB 3.1 dokumen *Use Case & Scenario Use Case* atau *Class Diagram*. Tambahkan ID Aktor mengikuti Aturan Penomoran pada 1.4.
-
 | ID Aktor | Aktor | Deskripsi |
 | :--- | :--- | :--- |
 | A01 | *Pembuat Tantangan* | *Pengguna ini bertindak sebagai pihak yang sudah menguasai Git dan mendesain capaian pembelajaran, permasalahan, dan aturan validasi. Karakteristik dari pengguna ini adalah mengutamakan ketelitian dalam mendesain tantangan.* |
 | A02 | *Pelajar* | *Pengguna ini bertindak sebagai pihak yang belum menguasai atau masih memPelajari Git dan sedang memecahkan masalah yang diberikan Pembuat Tantangan. Karakteristik dari pengguna ini adalah mengutamakan proses pemahaman.* |
 
 ## 4.2 Identifikasi Use Case
-Salin ulang daftar Use Case versi terbaru dari BAB 3.2 dokumen *Class Diagram*, pastikan seluruh ID KF yang dirujuk sudah sesuai dengan tabel pada 3.1.
-
 | ID UC | Nama Use Case | Deskripsi Singkat | Aktor | ID KF |
 | :--- | :--- | :--- | :--- | :--- |
 | *UC01* | *Mengembangkan Tantangan* | *Pembuat Tantangan mengupload berkas yang diperlukan dan menyimpan atau mengelola tantangan.* | *Pembuat Tantangan* | *KF01, KF03* |
@@ -183,8 +174,6 @@ Salin ulang daftar Use Case versi terbaru dari BAB 3.2 dokumen *Class Diagram*, 
 | *UC04* | *Cek Riwayat* | *Pelajar atau Pembuat Tantangan mengecek riwayat dan penilaian dari pengerjaan yang telah dilakukan.* | *Pelajar dan Pembuat Tantangan* | *KF11, KF12* |
 
 ## 4.3 Use Case Diagram
-Salin ulang Use Case Diagram dari BAB 3.3 dokumen *Use Case & Scenario Use Case* atau *Class Diagram* (gunakan versi paling akhir/terbaru apabila terdapat perubahan).
-
 <p align="center">
 <img alt="Use Case Diagram" src="./assets/diagram/ucdiagram1.jpeg" width="70%">
 </p>
@@ -193,8 +182,6 @@ Salin ulang Use Case Diagram dari BAB 3.3 dokumen *Use Case & Scenario Use Case*
 </p>
 
 ## 4.4 Skenario Use Case
-Salin ulang skenario **setiap** use case (skenario normal dan alternatif) dari BAB 3.4 dokumen *Use Case & Scenario Use Case*, sesuaikan dengan daftar UC final pada 4.2. Jika use case melibatkan lebih dari satu aktor manusia yang benar-benar berinteraksi langsung (misalnya *Kasir* yang memverifikasi transaksi setelah *Pelanggan* membayar), tambahkan kolom aksi tersendiri untuk aktor tersebut di samping kolom "Reaksi Perangkat Lunak". Sistem eksternal otomatis seperti *payment gateway* **bukan aktor**, sehingga interaksinya cukup dituliskan sebagai bagian dari "Reaksi Perangkat Lunak", bukan kolom aktor terpisah.
-
 ### 4.4.1 Skenario UC01
 
 **Nama Use Case:** *Mengembangkan tantangan*
@@ -293,8 +280,6 @@ Salin ulang skenario **setiap** use case (skenario normal dan alternatif) dari B
 # BAB 5: Pemodelan Kelas
 
 ## 5.1 Identifikasi Kelas
-Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class Diagram*.
-
 | ID Kelas | Nama Kelas | Deskripsi Kelas | ID Use Case |
 | :--- | :--- | :--- | :--- |
 | *C01* | *Pelanggan* | *Menyimpan data akun pelanggan yang membuat pesanan.* | *UC01, UC05* |
@@ -303,8 +288,6 @@ Salin ulang seluruh kelas yang telah diidentifikasi dari BAB 4.1 dokumen *Class 
 | *...* | *...* | *...* | *...* |
 
 ## 5.2 Diagram Kelas per Use Case
-Salin ulang diagram kelas untuk setiap use case dari BAB 4.2 dokumen *Class Diagram*, lengkap dengan tabel atribut dan metode/operasinya.
-
 ### 5.2.1 Use Case UC01
 
 **Nama Use Case:** *Mengembangkan Tantangan*
@@ -428,8 +411,6 @@ Salin ulang diagram kelas untuk setiap use case dari BAB 4.2 dokumen *Class Diag
 | *C09* | *RiwayatTantangan* | *idRiwayat, skor, statusPengerjaan* | *ambilDataRiwayat()* |
 
 ## 5.3 Diagram Kelas Keseluruhan
-Gabungkan seluruh kelas dan hubungan antarkelas dari BAB 4.3 dokumen *Class Diagram* menjadi satu diagram kelas keseluruhan. Pastikan tidak ada kelas yang terduplikasi atau tertinggal.
-
 <p align="center">
 <img alt="Contoh Class Diagram Keseluruhan" src="./assets/diagram/class-diagram-full.png" width="70%">
 </p>
@@ -452,8 +433,6 @@ Gabungkan seluruh kelas dan hubungan antarkelas dari BAB 4.3 dokumen *Class Diag
 ---
 
 # BAB 6: Traceability
-Salin ulang tabel Traceability dari BAB 5 dokumen *Class Diagram*, cocokkan setiap Kebutuhan Fungsional, Use Case, dan Kelas yang saling terkait.
-
 | ID Kelas | ID Use Case | ID KF |
 | :--- | :--- | :--- |
 | *C01* | *UC01, UC02, UC04* | *KF01, KF02, KF11* |
@@ -469,4 +448,5 @@ Salin ulang tabel Traceability dari BAB 5 dokumen *Class Diagram*, cocokkan seti
 ---
 
 # Referensi
+- Stack Overflow Developer Survey 2022: https://survey.stackoverflow.co/2022/#technology-version-control
 - Diagram UML: [https://www.drawio.com/](https://www.drawio.com/), [https://staruml.io/](https://staruml.io/)
