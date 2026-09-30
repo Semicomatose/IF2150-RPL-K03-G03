@@ -4,13 +4,13 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
-| **Nomor Kelompok** | 03  |
-| **Nama Kelompok** | 0x43  |
+| **Hari** | - |
+| **Tanggal** | - |
+| **Kelas** | 03 |
+| **Nomor Kelompok** | 03 |
+| **Nama Kelompok** | 0x43 |
 | **Nama Perangkat Lunak** | Commitment Issues  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Dokumen** | - |
 
 ### Anggota Kelompok
 
@@ -27,21 +27,4 @@
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
-
-**Notes for this section:**  
-*Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
-
-## Dokumentasi
-
-<!-- ![](./assets/foto-asistensi.jpg) -->
-<p align="center">
-  <img src="./assets/foto-asistensi.jpg" width="100%">
-</p>
-
-<p align="center">
-  <i>Gambar 1. Dokumentasi kegiatan asistensi.</i>
-</p>
+| Asistensi tidak dilakukan untuk milestone ini. |
