@@ -60,7 +60,6 @@ Aturan penomoran (ID) yang digunakan dalam dokumen ini adalah sebagai berikut.
 
 Tabel 1.4. Aturan Penomoran
 
-<!--TODO: add description-->
 | Hal/Bagian | Penomoran | Keterangan |
 | :--- | :--- | :--- |
 | *Kebutuhan Fungsional* | *KFXX* | KF merupakan singkatan dari kebutuhan fungsional. XX merupakan nomor urut kebutuhan fungsional, dimulai dari 01. Contoh: KF01, KF99, dan sebagainya. |
@@ -102,9 +101,9 @@ Alur kerja sistem dibuat untuk proses bisnis akademik praktikum. Pembuat Tantang
 ## 2.2 Deskripsi Umum Perangkat Lunak
 _Commitment Issues_ merupakan aplikasi pembelajaran Git dimana pelajar dapat mengerjakan berbagai tantangan yang didesain untuk menyimulasikan skenario-skenario realistis yang mungkin ditemukan ketika menggunakan Git. Untuk menyimpan data Pelajar, seperti biodata Pelajar dan riwayat tantangan-tantangan yang sudah pernah diselesaikan atau sedang dikerjakan, sistem akan berinteraksi dengan suatu **Database**. Sistem akan mengirimkan perubahan riwayat pelajar ke **Database** setiap kali Pelajar menyelesaikan suatu tantangan atau keluar dari tampilan pengerjaan tantangan. **Database** juga akan menyimpan data para Pembuat Tantangan, yaitu biodata pengguna dan informasi dari tantangan-tantangan yang pernah dibuat oleh Pembuat Tantangan tersebut. 
 
-Dalam menginisiasi sebuah repository untuk tantangan, sistem akan mengextract sebuah zip setup yang disusun oleh Pembuat Tantangan. File zip tersebut berisikan data repository Git untuk tantangan tersebut, beserta file-file bash untuk menginisiasi repository tantangan, mengulang tantangan, dan verifikasi jawaban. Repository tantangan disimpan pada environment sandbox yang berada di server sistem. 
+Dalam menginisiasi sebuah repository untuk tantangan, sistem akan mengextract sebuah zip setup yang telah dibuat oleh Pembuat Tantangan. File zip tersebut berisikan data repositori Git untuk tantangan tersebut, beserta script-script untuk menginisiasi repository tantangan, mengulang tantangan, dan memverifikasi jawaban. Repository tantangan disimpan pada environment sandbox yang berada di server sistem.
 
-Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan sedang mengevaluasi suatu tantangan, Pelajar/Pembuat Tantangan akan mengirimkan command-command Git melalui suatu _Console Line Interface_. Command-command yang dijalankan oleh Pengguna lewat CLI tersebut akan diterima dan dijalankan oleh server pada repository tantangan. Commnand-command yang valid untuk dijalankan oleh server dibatasi oleh sebuah whitelist command. Sehingga, command-command destruktif, seperti ``rm -rf /*``, tidak akan dijalankan dan akan mengembalikan error message ke Pengguna.  
+Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan sedang mengevaluasi suatu tantangan, Pelajar/Pembuat Tantangan akan mengirimkan command-command Git melalui suatu _Command Line Interface_. Command-command yang dijalankan oleh Pengguna lewat CLI tersebut akan diterima dan dijalankan oleh server.
 
 ## 2.3 Pengguna dan Kebutuhan Pengguna Perangkat Lunak
 Tabel 2.1. Pengguna dan Kebutuhan Pengguna
