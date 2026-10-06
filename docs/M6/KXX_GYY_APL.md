@@ -7,7 +7,7 @@ ARSITEKTUR PERANGKAT LUNAK (APL)
 </h1>
 <br>
 
-## *Nama Perangkat Lunak*
+## *Commitment Issues*
 
 ### Untuk: *Made Branenda Jordhy*
 
@@ -51,15 +51,20 @@ Isi bab ini dengan hal-hal berikut:
 
 Selain *style/pattern*, tuliskan juga lingkungan operasi P/L. Tabel berikut **disalin dari subbab 2.5 *Lingkungan Operasi Perangkat Lunak* pada dokumen SKPL** tanpa perubahan. Setelah tabel, jelaskan kaitan teknologi yang dipakai dengan *style/pattern* yang dipilih. Contohnya, Django (Python) secara bawaan mengikuti pola MVT (*Model-View-Template*), yaitu varian dari MVC.
 
-Tabel 1.1. Lingkungan Operasi Perangkat Lunak
+Untuk P/L ini, dipilih style/pattern **Client-Server**. Style/pattern ini dipilih karena perangkat lunak ini berbasis web yang didesain digunakan banyak pengguna yang dapat saling berinteraksi, melalui pembuatan dan pengerjaan tantangan, secara sekaligus. Selain itu, proses penggunaan pelajar ataupun pembuat tantangan terbatas pada mengirimkan request berupa command Git (KF07) atau pembaharuan data tantangan (KF01 dan KF02) kepada server, sehingga style/pattern ini sangat cocok. 
 
+Server bertanggung jawab untuk menjalankan setup tantangan, memroses command Git yang dikirim pengguna saat pengerjaan tantangan atau evaluasi tantangan, memeriksa validitas jawaban pelajar, memperbaharui riwayat pengerjaan, dan menyimpan perubahan tantangan.
+
+Tabel 1.1. Lingkungan Operasi Perangkat Lunak
 | Komponen | Spesifikasi |
 | :--- | :--- |
-| *Server* | *[contoh: Node.js v20 dengan Next.js, dijalankan secara lokal (localhost)]* |
-| *Client* | *[contoh: Web Browser modern (Chrome, Firefox terbaru)]* |
-| *DBMS* | *[contoh: PostgreSQL 15 pada Supabase sebagai basis data terpusat]* |
-| *OS* | *[contoh: Cross-platform (Windows/Linux/MacOS) melalui browser]* |
-| *...* | *...* |
+| *OS Server* | NixOS 25.06 |
+| *Server web* | Nginx |
+| *Runtime & Backend* | NodeJS 24 LTS |
+| *DBMS* | PostgreSQL 18 |
+| *Git* | Git 2.54.0 |
+| *Browser* | Mozilla Firefox 150+ |
+| *OS* | Cross-platform (asalkan mendukung web-browser yang didukung) |
 
 <sub><b><i>Catatan</i></b>: <i>Style/pattern yang dipilih di bab ini menjadi acuan untuk BAB 2 (pengelompokan komponen) dan BAB 3 (model arsitektur). Contoh pada dokumen ini memakai MVC secara konsisten dari BAB 1 sampai BAB 3. Kelompok boleh memakai pattern lain selama alasannya dijelaskan dan BAB 2 serta BAB 3 disesuaikan. Tabel 1.1 harus sama persis dengan subbab 2.5 dokumen SKPL; jangan menambah atau mengubah isinya karena SKPL sudah final.</i></sub>
 
