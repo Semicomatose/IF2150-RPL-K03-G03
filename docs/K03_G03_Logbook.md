@@ -96,3 +96,9 @@
 **Catatan/Evaluasi Milestone 5:** -
 
 ---
+
+### Milestone 6
+**Periode:** [1-10-2026] - [7-10-2026]
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| *06-10-2026* | _Dominick Vincent Devict_ | *Mengisi informasi dasar dan mulai mengerjakan Bab 1* | *2* | *On Progress* | *Tidak begitu paham cara menyusun architecture pattern/style yang baik dan benar* |
