@@ -4,35 +4,31 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
-| **Nomor Kelompok** | *\[Nomor Kelompok\]*  |
-| **Nama Kelompok** | *\[Nama Kelompok\]*  |
-| **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Hari** | - |
+| **Tanggal** | - |
+| **Kelas** | 03 |
+| **Nomor Kelompok** | 03 |
+| **Nama Kelompok** | 0x43 |
+| **Nama Perangkat Lunak** | Commitment Issues  |
+| **Dokumen** | K03_G03_APL.md |
 
 ### Anggota Kelompok
 
 | NIM | Nama |
 | --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+| 13525012 | Steve Bradley Hoeij |
+| 13525072 | Fahrezy Fitriansyah |
+| 13525084 | Ariq Ulwan Hammam |
+| 13525132 | Zidane Uland Fakhry |
+| 13525135 | Ananda Aulia Nurramadhan |
+| 10124063 | Dominick Vincent Devict |
 
 ### Catatan
 
 | Catatan |
 | --- |
-| 1. *\[Berikan catatan hasil asistensi\]*  |
-| 2. ... |
-| 3. ... |
-| 4. ... |
-
-**Notes for this section:**  
-*Catatan dapat dituliskan dalam bentuk paragraf atau poin-poin, disesuaikan saja.* 
+| 1. _Architectural style_ yang dapat dipilih mencakup MVC (_Model-View-Controller_), _layered architecture_, _client server architecture_, _repository architecture_, dan _pipe and filter architecture_. |
+| 2. _Architectural view_ yang dapat digunakan mencakup _logical view_, _process view_, _physical view_, dan _development view_. |
 
 ## Dokumentasi
 
