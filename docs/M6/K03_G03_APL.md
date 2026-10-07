@@ -36,10 +36,10 @@ Dipersiapkan oleh:
 # BAB 1: Style/Pattern Arsitektur Acuan
 
 <p align="center">
-<img alt="Contoh Arsitektur MVC" src="./assets/diagram/arsitektur-client-server.png" width="70%">
+<img alt="Arsitektur Client-Server" src="./assets/diagram/arsitektur-client-server.png" width="70%">
 </p>
 <p align="center">
-<i>Gambar 1. Contoh Arsitektur MVC</i>
+<i>Gambar 1. Arsitektur Client-Server</i>
 </p>
 
 Untuk P/L ini, dipilih style/pattern **Client-Server**. Style/pattern ini dipilih karena perangkat lunak ini berbasis web yang didesain digunakan banyak pengguna yang dapat saling berinteraksi, melalui pembuatan dan pengerjaan tantangan, secara sekaligus. Selain itu, proses penggunaan pelajar ataupun pembuat tantangan terbatas pada mengirimkan request berupa command Git (KF04 dan KF06) atau pembaharuan data tantangan (KF01 dan KF02) kepada server, sehingga style/pattern ini sangat cocok. 
