@@ -4,8 +4,8 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | - |
-| **Tanggal** | - |
+| **Hari** | Jumat |
+| **Tanggal** | 02/10/2026 |
 | **Kelas** | 03 |
 | **Nomor Kelompok** | 03 |
 | **Nama Kelompok** | 0x43 |
