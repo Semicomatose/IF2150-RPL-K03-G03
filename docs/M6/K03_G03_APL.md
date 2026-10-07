@@ -36,7 +36,7 @@ Dipersiapkan oleh:
 # BAB 1: Style/Pattern Arsitektur Acuan
 
 <p align="center">
-<img alt="Arsitektur Client-Server" src="./assets/diagram/arsitektur-client-server.png" width="70%">
+<img alt="Arsitektur Client-Server" src="./assets/diagram/arsitektur-client-server-1.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 1. Arsitektur Client-Server</i>
