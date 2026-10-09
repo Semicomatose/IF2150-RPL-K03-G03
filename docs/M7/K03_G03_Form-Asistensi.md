@@ -4,23 +4,24 @@
 
 | Informasi | Keterangan |
 | --- | --- |
-| **Hari** | *\[Hari\]* |
-| **Tanggal** | *\[DD/MM/YYYY\]* |
-| **Kelas** | *\[Kelas\]* |
-| **Nomor Kelompok** | *\[Nomor Kelompok\]*  |
-| **Nama Kelompok** | *\[Nama Kelompok\]*  |
-| **Nama Perangkat Lunak** | *\[Nama P/L\]*  |
-| **Dokumen** | *\[Nama Dokumen yang diasistensikan\]*  |
+| **Hari** | Jumat |
+| **Tanggal** | 09/10/2026 |
+| **Kelas** | 03 |
+| **Nomor Kelompok** | 03 |
+| **Nama Kelompok** | 0x43 |
+| **Nama Perangkat Lunak** | Commitment Issues  |
+| **Dokumen** | K03_G03_DPPL.md |
 
 ### Anggota Kelompok
 
 | NIM | Nama |
 | --- | --- |
-| *\[NIM 1\]* | *\[Nama Anggota 1\]* |
-| *\[NIM 2\]* | *\[Nama Anggota 2\]* |
-| *\[NIM 3\]* | *\[Nama Anggota 3\]* |
-| *\[NIM 4\]* | *\[Nama Anggota 4\]* |
-| *\[NIM 5\]* | *\[Nama Anggota 5\]* |
+| 13525012 | Steve Bradley Hoeij |
+| 13525072 | Fahrezy Fitriansyah |
+| 13525084 | Ariq Ulwan Hammam |
+| 13525132 | Zidane Uland Fakhry |
+| 13525135 | Ananda Aulia Nurramadhan |
+| 10124063 | Dominick Vincent Devict |
 
 ### Catatan
 

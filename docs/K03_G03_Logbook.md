@@ -28,7 +28,8 @@
 * [Milestone 3](#milestone-3)
 * [Milestone 4](#milestone-4)
 * [Milestone 5](#milestone-5)
-* [Milestone 6](#milestone-6)
+* [Milestone 6](#milestone-6)\
+* [Milestone 7](#milestone-7)
 
 ---
 
@@ -103,3 +104,15 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *06-10-2026* | _Dominick Vincent Devict_ | *Mengisi informasi dasar dan mulai mengerjakan Bab 1* | *2* | *On Progress* | *Tidak begitu paham cara menyusun architecture pattern/style yang baik dan benar* |
+
+**Catatan/Evaluasi Milestone 6:** -
+
+---
+
+### Milestone 7
+**Periode:** [8-10-2026] - [21-10-2026]
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| ** | ** | ** | ** | ** | ** |
+
+**Catatan/Evaluasi Milestone 7:** -
