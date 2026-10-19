@@ -70,7 +70,9 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 | Singkatan, Akronim, atau Istilah | Penjelasan |
 | :--- | :--- |
 | *P/L* | *Singkatan dari Perangkat Lunak, yaitu aplikasi yang memberikan perintah kepada komputer untuk menjalankan tugas tertentu.* |
-| *DPPL* | *Singkatan dari Spesifikasi Kebutuhan Perangkat Lunak, yaitu dokumen yang merangkum kriteria-kriteria yang diperlukan untuk membangun aplikasi menjalankan tugasnya.* |
+| *SKPL* | *Singkatan dari Spesifikasi Kebutuhan Perangkat Lunak, yaitu dokumen yang merangkum kriteria-kriteria yang diperlukan untuk membangun aplikasi menjalankan tugasnya.* |
+| *APL* | *Singkatan dari Arsitektur Perangkat Lunak.* |
+| *DPPL* | *Singkatan dari Deskripsi Perancangan Perangkat Lunak.* |
 | *KF* | *Singkatan dari Kebutuhan Fungsional.* |
 | *UC* | *Singkatan dari Use Case.* |
 
@@ -272,7 +274,7 @@ Tabel 3.2. Identifikasi Kelas Use Case [UC02]
 ### 3.2.3 Diagram Kelas
 
 <p align="center">
-<img alt="Diagram Kelas UC01" src="./assets/diagram/class_diagram_02.jpg" width="35%">
+<img alt="Diagram Kelas UC02" src="./assets/diagram/class_diagram_02.jpg" width="35%">
 </p>
 <p align="center">
 <i>Gambar 3.2.3. Diagram Kelas Mengevaluasi Tantangan</i>
@@ -322,7 +324,7 @@ Tabel 3.3. Identifikasi Kelas Use Case [UC03]
 ### 3.3.3 Diagram Kelas
 
 <p align="center">
-<img alt="Diagram Kelas UC01" src="./assets/diagram/class_diagram_03.jpg" width="35%">
+<img alt="Diagram Kelas UC03" src="./assets/diagram/class_diagram_03.jpg" width="35%">
 </p>
 <p align="center">
 <i>Gambar 3.3.3. Diagram Kelas Mengerjakan Tantangan</i>
@@ -363,7 +365,7 @@ Tabel 3.4. Identifikasi Kelas Use Case [UC04]
 ### 3.4.3 Diagram Kelas
 
 <p align="center">
-<img alt="Diagram Kelas UC01" src="./assets/diagram/class_diagram_04.jpg" width="35%">
+<img alt="Diagram Kelas UC04" src="./assets/diagram/class_diagram_04.jpg" width="35%">
 </p>
 <p align="center">
 <i>Gambar 3.4.3. Diagram Kelas Cek Riwayat</i>
@@ -374,8 +376,6 @@ Tabel 3.4. Identifikasi Kelas Use Case [UC04]
 ---
 
 # BAB 4: Diagram Kelas Keseluruhan
-
-## 4.1 Diagram Kelas
 
 > **Bagian ini diisi dengan diagram kelas keseluruhan.**
 
