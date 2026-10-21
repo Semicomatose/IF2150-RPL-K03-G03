@@ -115,6 +115,8 @@
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *19-10-2026* | *Ananda Aulia Nurramadhan* | *Menyesuaikan template dengan informasi yang sudah ada dari milestone terdahulu* | *0,75* | *Done* | *-* |
 | *21-10-2026* | *Ananda Aulia Nurramadhan* | *Mendesain logo P/L* | *2* | *Done* | *-* |
+| *21-10-2026* | *Dominick Vincent Devict* | *Menyusun sequence diagram UC01 dan UC02 * | *4* | *On Progress* | *Susah untuk menyusun sequence diagram dan menavigasi draw.io* |
 | *21-10-2026* | *Zidane Uland Fakhry* | *Melengkapi semua use case* | *3-4* | *Done* | *Susah untuk menyusun use case* |
+
 
 **Catatan/Evaluasi Milestone 7:** -
