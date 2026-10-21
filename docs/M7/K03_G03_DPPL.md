@@ -8,7 +8,7 @@ DESKRIPSI PERANCANGAN PERANGKAT LUNAK (DPPL)
 <br>
 
 ## *Commitment Issues*
-<img alt="Logo P/L" src="./assets/logo.svg" width="100%">
+<img alt="Logo P/L" src="./assets/logo.svg" width="60%">
 
 ### Untuk: *Made Branenda Jordhy*
 
