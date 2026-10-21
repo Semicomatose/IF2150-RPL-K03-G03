@@ -8,7 +8,7 @@ DESKRIPSI PERANCANGAN PERANGKAT LUNAK (DPPL)
 <br>
 
 ## *Commitment Issues*
-### *[Logo Perangkat Lunak]*
+<img alt="Logo P/L" src="./assets/logo.svg" width="60%">
 
 ### Untuk: *Made Branenda Jordhy*
 
@@ -227,7 +227,7 @@ Tabel 3.2. Identifikasi Kelas Use Case UC02
 
 ### 3.2.2 Sequence Diagram
 
-- **Skenario Normal**
+- **Skenario Normal, Alternatif 1 (Mengubah Tantangan yang Sudah Dipublikasikan), dan Alternatif 2 (Menghapus Tantangan yang Sudah Dipublikasikan)**
 
 <p align="center">
 <img alt="Sequence Diagram Skenario Normal UC02" src="./assets/diagram/sequence_diagram_02_normal.png" width="100%">
