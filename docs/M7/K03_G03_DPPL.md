@@ -180,36 +180,24 @@ Logical view digunakan untuk menggambarkan struktur logis perangkat lunak ini. V
 
 ### 3.1.1 Identifikasi Kelas
 
-> Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
-
 Tabel 3.1. Identifikasi Kelas Use Case [UC01]
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | PembuatTantangan | PembuatTantangan |
+| 2 | WindowEdit | WindowEdit |
+| 3 | EditController | EditController |
+| 4 | Tantangan | Tantangan |
 
 ### 3.1.2 Sequence Diagram
 
-> Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
-
-- **Skenario Normal**
+- **Skenario Normal dan Alternatif 1 (Berkas Tantangan Gagal Diproses)**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Normal UC01" src="./assets/diagram/sequence_diagram_01_normal.png" width="50%">
+<img alt="Sequence Diagram Skenario Normal dan Alternatif 1 UC01" src="./assets/diagram/sequence_diagram_01_normal.png.png" width="50%">
 </p>
 <p align="center">
 <i>Gambar 3.1.2.1. Sequence Diagram UC01</i>
-</p>
-
-- **Skenario Alternatif 1: Berkas Tantangan Gagal Diproses**
-
-<p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 1 UC01" src="./assets/diagram/sequence_diagram_01_alt_01.png" width="50%">
-</p>
-<p align="center">
-<i>Gambar 3.1.2.2. Sequence Diagram UC01 - Berkas Tantangan Gagal Diproses</i>
 </p>
 
 ### 3.1.3 Diagram Kelas
@@ -238,37 +226,20 @@ Tabel 3.2. Identifikasi Kelas Use Case [UC02]
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | PembuatTantangan | PembuatTantangan |
+| 2 | WindowEnvironment | WindowEnvironment |
+| 3 | EnvironmentController | EnvironmentController |
+| 4 | Tantangan | Tantangan |
 
 ### 3.2.2 Sequence Diagram
 
-- **Skenario Normal**
+- **Skenario Normal, Alternatif 1 (Mengubah Tantangan yang Sudah Dipublikasikan), dan Alternatif 2 (Menghapus Tantangan yang Sudah Dipublikasikan)**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Normal UC02" src="./assets/diagram/sequence_diagram_02_normal.png" width="50%">
+<img alt="Sequence Diagram Skenario Normal dan Alternatif UC02" src="./assets/diagram/sequence_diagram_02_normal.png.png" width="50%">
 </p>
 <p align="center">
 <i>Gambar 3.2.2.1. Sequence Diagram UC02</i>
-</p>
-
-- **Skenario Alternatif 1: Mengubah Tantangan yang Sudah Dipublikasikan**
-
-<p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 1 UC02" src="./assets/diagram/sequence_diagram_02_alt_01.png" width="50%">
-</p>
-<p align="center">
-<i>Gambar 3.2.2.2. Sequence Diagram UC02 - Mengubah Tantangan yang Sudah Dipublikasikan</i>
-</p>
-
-- **Skenario Alternatif 2: Menghapus Tantangan yang Sudah Dipublikasikan**
-
-<p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 2 UC02" src="./assets/diagram/sequence_diagram_02_alt_02.png" width="50%">
-</p>
-<p align="center">
-<i>Gambar 3.2.2.3. Sequence Diagram UC02 - Menghapus Tantangan yang Sudah Dipublikasikan</i>
 </p>
 
 ### 3.2.3 Diagram Kelas
