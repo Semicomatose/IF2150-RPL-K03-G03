@@ -1,0 +1,27 @@
+@startuml
+!include _style.iuml
+actor Pelajar as P
+boundary ":WindowEnvironment" as WV
+control ":EnvironmentController" as EV
+entity ":Tantangan" as T
+P -> WV ++ : pilihTantangan(idTantangan)
+WV -> EV ++ : muatTantangan(idTantangan)
+EV -> EV ++ : siapkanLingkungan(tantangan)
+deactivate EV
+EV --> WV -- : tantangan
+deactivate WV
+P -> WV ++ : kirim(command)
+WV -> EV ++ : prosesCommand(command)
+EV --> WV -- : hasil
+deactivate WV
+P -> WV ++ : reset()
+WV -> WV ++ : tampilkanKonfirmasi("Ulangi pengerjaan?")
+deactivate WV
+WV -> EV ++ : siapkanLingkungan(tantangan)
+EV -> T ++ : muatSetupScript()
+T --> EV -- : setupScript
+EV --> WV --
+WV -> WV ++ : tampilkanTerminalSimulasi()
+deactivate WV
+deactivate WV
+@enduml

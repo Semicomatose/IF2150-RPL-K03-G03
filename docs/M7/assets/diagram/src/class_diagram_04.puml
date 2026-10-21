@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+hide circle
+
+class PembuatTantangan {
+  - idUser: String
+  - nama: String
+  --
+  + aksesMenuUnggah(): void
+  + inputTantangan(): void
+  + ujiTantangan(): void
+  + lihatRekapitulasiNilai(): void
+}
+class Pelajar {
+  - idUser: String
+  - nama: String
+  --
+  + pilihTantangan(): void
+  + kirimSolusi(): void
+  + aksesRiwayat(): void
+  + ulangiTantangan(): void
+}
+class WindowRiwayat {
+  - daftarRiwayatTampilan: List<RiwayatTantangan>
+  --
+  + tampilkanDaftarRiwayat(): void
+  + tampilkanDetail(riwayat: RiwayatTantangan): void
+  + kerjakanUlang(): void
+  + tampilkanKonfirmasi(pesan: String): Boolean
+}
+class RiwayatTantangan {
+  - idRiwayat: String
+  - statusPengerjaan: String
+  - skor: Integer
+  - riwayatKonsol: String
+  --
+  + simpanPekerjaan(): void
+  + ambilDataRiwayat(): List<RiwayatTantangan>
+}
+PembuatTantangan "1" -- "1" WindowRiwayat : melihat
+Pelajar "1" -- "1" WindowRiwayat : melihat
+WindowRiwayat "1" -- "0..*" RiwayatTantangan : menampilkan
+@enduml

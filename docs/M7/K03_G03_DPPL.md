@@ -32,38 +32,23 @@ Dipersiapkan oleh:
 
 | Revisi | Deskripsi |
 | :--- | :--- |
-| *A* | *Deskripsikan perubahan yang dilakukan dari dokumen sebelumnya pada dokumen ini. Jika tidak terdapat perubahan, harap kosongkan tabel.* |
-| *B* |  |
-| *C* |  |
-| ... |  |
+| - | - |
 
 ---
 
 <br>
-
-> **Petunjuk pengerjaan:** *[Silahkan hapus bagian ini setelah selesai mengerjakan]*
->
-> Dokumen ini melanjutkan **Spesifikasi Kebutuhan Perangkat Lunak (SKPL)** dan **Arsitektur Perangkat Lunak (APL)**. Gunakan nama, ID, kebutuhan, dan use case yang konsisten dengan kedua dokumen tersebut. Contoh pola ID baru di bawah dapat disesuaikan dengan kesepakatan kelompok, ID yang sudah ada tetap dipertahankan.
-
-<br>
-
----
-
 
 # BAB 1: Pendahuluan
 
 ## 1.1 Tujuan Penulisan Dokumen
-> Tuliskan dengan ringkas tujuan dokumen DPPL ini dibuat dan siapa saja yang akan menggunakan dokumen ini.
->
-> Dokumen DPPL ini dibuat sebagai titik acuan atau panduan selama proses pengembangan perangkat lunak _Commitment Issues_. Dokumen ini diperuntukan para pengembang perangkat lunak _Commitment Issues_ dan semua guru, dosen, atau pengajar lainnya yang ingin menggunakan perangkat lunak _Commitment Issues_ dalam proses pengajaran Git.
+
+Dokumen DPPL ini dibuat sebagai titik acuan atau panduan selama proses pengembangan perangkat lunak _Commitment Issues_. Dokumen ini diperuntukan para pengembang perangkat lunak _Commitment Issues_ dan semua guru, dosen, atau pengajar lainnya yang ingin menggunakan perangkat lunak _Commitment Issues_ dalam proses pengajaran Git.
 
 ## 1.2 Lingkup Masalah
-> Tuliskan dengan ringkas nama aplikasi dan deskripsi singkatnya. Bagian ini maksimal berisi satu paragraf, dapat diambil dari SKPL.
 
 Git adalah sistem kendali versi yang memungkinkan penggunanya untuk melacak perubahan pada kode dan mengatur proyek menggunakan perintah-perintah sederhana. Menurut Stack Overflow Developer Survey pada 2022 yang mengakumulasi jawaban dari 70.000 developer, 93,87% responden mengadopsi Git sebagai sistem kendali versi. _Commitment Issues_ bertujuan untuk menyediakan sarana pembelajaran interaktif yang menyimulasikan penerapan Git dalam suatu proyek yang realistis, sehingga memberikan pengalaman belajar yang lebih relevan dan mudah diterapkan bagi pelajar. Perangkat lunak ini akan berfokus untuk menguji pelajar dalam menghadapi skenario-skenario yang sering ditemukan saat menggunakan Git, contohnya penanganan konflik.
 
 ## 1.3 Definisi, Istilah, dan Singkatan
-> Semua definisi dan singkatan yang digunakan dalam dokumen ini beserta penjelasannya.
 
 Tabel 1.3. Definisi Istilah dan Singkatan
 
@@ -75,9 +60,13 @@ Tabel 1.3. Definisi Istilah dan Singkatan
 | *DPPL* | *Singkatan dari Deskripsi Perancangan Perangkat Lunak.* |
 | *KF* | *Singkatan dari Kebutuhan Fungsional.* |
 | *UC* | *Singkatan dari Use Case.* |
+| *CLI* | *Singkatan dari Command Line Interface, yaitu antarmuka berbasis teks tempat pengguna mengetikkan command Git.* |
+| *Sandbox* | *Lingkungan terisolasi di sisi server tempat repositori tantangan diekstrak dan command Git dijalankan dengan hak akses terbatas.* |
+| *Setup/reset/verify script* | *Script di dalam arsip tantangan (`setup.sh`, `reset.sh`, `verify.sh`) untuk menyiapkan kondisi awal repositori, mengulang pengerjaan, dan memeriksa jawaban.* |
+| *Boundary, Control, Entity* | *Stereotipe kelas perancangan: boundary menangani interaksi dengan pengguna, control mengatur alur use case, dan entity menyimpan informasi domain.* |
+| *Sequence Diagram* | *Diagram UML yang menggambarkan urutan pesan antarobjek dalam satu skenario use case.* |
 
 ## 1.4 Aturan Penomoran
-> Tuliskan aturan penomoran (ID) yang digunakan dalam dokumen ini. Gunakan pola ID yang **sama** dengan yang sudah dipakai pada dokumen-dokumen sebelumnya, jangan membuat pola baru di dokumen ini.
 
 Tabel 1.4. Aturan Penomoran
 
@@ -88,16 +77,18 @@ Tabel 1.4. Aturan Penomoran
 | *Kelas* | *CXX* | C merupakan singkatan dari kelas. XX merupakan nomor urut kelas yang teridentifikasi di dalam sistem, dimulai dari 01. Contoh: C01, C02, dan sebagainya. |
 
 ## 1.5 Referensi
-> Cantumkan dokumentasi P/L yang dirujuk oleh dokumen ini, **minimal dokumen SKPL dan APL**. Tambahkan buku, panduan, atau dokumentasi lain apabila digunakan.
 
 - SKPL Commitment Issues
 - APL Commitment Issues
 - Chacon, S. & Straub, B. (2014). Pro Git (edisi ke-2). Apress. Tersedia di: [https://git-scm.com/book/en/v2](https://git-scm.com/book/en/v2)
 - Git Practice. (t.thn.). Git Practice: Interactive Git Learning. Diakses pada 30 Agustus 2026, dari [https://git-practice.com](https://git-practice.com)
 - Peter C. (t.thn.). Learn Git Branching. Diambil kembali dari [https://learngitbranching.js.org](https://learngitbranching.js.org)
+- Object Management Group. (2017). Unified Modeling Language (UML) Version 2.5.1. Tersedia di: [https://www.omg.org/spec/UML/2.5.1/](https://www.omg.org/spec/UML/2.5.1/)
+- PlantUML. (t.thn.). Sequence Diagram dan Class Diagram. Tersedia di: [https://plantuml.com](https://plantuml.com)
 
 ## 1.6 Deskripsi Umum Dokumen (Ikhtisar)
-> Tuliskan sistematika pembahasan dokumen ini secara ringkas dan runut, dengan maksimal 1 paragraf.
+
+Dokumen ini terdiri atas lima bab. Bab 1 berisi pendahuluan, yaitu tujuan, lingkup masalah, istilah, aturan penomoran, dan referensi. Bab 2 berisi perancangan arsitektur, yaitu lingkungan implementasi, style arsitektur Client-Server yang diambil dari APL, identifikasi komponen, dan logical view. Bab 3 berisi realisasi setiap use case (UC01–UC04) dalam bentuk identifikasi kelas perancangan, sequence diagram untuk setiap skenario normal dan alternatif pada SKPL, serta diagram kelas per use case. Bab 4 berisi diagram kelas perancangan keseluruhan beserta daftar atribut dan metode setiap kelas. Bab 5 berisi matriks kerunutan yang memetakan kelas perancangan ke use case terkait.
 
 <br>
 
@@ -107,16 +98,22 @@ Tabel 1.4. Aturan Penomoran
 
 ## 2.1 Rancangan Lingkungan Implementasi
 
-> Sebutkan *operating system*, DBMS, *development tools*, *filing system*, dan bahasa pemrograman yang digunakan.
+Lingkungan implementasi mengikuti lingkungan operasi pada SKPL (Tabel 2.2) dan APL (Tabel 1.1).
+
+Tabel 2.1. Rancangan Lingkungan Implementasi
+
+| Komponen | Spesifikasi |
+| :--- | :--- |
+| *Operating system* | Server: NixOS 25.06. Client: lintas platform, cukup mendukung web browser Mozilla Firefox 150+. |
+| *DBMS* | PostgreSQL 18, untuk data persisten: data pengguna, tantangan, riwayat pengerjaan, percobaan, nilai, dan status kelulusan. |
+| *Bahasa pemrograman* | JavaScript di atas runtime NodeJS 24 LTS untuk sisi server; HTML, CSS, dan JavaScript untuk sisi client yang berjalan di web browser. |
+| *Development tools* | Git 2.54.0 dan GitHub untuk kendali versi kode; Nginx sebagai server web; draw.io/StarUML dan PlantUML untuk pemodelan UML. |
+| *Filing system* | Data terstruktur disimpan di PostgreSQL. Arsip tantangan (`.zip`) disimpan pada sistem berkas server (direktori arsip), lalu diekstrak ke direktori kerja Sandbox yang terpisah untuk setiap pengguna. Repositori simulasi tidak disimpan di perangkat pengguna (Batasan 4 SKPL). |
 
 ## 2.2 Style/Pattern Arsitektur Acuan
 
-> Tentukan *architectural style* atau *pattern* yang menjadi acuan aplikasi, misalnya *layered architecture*, *client-server*, *repository*, *pipe and filter*, atau MVC (*Model-View-Controller*).
-> 
-> Gunakan hasil **BAB 1 Style/Pattern Arsitektur Acuan pada dokumen APL**, termasuk alasan pemilihan dan gambar penerapannya pada P/L kelompok. Gunakan komponen aplikasi sendiri pada gambar, bukan hanya contoh pola umum.
-
 <p align="center">
-<img alt="Contoh Arsitektur MVC" src="./assets/diagram/arsitektur-client-server-1.png" width="40%">
+<img alt="Arsitektur Client-Server" src="./assets/diagram/arsitektur-client-server-1.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 2.2. Arsitektur Client-Server</i>
@@ -128,10 +125,6 @@ Server bertanggung jawab untuk menjalankan setup tantangan, memproses command Gi
 
 ## 2.3 Identifikasi Komponen / Modul / Subsistem
 
-> Identifikasi komponen, modul, atau subsistem penyusun aplikasi berdasarkan *pattern* yang telah ditetapkan. Jelaskan tanggung jawab masing-masing komponen. Pengelompokan dapat mengikuti lapisan arsitektur atau fungsi/peran komponen dalam sistem.
-
-> Ambil dari **Tabel 2.1 dokumen APL**, lalu kelompokkan berdasarkan lapisan (Model/View/Controller). Kolom **Jenis** diisi sesuai pattern, misalnya View, Controller, Model, Service, Repository. Satu komponen merepresentasikan saatu tanggung jawab utama yang jelas,
-
 Tabel 2.3. Identifikasi Komponen/Modul/Subsistem
 
 | Nama Komponen/Modul/Subsistem | Jenis                 | Penjelasan                                                                                                           |
@@ -139,10 +132,10 @@ Tabel 2.3. Identifikasi Komponen/Modul/Subsistem
 | *WindowEdit*                  | *Client*              | *Menyediakan antarmuka untuk membuat, mengubah, dan mengunggah berkas tantangan bagi PembuatTantangan.* |
 | *WindowEnvironment*           | *Client*              | *Menyediakan antarmuka lingkungan pengerjaan dan pengujian tantangan sehingga pengguna dapat mengerjakan tantangan atau menguji tantangan.* |
 | *WindowRiwayat*               | *Client*              | *Menampilkan riwayat pengerjaan, hasil, nilai, dan status kelulusan tantangan kepada Pelajar atau PembuatTantangan.* |
-| *EditController*              | *Server*              | *Menangani proses dari WindowEdit, yaitu menerima unggahan berkas tantangan, memproses data tantangan, meenjalankan proses setup, dan menyimpan informasi tantangan.* |
+| *EditController*              | *Server*              | *Menangani proses dari WindowEdit, yaitu menerima unggahan berkas tantangan, memproses data tantangan, menjalankan proses setup, dan menyimpan informasi tantangan.* |
 | *EnvironmentController*       | *Server*              | *Menangani proses eksekusi lingkungan tantangan, melakukan verifikasi kondisi repositori, serta memproses hasil pengerjaan pengguna.* |
-| *PembuatTantangan*            | *Model*               | *Merepresentasikan data dan informasi Pembuat Tantangan yang menggunakan sistem unukt membuat, menguji, mengelola, dan memantau hasil tantangan.* |
-| *Pelajar*                     | *Model*               | *Merepresentasikan data dan infromasi Pelajar yang menggunakan sistem untuk memilih, mengerjakan, mengirimkan hasil, dan melihat riwayat tantangan.* |
+| *PembuatTantangan*            | *Model*               | *Merepresentasikan data dan informasi Pembuat Tantangan yang menggunakan sistem untuk membuat, menguji, mengelola, dan memantau hasil tantangan.* |
+| *Pelajar*                     | *Model*               | *Merepresentasikan data dan informasi Pelajar yang menggunakan sistem untuk memilih, mengerjakan, mengirimkan hasil, dan melihat riwayat tantangan.* |
 | *Tantangan*                   | *Model*               | *Merepresentasikan data sebuah tantangan, seperti judul, deskripsi, aturan pengerjaan, berkas repositori, serta arsip yang diperlukan untuk proses setup, pengujian, dan verifikasi.* |
 | *RiwayatTantangan*            | *Model*               | *Menyimpan dan merepresentasikan hasil pengerjaan tantangan, termasuk riwayat percobaan, hasil pengumpulan, nilai, dan status kelulusan Pelajar.* |
 | *Database*                    | *Data*                | *Menyimpan data persisten sistem, seperti biodata pengguna, informasi tantangan, riwayat pengerjaan, hasil percobaan, nilai, dan status kelulusan.* |
@@ -150,10 +143,6 @@ Tabel 2.3. Identifikasi Komponen/Modul/Subsistem
 | *Sandbox*                     | *Integrasi Eksternal* | *Menyediakan lingkungan terisolasi di sisi server untuk menyimpan dan menjalankan repositori tantangan sehingga repositori simulasi tidak disimpan pada perangkat pengguna dan proses eksekusi dapat dibatasi.* |
 
 ## 2.4 Model Arsitektur Perangkat Lunak
-
-> Buat model arsitektur dalam bentuk satu atau lebih *view* yang memperlihatkan interaksi dan kolaborasi komponen, modul, serta subsistem dalam menjalankan fungsi sistem. Pilih notasi yang sesuai. Contoh *view*: *Logical View*, *Process View*, *Development View*, dan *Physical View*.
-> 
-> Gunakan hasil **BAB 3 Model Arsitektur Perangkat Lunak pada dokumen APL**. 
 
 ### 2.4.1 Logical View
 
@@ -173,6 +162,8 @@ Logical view digunakan untuk menggambarkan struktur logis perangkat lunak ini. V
 
 # BAB 3: Realisasi Use Case
 
+Kelas perancangan pada bab ini mengikuti sembilan kelas analisis pada SKPL (C01–C09) dengan nama yang sama. Pada tahap perancangan, setiap atribut dan operasi dilengkapi visibilitas, parameter, dan tipe data, serta ditambahkan beberapa operasi yang diperlukan oleh skenario use case. Kelas *Window* berperan sebagai *boundary* (sisi client), kelas *Controller* sebagai *control* (sisi server), dan kelas lainnya sebagai *entity*.
+
 ## 3.1 Use Case Mengembangkan Tantangan
 
 **ID Use Case:** *UC01*  
@@ -180,24 +171,21 @@ Logical view digunakan untuk menggambarkan struktur logis perangkat lunak ini. V
 
 ### 3.1.1 Identifikasi Kelas
 
-> Identifikasi kelas yang terkait dengan use case tersebut. Kelas di tahap perancangan dapat berbeda dengan dengan kelas di tahap analisis. Dapat menggunakan tabel di bawah:
-
-Tabel 3.1. Identifikasi Kelas Use Case [UC01]
+Tabel 3.1. Identifikasi Kelas Use Case UC01
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | PembuatTantangan | C01 - PembuatTantangan |
+| 2 | WindowEdit | C04 - WindowEdit |
+| 3 | EditController | C05 - EditController |
+| 4 | Tantangan | C03 - Tantangan |
 
 ### 3.1.2 Sequence Diagram
-
-> Buat *sequence diagram* untuk **setiap skenario use case**, mencakup skenario normal dan alternatif pada subbab 4.4 SKPL. Diagram melibatkan kelas-kelas yang telah diidentifikasi pada SKPL. 
 
 - **Skenario Normal**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Normal UC01" src="./assets/diagram/sequence_diagram_01_normal.png" width="50%">
+<img alt="Sequence Diagram Skenario Normal UC01" src="./assets/diagram/sequence_diagram_01_normal.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.1.2.1. Sequence Diagram UC01</i>
@@ -206,7 +194,7 @@ Tabel 3.1. Identifikasi Kelas Use Case [UC01]
 - **Skenario Alternatif 1: Berkas Tantangan Gagal Diproses**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 1 UC01" src="./assets/diagram/sequence_diagram_01_alt_01.png" width="50%">
+<img alt="Sequence Diagram Skenario Alternatif 1 UC01" src="./assets/diagram/sequence_diagram_01_alt_01.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.1.2.2. Sequence Diagram UC01 - Berkas Tantangan Gagal Diproses</i>
@@ -214,40 +202,35 @@ Tabel 3.1. Identifikasi Kelas Use Case [UC01]
 
 ### 3.1.3 Diagram Kelas
 
-> Buatlah diagram kelas untuk use case ini yang terdiri atas kelas-kelas dari 3.1.1. **Setiap kelas pada diagram wajib menampilkan atribut dan metode/operasi langsung di dalam kotak kelasnya**, sehingga tidak perlu membuat tabel daftar atribut dan metode per kelas pada subbab ini. Daftar lengkap atribut dan metode seluruh kelas disajikan pada Tabel 4.1 (Bab 4).
-
 <p align="center">
-<img alt="Diagram Kelas UC01" src="./assets/diagram/class_diagram_01.jpg" width="35%">
+<img alt="Diagram Kelas UC01" src="./assets/diagram/class_diagram_01.png" width="80%">
 </p>
 <p align="center">
 <i>Gambar 3.1.3. Diagram Kelas Mengembangkan Tantangan</i>
 </p>
 
-> Pada diagram, pastikan:
-> - Atribut dituliskan beserta visibilitas dan tipe datanya, misalnya `- email: String`.
-> - Operasi dituliskan beserta visibilitas, parameter, dan tipe kembaliannya, misalnya `+ login(email: String, password: String): Boolean`.
-> - Relasi antarkelas (asosiasi, agregasi, komposisi, generalisasi, dan dependensi) digambarkan lengkap dengan multiplisitas.
-> - Semua operasi yang dipanggil pada sequence diagram 3.1.2 (skenario normal dan alternatif) ada pada kelas yang bersangkutan.
-> - Kelas yang sama dengan kelas di use case lain memakai nama, atribut, dan metode yang konsisten.
-
 ## 3.2 Use Case Mengevaluasi Tantangan
+
+**ID Use Case:** *UC02*  
+**Nama Use Case:** *Mengevaluasi Tantangan*
 
 ### 3.2.1 Identifikasi Kelas
 
-Tabel 3.2. Identifikasi Kelas Use Case [UC02]
+Tabel 3.2. Identifikasi Kelas Use Case UC02
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | PembuatTantangan | C01 - PembuatTantangan |
+| 2 | WindowEnvironment | C06 - WindowEnvironment |
+| 3 | EnvironmentController | C07 - EnvironmentController |
+| 4 | Tantangan | C03 - Tantangan |
 
 ### 3.2.2 Sequence Diagram
 
 - **Skenario Normal**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Normal UC02" src="./assets/diagram/sequence_diagram_02_normal.png" width="50%">
+<img alt="Sequence Diagram Skenario Normal UC02" src="./assets/diagram/sequence_diagram_02_normal.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.2.2.1. Sequence Diagram UC02</i>
@@ -256,7 +239,7 @@ Tabel 3.2. Identifikasi Kelas Use Case [UC02]
 - **Skenario Alternatif 1: Mengubah Tantangan yang Sudah Dipublikasikan**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 1 UC02" src="./assets/diagram/sequence_diagram_02_alt_01.png" width="50%">
+<img alt="Sequence Diagram Skenario Alternatif 1 UC02" src="./assets/diagram/sequence_diagram_02_alt_01.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.2.2.2. Sequence Diagram UC02 - Mengubah Tantangan yang Sudah Dipublikasikan</i>
@@ -265,7 +248,7 @@ Tabel 3.2. Identifikasi Kelas Use Case [UC02]
 - **Skenario Alternatif 2: Menghapus Tantangan yang Sudah Dipublikasikan**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 2 UC02" src="./assets/diagram/sequence_diagram_02_alt_02.png" width="50%">
+<img alt="Sequence Diagram Skenario Alternatif 2 UC02" src="./assets/diagram/sequence_diagram_02_alt_02.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.2.2.3. Sequence Diagram UC02 - Menghapus Tantangan yang Sudah Dipublikasikan</i>
@@ -274,7 +257,7 @@ Tabel 3.2. Identifikasi Kelas Use Case [UC02]
 ### 3.2.3 Diagram Kelas
 
 <p align="center">
-<img alt="Diagram Kelas UC02" src="./assets/diagram/class_diagram_02.jpg" width="35%">
+<img alt="Diagram Kelas UC02" src="./assets/diagram/class_diagram_02.png" width="80%">
 </p>
 <p align="center">
 <i>Gambar 3.2.3. Diagram Kelas Mengevaluasi Tantangan</i>
@@ -282,22 +265,27 @@ Tabel 3.2. Identifikasi Kelas Use Case [UC02]
 
 ## 3.3 Use Case Mengerjakan Tantangan
 
+**ID Use Case:** *UC03*  
+**Nama Use Case:** *Mengerjakan Tantangan*
+
 ### 3.3.1 Identifikasi Kelas
 
-Tabel 3.3. Identifikasi Kelas Use Case [UC03]
+Tabel 3.3. Identifikasi Kelas Use Case UC03
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | Pelajar | C02 - Pelajar |
+| 2 | WindowEnvironment | C06 - WindowEnvironment |
+| 3 | EnvironmentController | C07 - EnvironmentController |
+| 4 | Tantangan | C03 - Tantangan |
+| 5 | RiwayatTantangan | C09 - RiwayatTantangan |
 
 ### 3.3.2 Sequence Diagram
 
 - **Skenario Normal**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Normal UC03" src="./assets/diagram/sequence_diagram_03_normal.png" width="50%">
+<img alt="Sequence Diagram Skenario Normal UC03" src="./assets/diagram/sequence_diagram_03_normal.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.3.2.1. Sequence Diagram UC03</i>
@@ -306,7 +294,7 @@ Tabel 3.3. Identifikasi Kelas Use Case [UC03]
 - **Skenario Alternatif 1: Pelajar Keluar di Tengah Pengerjaan**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 1 UC03" src="./assets/diagram/sequence_diagram_03_alt_01.png" width="50%">
+<img alt="Sequence Diagram Skenario Alternatif 1 UC03" src="./assets/diagram/sequence_diagram_03_alt_01.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.3.2.2. Sequence Diagram UC03 - Pelajar Keluar di Tengah Pengerjaan</i>
@@ -315,7 +303,7 @@ Tabel 3.3. Identifikasi Kelas Use Case [UC03]
 - **Skenario Alternatif 2: Pelajar Mengulang Pengerjaan**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 2 UC03" src="./assets/diagram/sequence_diagram_03_alt_02.png" width="50%">
+<img alt="Sequence Diagram Skenario Alternatif 2 UC03" src="./assets/diagram/sequence_diagram_03_alt_02.png" width="70%">
 </p>
 <p align="center">
 <i>Gambar 3.3.2.3. Sequence Diagram UC03 - Pelajar Mengulang Pengerjaan</i>
@@ -324,7 +312,7 @@ Tabel 3.3. Identifikasi Kelas Use Case [UC03]
 ### 3.3.3 Diagram Kelas
 
 <p align="center">
-<img alt="Diagram Kelas UC03" src="./assets/diagram/class_diagram_03.jpg" width="35%">
+<img alt="Diagram Kelas UC03" src="./assets/diagram/class_diagram_03.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 3.3.3. Diagram Kelas Mengerjakan Tantangan</i>
@@ -332,22 +320,27 @@ Tabel 3.3. Identifikasi Kelas Use Case [UC03]
 
 ## 3.4 Use Case Cek Riwayat
 
+**ID Use Case:** *UC04*  
+**Nama Use Case:** *Cek Riwayat*
+
 ### 3.4.1 Identifikasi Kelas
 
-Tabel 3.4. Identifikasi Kelas Use Case [UC04]
+Tabel 3.4. Identifikasi Kelas Use Case UC04
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 |:--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL]* |
-| ... | *...* | *...* |
+| 1 | PembuatTantangan | C01 - PembuatTantangan |
+| 2 | Pelajar | C02 - Pelajar |
+| 3 | WindowRiwayat | C08 - WindowRiwayat |
+| 4 | RiwayatTantangan | C09 - RiwayatTantangan |
+| 5 | WindowEnvironment | C06 - WindowEnvironment (alternatif 1) |
 
 ### 3.4.2 Sequence Diagram
 
 - **Skenario Normal**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Normal UC03" src="./assets/diagram/sequence_diagram_04_normal.png" width="50%">
+<img alt="Sequence Diagram Skenario Normal UC04" src="./assets/diagram/sequence_diagram_04_normal.png" width="80%">
 </p>
 <p align="center">
 <i>Gambar 3.4.2.1. Sequence Diagram UC04</i>
@@ -356,16 +349,16 @@ Tabel 3.4. Identifikasi Kelas Use Case [UC04]
 - **Skenario Alternatif 1: Pelajar Mengulang Tantangan**
 
 <p align="center">
-<img alt="Sequence Diagram Skenario Alternatif 1 UC04" src="./assets/diagram/sequence_diagram_04_alt_01.png" width="50%">
+<img alt="Sequence Diagram Skenario Alternatif 1 UC04" src="./assets/diagram/sequence_diagram_04_alt_01.png" width="80%">
 </p>
 <p align="center">
-<i>Gambar 3.4.2.2. Sequence Diagram UC03 - Pelajar Mengulang Tantangan</i>
+<i>Gambar 3.4.2.2. Sequence Diagram UC04 - Pelajar Mengulang Tantangan</i>
 </p>
 
 ### 3.4.3 Diagram Kelas
 
 <p align="center">
-<img alt="Diagram Kelas UC04" src="./assets/diagram/class_diagram_04.jpg" width="35%">
+<img alt="Diagram Kelas UC04" src="./assets/diagram/class_diagram_04.png" width="80%">
 </p>
 <p align="center">
 <i>Gambar 3.4.3. Diagram Kelas Cek Riwayat</i>
@@ -377,23 +370,28 @@ Tabel 3.4. Identifikasi Kelas Use Case [UC04]
 
 # BAB 4: Diagram Kelas Keseluruhan
 
-> **Bagian ini diisi dengan diagram kelas keseluruhan.**
-
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-class_diargam.png" width="35%">
+<img alt="Diagram Kelas Perancangan Keseluruhan Commitment Issues" src="./assets/diagram/class_diagram_full.png" width="100%">
 </p>
 <p align="center">
 <i>Gambar 4.1. Diagram Kelas Perancangan Keseluruhan Commitment Issues</i>
 </p>
 
+Atribut `status` pada Tantangan bernilai `DRAF`, `TERPUBLIKASI`, atau `DIJADWALKAN_HAPUS`.
+
 Tabel 4.1. Daftar Kelas Perancangan Keseluruhan
 
 | ID Kelas | Nama Kelas | Atribut | Metode/Operasi |
 | :--- | :--- | :--- | :--- |
-| *[C01]* | *[Nama kelas]* | *[Daftar atribut]* | *[Daftar metode/operasi]* |
-| *[C02]* | *[Nama kelas]* | *[Daftar atribut]* | *[Daftar metode/operasi]* |
-| *[C03]* | *[Nama kelas]* | *[Daftar atribut]* | *[Daftar metode/operasi]* |
-| *...* | *...* | *...* | *...* |
+| C01 | PembuatTantangan | - idUser: String<br>- nama: String | + aksesMenuUnggah(): void<br>+ inputTantangan(): void<br>+ ujiTantangan(): void<br>+ lihatRekapitulasiNilai(): void |
+| C02 | Pelajar | - idUser: String<br>- nama: String | + pilihTantangan(): void<br>+ kirimSolusi(): void<br>+ aksesRiwayat(): void<br>+ ulangiTantangan(): void |
+| C03 | Tantangan | - idTantangan: String<br>- judul: String<br>- deskripsi: String<br>- berkasTantangan: File<br>- status: String | + simpanTantangan(): void<br>+ muatSetupScript(): String<br>+ muatTantangan(): Tantangan<br>+ publikasikan(): void<br>+ jadwalkanHapus(): void |
+| C04 | WindowEdit | - formUnggah: Form | + tampilkanForm(): void<br>+ kirimBerkas(berkas: File): void<br>+ tampilkanPesan(pesan: String): void |
+| C05 | EditController | - | + ambilDaftarTantangan(idUser: String): List&lt;Tantangan&gt;<br>+ validasiBerkas(berkas: File): Boolean<br>+ simpanTantangan(berkas: File): Boolean |
+| C06 | WindowEnvironment | - terminalInput: String<br>- tombolAksi: Button | + tampilkanTerminalUji(): void<br>+ tampilkanTerminalSimulasi(): void<br>+ pilihTantangan(idTantangan: String): void<br>+ kirim(command: String): void<br>+ tampilkanHasil(hasil: String): void<br>+ kirimSolusi(): void<br>+ reset(): void<br>+ keluar(): void<br>+ publikasikan(): void<br>+ hapusTantangan(): void<br>+ tampilkanKonfirmasi(pesan: String): Boolean |
+| C07 | EnvironmentController | - | + muatTantangan(idTantangan: String): Tantangan<br>+ siapkanLingkungan(tantangan: Tantangan): void<br>+ eksekusiCommandUji(command: String): String<br>+ prosesCommand(command: String): String<br>+ validasiSolusi(): Boolean<br>+ simpanSolusi(): void<br>+ publikasiTantangan(idTantangan: String): Boolean<br>+ hapusTantangan(idTantangan: String): void<br>+ akhiriPengerjaan(): void |
+| C08 | WindowRiwayat | - daftarRiwayatTampilan: List&lt;RiwayatTantangan&gt; | + tampilkanDaftarRiwayat(): void<br>+ tampilkanDetail(riwayat: RiwayatTantangan): void<br>+ kerjakanUlang(): void<br>+ tampilkanKonfirmasi(pesan: String): Boolean |
+| C09 | RiwayatTantangan | - idRiwayat: String<br>- statusPengerjaan: String<br>- skor: Integer<br>- riwayatKonsol: String | + simpanPekerjaan(): void<br>+ ambilDataRiwayat(): List&lt;RiwayatTantangan&gt; |
 
 <br>
 
@@ -401,12 +399,18 @@ Tabel 4.1. Daftar Kelas Perancangan Keseluruhan
 
 # BAB 5: Matriks Kerunutan
 
-> Petakan kelas perancangan dengan use case yang terkait. Gunakan **BAB 6 Traceability pada dokumen SKPL** sebagai acuan keterkaitan kelas analisis dan use case, lalu sesuaikan dengan realisasi use case dan kelas perancangan pada BAB 3–BAB 5 DPPL.
+Matriks berikut mengacu pada Tabel 6.1 SKPL dan disesuaikan dengan realisasi use case pada BAB 3.
 
 Tabel 5.1. Matriks Kerunutan Kelas terhadap Use Case
 
 | Kelas | Use Case Terkait |
 | :--- | :--- |
-| *[ID kelas - Nama kelas]* | *[ID UC - Nama use case]* |
-| *[ID kelas - Nama kelas]* | *[ID UC - Nama use case]* |
-| *...* | *...* |
+| C01 - PembuatTantangan | UC01 - Mengembangkan Tantangan, UC02 - Mengevaluasi Tantangan, UC04 - Cek Riwayat |
+| C02 - Pelajar | UC03 - Mengerjakan Tantangan, UC04 - Cek Riwayat |
+| C03 - Tantangan | UC01 - Mengembangkan Tantangan, UC02 - Mengevaluasi Tantangan, UC03 - Mengerjakan Tantangan |
+| C04 - WindowEdit | UC01 - Mengembangkan Tantangan |
+| C05 - EditController | UC01 - Mengembangkan Tantangan |
+| C06 - WindowEnvironment | UC02 - Mengevaluasi Tantangan, UC03 - Mengerjakan Tantangan, UC04 - Cek Riwayat |
+| C07 - EnvironmentController | UC02 - Mengevaluasi Tantangan, UC03 - Mengerjakan Tantangan |
+| C08 - WindowRiwayat | UC04 - Cek Riwayat |
+| C09 - RiwayatTantangan | UC03 - Mengerjakan Tantangan, UC04 - Cek Riwayat |

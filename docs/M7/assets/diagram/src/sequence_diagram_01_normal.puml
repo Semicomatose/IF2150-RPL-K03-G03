@@ -1,0 +1,23 @@
+@startuml
+!include _style.iuml
+actor PembuatTantangan as PT
+boundary ":WindowEdit" as WE
+control ":EditController" as EC
+entity ":Tantangan" as T
+PT -> WE ++ : tampilkanForm()
+WE -> EC ++ : ambilDaftarTantangan(idUser)
+EC -> T ++ : muatTantangan()
+T --> EC -- : tantangan
+EC --> WE -- : daftarTantangan
+deactivate WE
+PT -> WE ++ : kirimBerkas(berkas)
+WE -> EC ++ : simpanTantangan(berkas)
+EC -> EC ++ : validasiBerkas(berkas)
+deactivate EC
+EC -> T ++ : simpanTantangan()
+deactivate T
+EC --> WE -- : true
+WE -> WE ++ : tampilkanPesan("Tantangan tersimpan")
+deactivate WE
+deactivate WE
+@enduml

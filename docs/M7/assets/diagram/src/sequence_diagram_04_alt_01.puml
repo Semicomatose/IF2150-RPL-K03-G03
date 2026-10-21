@@ -1,0 +1,20 @@
+@startuml
+!include _style.iuml
+actor Pelajar as P
+boundary ":WindowRiwayat" as WR
+entity ":RiwayatTantangan" as R
+boundary ":WindowEnvironment" as WV
+P -> WR ++ : tampilkanDaftarRiwayat()
+WR -> R ++ : ambilDataRiwayat()
+R --> WR -- : daftarRiwayat
+deactivate WR
+P -> WR ++ : tampilkanDetail(riwayat)
+deactivate WR
+P -> WR ++ : kerjakanUlang()
+WR -> WR ++ : tampilkanKonfirmasi("Kerjakan ulang?")
+deactivate WR
+WR -> WV ++ : pilihTantangan(idTantangan)
+ref over WV : UC03 Skenario Normal\n(menjalankan setup script)
+deactivate WV
+deactivate WR
+@enduml

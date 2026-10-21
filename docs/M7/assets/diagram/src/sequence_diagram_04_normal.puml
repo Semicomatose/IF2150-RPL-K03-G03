@@ -1,0 +1,14 @@
+@startuml
+!include _style.iuml
+actor Pelajar as P
+boundary ":WindowRiwayat" as WR
+entity ":RiwayatTantangan" as R
+P -> WR ++ : tampilkanDaftarRiwayat()
+WR -> R ++ : ambilDataRiwayat()
+R --> WR -- : daftarRiwayat
+deactivate WR
+P -> WR ++ : tampilkanDetail(riwayat)
+WR -> R ++ : ambilDataRiwayat()
+R --> WR -- : riwayatKonsol
+deactivate WR
+@enduml

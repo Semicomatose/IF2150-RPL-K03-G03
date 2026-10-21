@@ -1,0 +1,63 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+hide circle
+
+class PembuatTantangan {
+  - idUser: String
+  - nama: String
+  --
+  + aksesMenuUnggah(): void
+  + inputTantangan(): void
+  + ujiTantangan(): void
+  + lihatRekapitulasiNilai(): void
+}
+class Tantangan {
+  - idTantangan: String
+  - judul: String
+  - deskripsi: String
+  - berkasTantangan: File
+  - status: String
+  --
+  + simpanTantangan(): void
+  + muatSetupScript(): String
+  + muatTantangan(): Tantangan
+  + publikasikan(): void
+  + jadwalkanHapus(): void
+}
+class WindowEnvironment {
+  - terminalInput: String
+  - tombolAksi: Button
+  --
+  + tampilkanTerminalUji(): void
+  + tampilkanTerminalSimulasi(): void
+  + pilihTantangan(idTantangan: String): void
+  + kirim(command: String): void
+  + tampilkanHasil(hasil: String): void
+  + kirimSolusi(): void
+  + reset(): void
+  + keluar(): void
+  + publikasikan(): void
+  + hapusTantangan(): void
+  + tampilkanKonfirmasi(pesan: String): Boolean
+}
+class EnvironmentController {
+  --
+  + muatTantangan(idTantangan: String): Tantangan
+  + siapkanLingkungan(tantangan: Tantangan): void
+  + eksekusiCommandUji(command: String): String
+  + prosesCommand(command: String): String
+  + validasiSolusi(): Boolean
+  + simpanSolusi(): void
+  + publikasiTantangan(idTantangan: String): Boolean
+  + hapusTantangan(idTantangan: String): void
+  + akhiriPengerjaan(): void
+}
+PembuatTantangan "1" -- "0..*" Tantangan : membuat
+PembuatTantangan "1" -- "1" WindowEnvironment : menguji
+WindowEnvironment "1" -- "1" EnvironmentController
+EnvironmentController "1" -- "0..*" Tantangan : memuat
+@enduml

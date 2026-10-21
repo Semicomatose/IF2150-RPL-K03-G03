@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+hide circle
+
+class PembuatTantangan {
+  - idUser: String
+  - nama: String
+  --
+  + aksesMenuUnggah(): void
+  + inputTantangan(): void
+  + ujiTantangan(): void
+  + lihatRekapitulasiNilai(): void
+}
+class Tantangan {
+  - idTantangan: String
+  - judul: String
+  - deskripsi: String
+  - berkasTantangan: File
+  - status: String
+  --
+  + simpanTantangan(): void
+  + muatSetupScript(): String
+  + muatTantangan(): Tantangan
+  + publikasikan(): void
+  + jadwalkanHapus(): void
+}
+class WindowEdit {
+  - formUnggah: Form
+  --
+  + tampilkanForm(): void
+  + kirimBerkas(berkas: File): void
+  + tampilkanPesan(pesan: String): void
+}
+class EditController {
+  --
+  + ambilDaftarTantangan(idUser: String): List<Tantangan>
+  + validasiBerkas(berkas: File): Boolean
+  + simpanTantangan(berkas: File): Boolean
+}
+PembuatTantangan "1" -- "1" WindowEdit : menggunakan
+WindowEdit "1" -- "1" EditController
+EditController "1" -- "0..*" Tantangan : mengelola
+PembuatTantangan "1" -- "0..*" Tantangan : membuat
+@enduml

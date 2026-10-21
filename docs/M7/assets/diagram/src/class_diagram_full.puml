@@ -1,0 +1,110 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName DejaVu Sans
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+hide circle
+
+class PembuatTantangan {
+  - idUser: String
+  - nama: String
+  --
+  + aksesMenuUnggah(): void
+  + inputTantangan(): void
+  + ujiTantangan(): void
+  + lihatRekapitulasiNilai(): void
+}
+class Pelajar {
+  - idUser: String
+  - nama: String
+  --
+  + pilihTantangan(): void
+  + kirimSolusi(): void
+  + aksesRiwayat(): void
+  + ulangiTantangan(): void
+}
+class Tantangan {
+  - idTantangan: String
+  - judul: String
+  - deskripsi: String
+  - berkasTantangan: File
+  - status: String
+  --
+  + simpanTantangan(): void
+  + muatSetupScript(): String
+  + muatTantangan(): Tantangan
+  + publikasikan(): void
+  + jadwalkanHapus(): void
+}
+class WindowEdit {
+  - formUnggah: Form
+  --
+  + tampilkanForm(): void
+  + kirimBerkas(berkas: File): void
+  + tampilkanPesan(pesan: String): void
+}
+class EditController {
+  --
+  + ambilDaftarTantangan(idUser: String): List<Tantangan>
+  + validasiBerkas(berkas: File): Boolean
+  + simpanTantangan(berkas: File): Boolean
+}
+class WindowEnvironment {
+  - terminalInput: String
+  - tombolAksi: Button
+  --
+  + tampilkanTerminalUji(): void
+  + tampilkanTerminalSimulasi(): void
+  + pilihTantangan(idTantangan: String): void
+  + kirim(command: String): void
+  + tampilkanHasil(hasil: String): void
+  + kirimSolusi(): void
+  + reset(): void
+  + keluar(): void
+  + publikasikan(): void
+  + hapusTantangan(): void
+  + tampilkanKonfirmasi(pesan: String): Boolean
+}
+class EnvironmentController {
+  --
+  + muatTantangan(idTantangan: String): Tantangan
+  + siapkanLingkungan(tantangan: Tantangan): void
+  + eksekusiCommandUji(command: String): String
+  + prosesCommand(command: String): String
+  + validasiSolusi(): Boolean
+  + simpanSolusi(): void
+  + publikasiTantangan(idTantangan: String): Boolean
+  + hapusTantangan(idTantangan: String): void
+  + akhiriPengerjaan(): void
+}
+class WindowRiwayat {
+  - daftarRiwayatTampilan: List<RiwayatTantangan>
+  --
+  + tampilkanDaftarRiwayat(): void
+  + tampilkanDetail(riwayat: RiwayatTantangan): void
+  + kerjakanUlang(): void
+  + tampilkanKonfirmasi(pesan: String): Boolean
+}
+class RiwayatTantangan {
+  - idRiwayat: String
+  - statusPengerjaan: String
+  - skor: Integer
+  - riwayatKonsol: String
+  --
+  + simpanPekerjaan(): void
+  + ambilDataRiwayat(): List<RiwayatTantangan>
+}
+PembuatTantangan "1" -- "1" WindowEdit : menggunakan
+WindowEdit "1" -- "1" EditController
+EditController "1" -- "0..*" Tantangan : mengelola
+PembuatTantangan "1" -- "0..*" Tantangan : membuat
+PembuatTantangan "1" -- "1" WindowEnvironment : menguji
+PembuatTantangan "1" -- "1" WindowRiwayat : melihat
+Pelajar "1" -- "1" WindowRiwayat : melihat
+Pelajar "1" -- "1" WindowEnvironment : mengerjakan
+WindowEnvironment "1" -- "1" EnvironmentController
+EnvironmentController "1" -- "0..*" Tantangan : memuat
+EnvironmentController "1" -- "0..*" RiwayatTantangan : menyimpan
+WindowRiwayat "1" -- "0..*" RiwayatTantangan : menampilkan
+@enduml

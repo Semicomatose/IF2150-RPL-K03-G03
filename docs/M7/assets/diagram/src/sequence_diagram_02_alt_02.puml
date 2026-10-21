@@ -1,0 +1,20 @@
+@startuml
+!include _style.iuml
+actor PembuatTantangan as PT
+boundary ":WindowEnvironment" as WV
+control ":EnvironmentController" as EV
+entity ":Tantangan" as T
+PT -> WV ++ : tampilkanTerminalUji()
+deactivate WV
+PT -> WV ++ : hapusTantangan()
+WV -> EV ++ : hapusTantangan(idTantangan)
+EV -> T ++ : jadwalkanHapus()
+deactivate T
+opt tidak ada pelajar yang sedang mengakses
+  EV -> T !! : <<destroy>>
+end
+EV --> WV -- 
+WV -> WV ++ : tampilkanHasil("Tantangan dijadwalkan dihapus")
+deactivate WV
+deactivate WV
+@enduml

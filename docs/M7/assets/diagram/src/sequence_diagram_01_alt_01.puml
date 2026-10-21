@@ -1,0 +1,25 @@
+@startuml
+!include _style.iuml
+actor PembuatTantangan as PT
+boundary ":WindowEdit" as WE
+control ":EditController" as EC
+entity ":Tantangan" as T
+PT -> WE ++ : kirimBerkas(berkas)
+WE -> EC ++ : simpanTantangan(berkas)
+EC -> EC ++ : validasiBerkas(berkas)
+deactivate EC
+EC --> WE -- : false
+WE -> WE ++ : tampilkanPesan("Berkas tidak valid")
+deactivate WE
+deactivate WE
+PT -> WE ++ : kirimBerkas(berkasBaru)
+WE -> EC ++ : simpanTantangan(berkasBaru)
+EC -> EC ++ : validasiBerkas(berkasBaru)
+deactivate EC
+EC -> T ++ : simpanTantangan()
+deactivate T
+EC --> WE -- : true
+WE -> WE ++ : tampilkanPesan("Tantangan diperbarui")
+deactivate WE
+deactivate WE
+@enduml

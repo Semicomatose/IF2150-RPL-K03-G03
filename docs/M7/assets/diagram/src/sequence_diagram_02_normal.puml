@@ -1,0 +1,36 @@
+@startuml
+!include _style.iuml
+actor PembuatTantangan as PT
+boundary ":WindowEnvironment" as WV
+control ":EnvironmentController" as EV
+entity ":Tantangan" as T
+PT -> WV ++ : tampilkanTerminalUji()
+WV -> EV ++ : muatTantangan(idTantangan)
+EV -> T ++ : muatSetupScript()
+T --> EV -- : setupScript
+EV -> EV ++ : siapkanLingkungan(tantangan)
+deactivate EV
+EV --> WV -- : tantangan
+deactivate WV
+loop pembuat masih menguji
+  PT -> WV ++ : kirim(command)
+  WV -> EV ++ : eksekusiCommandUji(command)
+  EV --> WV -- : hasil
+  WV -> WV ++ : tampilkanHasil(hasil)
+  deactivate WV
+  deactivate WV
+end
+PT -> WV ++ : publikasikan()
+WV -> EV ++ : publikasiTantangan(idTantangan)
+alt nama tantangan belum dipakai
+  EV -> T ++ : publikasikan()
+  deactivate T
+  EV --> WV : true
+else nama sudah dipakai
+  EV --> WV : false
+end
+deactivate EV
+WV -> WV ++ : tampilkanHasil(status)
+deactivate WV
+deactivate WV
+@enduml

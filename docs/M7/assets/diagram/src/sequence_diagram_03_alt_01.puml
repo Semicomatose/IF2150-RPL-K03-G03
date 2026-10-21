@@ -1,0 +1,25 @@
+@startuml
+!include _style.iuml
+actor Pelajar as P
+boundary ":WindowEnvironment" as WV
+control ":EnvironmentController" as EV
+entity ":Tantangan" as T
+P -> WV ++ : pilihTantangan(idTantangan)
+WV -> EV ++ : muatTantangan(idTantangan)
+EV -> EV ++ : siapkanLingkungan(tantangan)
+deactivate EV
+EV --> WV -- : tantangan
+deactivate WV
+P -> WV ++ : kirim(command)
+WV -> EV ++ : prosesCommand(command)
+EV --> WV -- : hasil
+deactivate WV
+P -> WV ++ : keluar()
+WV -> WV ++ : tampilkanKonfirmasi("Pekerjaan tidak akan tersimpan")
+deactivate WV
+WV -> EV ++ : akhiriPengerjaan()
+EV --> WV --
+WV -> WV ++ : tampilkanHasil("Kembali ke pemilihan tantangan")
+deactivate WV
+deactivate WV
+@enduml
