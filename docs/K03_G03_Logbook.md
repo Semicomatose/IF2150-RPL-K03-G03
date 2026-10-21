@@ -114,6 +114,7 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *19-10-2026* | *Ananda Aulia Nurramadhan* | *Menyesuaikan template dengan informasi yang sudah ada dari milestone terdahulu* | *0,75* | *Done* | *-* |
+| *19-10-2026* | *Ananda Aulia Nurramadhan* | *Mendesain logo P/L* | *2* | *Done* | *-* |
 | *21-10-2026* | *Zidane Uland Fakhry* | *Melengkapi semua use case* | *3-4* | *Done* | *Susah untuk menyusun use case* |
 
 **Catatan/Evaluasi Milestone 7:** -
