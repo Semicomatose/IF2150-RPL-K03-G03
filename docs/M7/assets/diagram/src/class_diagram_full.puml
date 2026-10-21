@@ -43,6 +43,7 @@ class WindowEdit {
   + tampilkanForm(): void
   + kirimBerkas(berkas: File): void
   + tampilkanPesan(pesan: String): void
+  + periksaValiditas(): Boolean
 }
 class EditController {
   --
@@ -65,6 +66,7 @@ class WindowEnvironment {
   + publikasikan(): void
   + hapusTantangan(): void
   + tampilkanKonfirmasi(pesan: String): Boolean
+  + printTerminal(message: String): void
 }
 class EnvironmentController {
   --
@@ -77,6 +79,7 @@ class EnvironmentController {
   + publikasiTantangan(idTantangan: String): Boolean
   + hapusTantangan(idTantangan: String): void
   + akhiriPengerjaan(): void
+  + initiateRepo(tantanganID: String): void
 }
 class WindowRiwayat {
   - daftarRiwayatTampilan: List<RiwayatTantangan>

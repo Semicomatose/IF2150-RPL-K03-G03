@@ -34,6 +34,7 @@ class WindowEdit {
   + tampilkanForm(): void
   + kirimBerkas(berkas: File): void
   + tampilkanPesan(pesan: String): void
+  + periksaValiditas(): Boolean
 }
 class EditController {
   --
