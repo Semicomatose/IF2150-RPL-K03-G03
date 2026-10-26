@@ -28,8 +28,9 @@
 * [Milestone 3](#milestone-3)
 * [Milestone 4](#milestone-4)
 * [Milestone 5](#milestone-5)
-* [Milestone 6](#milestone-6)\
+* [Milestone 6](#milestone-6)
 * [Milestone 7](#milestone-7)
+* [Milestone 8](#milestone-8)
 
 ---
 
@@ -118,5 +119,14 @@
 | *21-10-2026* | *Dominick Vincent Devict* | *Menyusun sequence diagram UC01 dan UC02 * | *4* | *On Progress* | *Susah untuk menyusun sequence diagram dan menavigasi draw.io* |
 | *21-10-2026* | *Zidane Uland Fakhry* | *Melengkapi semua use case* | *3-4* | *Done* | *Susah untuk menyusun use case* |
 
-
 **Catatan/Evaluasi Milestone 7:** -
+
+---
+
+### Milestone 8
+**Periode:** [22-10-2026] - [28-10-2026]
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| ** | ** | ** | ** | ** | ** |
+
+**Catatan/Evaluasi Milestone 8:** -
