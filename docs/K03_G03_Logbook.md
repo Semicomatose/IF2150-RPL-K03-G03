@@ -127,6 +127,6 @@
 **Periode:** [22-10-2026] - [28-10-2026]
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| ** | ** | ** | ** | ** | ** |
+| *26-10-2026* | *Ananda Aulia Nurramadhan* | *Menambahkan informasi yang sudah ada* | *0,5* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 8:** -
