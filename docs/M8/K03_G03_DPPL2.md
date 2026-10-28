@@ -599,7 +599,9 @@ Tabel 6.6. Spesifikasi Objek Antarmuka I-06
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| b_edit_pf | Button | Tulisan "Edit" yang digarisbawahi | Ketika ditekan, pengguna bisa meninjau informasi yang berkoresponden. Di antarmuka ini, tombol ini dapat digunakan untuk memicu peninjauan username, email, password, dan profile picture. |
+| b_delete_pfp | Button | Tulisan "Delete" yang digarisbawahi | Ketika ditekan, profile picture pengguna akan dihapus dan diganti dengan profile picture yang default. |
+| b_back | Button | Ikon silang | Ketika ditekan, sistem akan menutup modal ini. |
 
 ## 6.7 Rancangan Antarmuka I-07
 
@@ -640,7 +642,11 @@ Tabel 6.8. Spesifikasi Objek Antarmuka I-08
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| b_file_choice | Button | Tombol dengan tulisan "Upload your challenges here (.zip)" | Tombol ini digunakan untuk memicu proses pemilihan file tantangan untuk diunggah. |
+| difficulty_slider | Slider | Slider dengan 2 buah ujung, dengan ujung 1 dibatasi agar tidak melewati ujung 2. | Kedua ujung dapat ditekan dan digeser oleh pengguna. Ujung 1 akan menjadi batas bawah dari tantangan yang akan ditampilkan, dan ujung 2 menjadi batas atas. |
+| i_title | String input | Kotak teks dengan tulisan sementara "* Title" | Pengguna dapat mengetik judul tantangan dalam kotak input ini. Sistem memvalidasi bahwa teks input tidak melebihi 50 karakter. |
+| i_desc | String input | Kotak teks dengan tulisan sementara "* Description" | Pengguna dapat mengetik deskripsi tantangan dalam kotak input ini. Sistem memvalidasi bahwa teks input tidak melebihi 300 karakter. |
+| b_upload | Button | Tombol dengan tulisan "Upload" | Tombol ini digunakan untuk memicu proses pengunggahan file tantangan, judul tantangan, dan deskripsi tantangan. |
 
 ## 6.9 Rancangan Antarmuka I-09
 
@@ -659,7 +665,11 @@ Tabel 6.9. Spesifikasi Objek Antarmuka I-09
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| b_hint | Button | Teks "Hint" yang digarisbawahi | Ketika ditekan, tombol ini akan memunculkan petunjuk pengerjaan tantangan. |
+| b_give_up | Button | Teks "Give Up" yang digarisbawahi | Ketika ditekan, tombol ini akan memunculkan solusi untuk tantangan. |
+| b_restart  | Button | Tombol dengan teks "Restart" | Ketika ditekan, tombol ini akan menyebabkan lingkungan tantangan menjadi keadaan semula saat tantangan baru dimulai. |
+| b_submit  | Button | Tombol dengan teks "Submit" | Tombol ini akan memicu pemeriksaan lingkungan tantangan oleh sistem. |
+| b_back | Button | Ikon silang | Ketika ditekan, sistem akan menutup modal ini dan mengarahkan pengguna ke menu utama (I-04). |
 
 ## 6.10 Rancangan Antarmuka I-10
 
