@@ -551,7 +551,13 @@ Tabel 6.4. Spesifikasi Objek Antarmuka I-04
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| challenge_card | Button | Menampilkan nama tantangan, pembuat tantangan, deskripsi tantangan, dan tingkat kesulitan tantangan | Untuk setiap tantangan yang berada di server, akan dibuat sebuah challenge card yang berisikan detail tantangan. Jika suatu challenge card ditekan pengguna, sistem akan mengarahkan pengguna ke I-09 (Challenge Environment) dan menjalankan setup script dari tantangan yang dipilih. |
+| b_filter | Button | Ikon filter di sebelah tulisan "Available Challenges" | Jika ditekan, sistem akan menampilkan I-05 (Filter Challenges Modal) |
+| created_ch_cards | Button | Menampilkan nama tantangan, pembuat tantangan, deskripsi tantangan, tingkat kesulitan tantangan, serta status tantangan dari tantangan yang dibuat pengguna | Untuk setiap tantangan yang dibuat oleh pengguna yang berada di server, akan dibuat sebuah challenge card yang berisikan detail tantangan. Jika ditekan, sistem akan mengarahkan pengguna I-10 (Evaluation Environment) untuk tantangan yang dipilih. |
+| b_profile_badge | Button | Silhouette orang pada kanan atas page | Ketika ditekan, sistem akan memunculkan 3 tombol: b_profile, b_history, b_logout. |
+| b_profile | Button | Teks "Profile" dan ikon roda gigi | Ketika ditekan, sistem menampilkan I-06 (Profile Options Modal). |
+| b_history | Button | Teks "History" dan ikon gulungan | Ketika ditekan, sistem mengarahkan pengguna ke I-07 (History). |
+| b_logout | Button | Teks "Logout" dan ikon pintu merah | Ketika ditekan, sistem me-logout pengguna dan mengarahkan pengguna ke I-03 (Login) |
 
 ## 6.5 Rancangan Antarmuka I-05
 
@@ -570,7 +576,11 @@ Tabel 6.5. Spesifikasi Objek Antarmuka I-05
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| difficulty_slider | Slider | Slider dengan 2 buah ujung, dengan ujung 1 dibatasi agar tidak melewati ujung 2. | Kedua ujung dapat ditekan dan digeser oleh pengguna. Ujung 1 akan menjadi batas bawah dari tantangan yang akan ditampilkan, dan ujung 2 menjadi batas atas. |
+| search_bar | String input | Kotak input dengan ikon kaca pembesar | Pengguna dapat mengetik dalam kotak input ini. Isi dari kotak input ini akan digunakan untuk menyaring tantangan yang akan ditampilkan. |
+| b_back | Button | Ikon silang | Ketika ditekan, sistem akan menutup modal ini. Filter-filter yang diinput oleh pengguna tidak akan tersimpan |
+| b_save_filters | Button | Tombol dengan tulisan "Save Filters" | Jika ditekan, modal ini akan tertutup dan sistem akan menerapkan filter untuk menampilkan tantangan pada main menu (I-04). |
+
 
 ## 6.6 Rancangan Antarmuka I-06
 
@@ -608,7 +618,10 @@ Tabel 6.7. Spesifikasi Objek Antarmuka I-07
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| history_card | Button | Menampilkan nama tantangan, waktu pengerjaan tantangan, status pengerjaan tantangan, dan tingkat kesulitan tantangan | Untuk setiap riwayat pengerjaan dari pengguna, akan dibuat sebuah history card yang berisikan detail riwayat pengerjaan. Ketika ditekan, sistem akan mengarahkan pengguna ke I-09 (Challenge Environment), menjalankan setup script, serta mengembalikan tantangan ke state terakhir riwayat yang tercatat. |
+| created_ch_card_alt | Button | Menampilkan nama tantangan, tingkat kesulitan tantangan, banyak pengerjaan, dan rating rata-rata tantangan. | Untuk setiap tantangan yang dibuat oleh pengguna, akan dibuat sebuah card yang menampilkan detail tantangan. Ketika ditekan, sistem akan mengarahkan pengguna ke I-10 (Evaluation Environment) untuk tantangan yang dipilih. |
+| b_button | Button | Ikon silang | Ketika ditekan, sistem akan mengarahkan pengguna ke I-04 (Main Menu). |
+| b_profile_badge | Button | Silhouette orang pada kanan atas page | Ketika ditekan, sistem akan memunculkan 3 tombol: b_profile, b_history, b_logout. |
 
 ## 6.8 Rancangan Antarmuka I-08
 
