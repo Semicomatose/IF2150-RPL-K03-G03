@@ -392,8 +392,8 @@ Tabel 4.1. Daftar Kelas Perancangan Keseluruhan
 | C03 | Tantangan | - idTantangan: String<br>- judul: String<br>- deskripsi: String<br>- berkasTantangan: File<br>- status: String | + simpanTantangan(): void<br>+ muatSetupScript(): String<br>+ muatTantangan(): Tantangan<br>+ publikasikan(): void<br>+ jadwalkanHapus(): void |
 | C04 | WindowEdit | - formUnggah: Form | + tampilkanForm(): void<br>+ kirimBerkas(berkas: File): void<br>+ tampilkanPesan(pesan: String): void<br>+ periksaValiditas(): Boolean |
 | C05 | EditController | - | + ambilDaftarTantangan(idUser: String): List&lt;Tantangan&gt;<br>+ validasiBerkas(berkas: File): Boolean<br>+ simpanTantangan(berkas: File): Boolean |
-| C06 | WindowEnvironment | - terminalInput: String<br>- tombolAksi: Button | + tampilkanTerminalUji(): void<br>+ tampilkanTerminalSimulasi(): void<br>+ pilihTantangan(idTantangan: String): void<br>+ kirim(command: String): void<br>+ tampilkanHasil(hasil: String): void<br>+ kirimSolusi(): void<br>+ reset(): void<br>+ keluar(): void<br>+ publikasikan(): void<br>+ hapusTantangan(): void<br>+ tampilkanKonfirmasi(pesan: String): Boolean<br>+ printTerminal(message: String): void |
-| C07 | EnvironmentController | - | + muatTantangan(idTantangan: String): Tantangan<br>+ siapkanLingkungan(tantangan: Tantangan): void<br>+ eksekusiCommandUji(command: String): String<br>+ prosesCommand(command: String): String<br>+ validasiSolusi(): Boolean<br>+ simpanSolusi(): void<br>+ publikasiTantangan(idTantangan: String): Boolean<br>+ hapusTantangan(idTantangan: String): void<br>+ akhiriPengerjaan(): void<br>+ initiateRepo(tantanganID: String): void |
+| C06 | WindowEnvironment | - terminalInput: String<br>- tombolAksi: Button | + tampilkanTerminalUji(): void<br>+ tampilkanTerminalSimulasi(): void<br>+ pilihTantangan(idTantangan: String): void<br>+ kirim(command: String): void<br>+ tampilkanHasil(hasil: String): void<br>+ kirimSolusi(): void<br>+ reset(): void<br>+ keluar(): void<br>+ publikasikan(): void<br>+ hapusTantangan(): Boolean<br>+ tampilkanKonfirmasi(pesan: String): Boolean<br>+ printTerminal(message: String): void |
+| C07 | EnvironmentController | - | + muatTantangan(idTantangan: String): Tantangan<br>+ siapkanLingkungan(tantangan: Tantangan): void<br>+ eksekusiCommandUji(command: String): String<br>+ prosesCommand(command: String): String<br>+ validasiSolusi(): Boolean<br>+ simpanSolusi(): void<br>+ publikasiTantangan(idTantangan: String): Boolean<br>+ hapusTantangan(idTantangan: String): void<br>+ akhiriPengerjaan(): void<br>+ initiateRepo(idTantangan: String): void |
 | C08 | WindowRiwayat | - daftarRiwayatTampilan: List&lt;RiwayatTantangan&gt; | + tampilkanDaftarRiwayat(): void<br>+ tampilkanDetail(riwayat: RiwayatTantangan): void<br>+ kerjakanUlang(): void<br>+ tampilkanKonfirmasi(pesan: String): Boolean |
 | C09 | RiwayatTantangan | - idRiwayat: String<br>- statusPengerjaan: String<br>- skor: Integer<br>- riwayatKonsol: String | + simpanPekerjaan(): void<br>+ ambilDataRiwayat(): List&lt;RiwayatTantangan&gt; |
 
@@ -407,11 +407,228 @@ Tabel 5.1. Daftar Kelas Perancangan dan Kelas Analisis Terkait
 
 | No | Nama Kelas Perancangan | Nama Kelas Analisis Terkait |
 | :--- | :--- | :--- |
-| 1 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL atau -]* |
-| 2 | *[Nama kelas perancangan]* | *[Nama kelas analisis pada SKPL atau -]* |
-| ... | *...* | *...* |
+| 1 | PembuatTantangan | C01 - PembuatTantangan |
+| 2 | Pelajar | C02 - Pelajar |
+| 3 | Tantangan | C03 - Tantangan |
+| 4 | WindowEdit | C04 - WindowEdit |
+| 5 | EditController | C05 - EditController |
+| 6 | WindowEnvironment | C06 - WindowEnvironment |
+| 7 | EnvironmentController | C07 - EnvironmentController |
+| 8 | WindowRiwayat | C08 - WindowRiwayat |
+| 9 | RiwayatTantangan | C09 - RiwayatTantangan |
 
 Untuk **setiap kelas**, identifikasi operasi berdasarkan tanggung jawab kelas beserta *visibility*-nya, serta atribut beserta *visibility* dan tipenya. Buat subbab tersendiri untuk setiap kelas.
+
+## 5.1 Kelas PembuatTantangan
+
+**Nama Kelas:** PembuatTantangan
+**ID Kelas:** C01
+
+Tabel 5.1.1. Operasi Kelas PembuatTantangan
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| aksesMenuUnggah(): void | public | Mengakses menu untuk memulai pengunggahan tantangan baru |
+| inputTantangan(): void | public | Memasukkan rincian data tantangan |
+| ujiTantangan(): void | public | Melakukan pengujian terhadap tantangan yang dibuat |
+| lihatRekapitulasiNilai(): void | public | Melihat rekapitulasi nilai dari peserta/pelajar |
+
+Tabel 5.1.2. Atribut Kelas PembuatTantangan
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| idUser | private | String |
+| nama | private | String |
+
+## 5.2 Kelas Pelajar
+
+**Nama Kelas:** Pelajar
+**ID Kelas:** C02
+
+Tabel 5.2.1. Operasi Kelas Pelajar
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| pilihTantangan(): void | public | Memilih tantangan yang ingin dikerjakan |
+| kirimSolusi(): void | public | Mengirimkan solusi pengerjaan tantangan |
+| aksesRiwayat(): void | public | Mengakses riwayat pengerjaan tantangan |
+| ulangiTantangan(): void | public | Mengulang kembali pengerjaan suatu tantangan |
+
+Tabel 5.2.2. Atribut Kelas Pelajar
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| idUser | private | String |
+| nama | private | String |
+
+## 5.3 Kelas Tantangan
+
+**Nama Kelas:** Tantangan
+**ID Kelas:** C03
+
+Tabel 5.3.1. Operasi Kelas Tantangan
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| simpanTantangan(): void | public | Menyimpan berkas dan data tantangan ke dalam sistem |
+| muatSetupScript(): String | public | Memuat _setup script_ untuk lingkungan tantangan |
+| muatTantangan(): Tantangan | public | Mengambil dan memuat berkas tantangan |
+| publikasikan(): void | public | Mengubah status tantangan menjadi terpublikasi |
+| jadwalkanHapus(): void | public | Menjadwalkan tantangan untuk dihapus |
+
+Tabel 5.3.2. Atribut Kelas Tantangan
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| idTantangan | private | String |
+| judul | private | String |
+| deskripsi | private | String |
+| berkasTantangan | private | File |
+| status | private | String |
+
+### 5.3.1 Algoritma/Query
+
+Bagian ini diisi untuk kerangka algoritma proses yang dianggap cukup penting. Algoritma dapat dituliskan sebagai *pseudocode*. Implementasi *skeleton code* juga dapat digunakan untuk kelas yang sudah terdefinisi pada bahasa pemrograman tertentu.
+
+**Nama Kelas:** Tantangan
+**Nama Operasi:** + publikasikan(): void
+**ID Algoritma:** AG-01
+
+```text
+    public publikasikan()
+    IF status == 'DRAF' THEN
+        status = 'TERPUBLIKASI';
+        simpanTantangan();
+    ELSE
+        TampilkanPesan("Tantangan tidak dapat dipublikasikan.");
+    ENDIF
+```
+
+## 5.4 Kelas WindowEdit
+
+**Nama Kelas:** WindowEdit
+**ID Kelas:** C04
+
+Tabel 5.4.1. Operasi Kelas WindowEdit
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| tampilkanForm(): void | public | Menampilkan formulir edit atau unggah tantangan |
+| kirimBerkas(berkas: File): void | public | Mengirimkan berkas tantangan yang diunggah pengguna |
+| tampilkanPesan(pesan: String): void | public | Mengirimkan pesan status atau validasi kepada pengguna |
+| periksaValiditas(): Boolean | public | Memeriksa validitas data pada form sebelum dikirim |
+
+Tabel 5.4.2. Atribut Kelas WindowEdit
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| formUnggah | private | Form |
+
+## 5.5 Kelas EditController
+
+**Nama Kelas:** EditController
+**ID Kelas:** C05
+
+Tabel 5.5.1. Operasi Kelas EditController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| ambilDaftarTantangan(idUser: String): List<Tantangan> | public | Mengambil daftar tantangan yang dibuat oleh pengguna tertentu |
+| validasiBerkas(berkas: File): Boolean | public | Memvalidasi format dan isi berkas yang diunggah |
+| simpanTantangan(berkas: File): Boolean | public | Mengontrol proses penyimpanan data dan berkas tantangan |
+
+## 5.6 Kelas WindowEnvironment
+
+**Nama Kelas:** WindowEnvironment  
+**ID Kelas:** C06
+
+Tabel 5.6.1. Operasi Kelas WindowEnvironment
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| tampilkanTerminalUji(): void | public | Menampilkan terminal pengujian |
+| tampilkanTerminalSimulasi(): void | public | Menampilkan terminal simulasi |
+| pilihTantangan(idTantangan: String): void | public | Memilih tantangan yang akan dijalankan |
+| kirim(command: String): void | public | Mengirimkan perintah dari terminal |
+| tampilkanHasil(hasil: String): void | public | Menampilkan hasil eksekusi perintah ke layar |
+| kirimSolusi(): void | public | Mengirimkan solusi pengerjaan tantangan |
+| reset(): void | public | Mengembalikan lingkungan terminal ke kondisi awal |
+| keluar(): void | public | Keluar dari lingkungan pengujian, simulasi, atau pengerjaan |
+| publikasikan(): void | public | Mempublikasikan tantangan dari antarmuka lingkungan |
+| hapusTantangan(): void | public | Menghapus tantangan yang dipilih |
+| tampilkanKonfirmasi(pesan: String): Boolean | public | Meminta pengguna untuk mengonfirmasi tindakannya |
+| printTerminal(message: String): void | public | Mencetak pesan keluaran ke terminal |
+
+Tabel 5.6.2. Atribut Kelas WindowEnvironment 
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| terminalInput | private | String |
+| tombolAksi | private | Button |
+
+## 5.7 Kelas EnvironmentController
+
+**Nama Kelas:** EnvironmentController
+**ID Kelas:** C07
+
+Tabel 5.7.1. Operasi Kelas EnvironmentController
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| muatTantangan(idTantangan: String): Tantangan | public | Memuat data tantangan berdasarkan IDnya |
+| siapkanLingkungan(tantangan: Tantangan): void | public | Menyiapkan lingkungan untuk tantangan |
+| eksekusiCommandUji(command: String): String | public | Menjalankan perintah uji di lingkungan |
+| prosesCommand(command: String): String | public | Memproses perintah yang dimasukkan oleh pengguna |
+| validasiSolusi(): Boolean | public | Memvalidasi kebenaran solusi yang dikirimkan |
+| simpanSolusi(): void | public | Menyimpan solusi dari tantangan yang sudah dikerjakan |
+| publikasiTantangan(idTantangan: String): Boolean | public | Mengubah status publikasi tantangan |
+| hapusTantangan(idTantangan: String): Boolean | public | Memproses penghapusan tantangan |
+| akhiriPengerjaan(): void | public | Mengakhiri sesi pengerjaan tantangan |
+| initiateRepo(idTantangan: String): void | public | Menginisialisasi repositori untuk tantangan terkait |
+
+## 5.8 Kelas WindowRiwayat
+
+**Nama Kelas:** WindowRiwayat
+**ID Kelas:** C08
+
+Tabel 5.8.1. Operasi Kelas WindowRiwayat
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| tampilkanDaftarRiwayat(): void | public | Menampilkan daftar seluruh riwayat pengerjaan |
+| tampilkanDetail(riwayat: RiwayatTantangan): void | public | Menampilkan detail dari suatu riwayat pengerjaan tertentu |
+| kerjakanUlang(): void | public | Memilih untuk mengerjakan ulang tantangan dari riwayat |
+| tampilkanKonfirmasi(pesan: String): Boolean | public | Menampilkan menu konfirmasi untuk tindakan pada riwayat |
+
+Tabel 5.8.2. Atribut Kelas WindowRiwayat
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| daftarRiwayatTampilan | private | List<RiwayatTantangan> |
+
+## 5.9 Kelas RiwayatTantangan
+
+**Nama Kelas:** RiwayatTantangan
+**ID Kelas:** C09
+
+Tabel 5.9.1. Operasi Kelas RiwayatTantangan
+
+| Nama Operasi | Visibility (private, public) | Keterangan |
+| :--- | :--- | :--- |
+| simpanPengerjaan(): void | public | Menyimpan data pengerjaan tantangan ke dalam riwayat |
+| ambilDataRiwayat(): List<RiwayatTantangan> | public | Mengambil kumpulan data riwayat pengerjaan dari database |
+
+Tabel 5.9.2. Atribut Kelas RiwayatTantangan
+
+| Nama Atribut | Visibility (private, public) | Tipe |
+| :--- | :--- | :--- |
+| idRiwayat | private | String |
+| statusPengerjaan | private | String |
+| skor | private | Integer |
+| riwayatKonsol | private | String |
+
+
+<!-- Ignore this, this is for copy pasting
 
 ## 5.1 Kelas [Nama Kelas 1]
 
@@ -461,6 +678,8 @@ Tabel 5.1.1. Query Operasi [Nama Operasi]
 ## 5.2 Kelas [Nama Kelas Berikutnya]
 
 *[Ulangi pola 5.1: nama dan ID kelas, tabel operasi, tabel atribut, serta subbab algoritma/query untuk operasi penting jika diperlukan.]*
+
+-->
 
 <br>
 
