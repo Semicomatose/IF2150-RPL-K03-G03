@@ -678,7 +678,11 @@ Tabel 6.10. Spesifikasi Objek Antarmuka I-10
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| challenge_description | RTF Box | Berisikan deskripsi tantangan yang telah dimasukkan oleh pembuat tantangan. | - |
+| b_delete_challenge | Button | Tulisan "Delete Challenge" | Jika ditekan, sistem akan mengubah status dari tantangan yang sedang dievaluasi menjadi "dijadwalkan dihapus". |
+| b_unpublish | Button | Tulisan "Unpublish" | Jika ditekan, sistem akan mengubah status dari tantangan yang sedang dievaluasi menjadi "Draf". |
+| b_edit_hint | Button | Tulisan  "Edit Hint" | Jika ditekan, akan memunculkan modal dengan String input untuk mengubah hint dari tantangan. |
+| terminal | TBA | TBA | TBA | 
 
 ## 6.11 Rancangan Antarmuka Keseluruhan
 
