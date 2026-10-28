@@ -485,9 +485,8 @@ Tabel 6.1. Spesifikasi Objek Antarmuka I-01
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-| *[ID objek]* | *[Jenis objek, misalnya Button, RTF Box, dll]* | *[String yang tampil pada layar]* | *[Reaksi sistem, layar tujuan, tautan, atau ID algoritma yang dijalankan]* |
-| *[ID objek]* | *[Jenis objek]* | *[Konten yang ditampilkan]* | *[Reaksi sistem atau nama file terkait beserta deskripsi ringkasnya]* |
-| *...* | *...* | *...* | *...* |
+| b_join | Button | Join Now | Jika ditekan, sistem akan mengarahkan pengguna ke layar I-02 (Signup) |
+| b_login_scr | Button | Log in | Jika ditekan, sistem akan mengarahkan pengguna ke layar I-03 (Login) |
 
 ## 6.2 Rancangan Antarmuka I-02
 
@@ -506,7 +505,12 @@ Tabel 6.2. Spesifikasi Objek Antarmuka I-02
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| i_email | Email input | * Email | Pengguna dapat mengetik di dalam kotak input ini. Sistem memvalidasi apakah email yang dimasukkan merupakan email yang valid. |
+| i_username | String input | * Username | Pengguna dapat mengetik di dalam kotak input ini. Sistem memvalidasi apakah username yang dimasukkan memiliki panjang 3-12 karakter. |
+| i_password | Password input | * Password | Pengguna dapat mengetik di dalam kotak input ini, dengan inputnya disembunyikan. |
+| i_confirm_pass | Password input | * Confirm Password | Pengguna dapat mengetik di dalam kotak input ini, dengan inputnya disembunyikan. Sistem akan memastikan isi input ini sesuai dengan input pada Password input. |
+| b_create_account | Button | Create Account | Jika ditekan saat semua input sudah terisi dan valid, sistem akan membuat akun baru dengan detail yang sesuai dengan input pengguna lalu mengarahkan pengguna ke layar I-04 (Main Menu). |
+| b_login_scr | Button | Log in | Jika ditekan, sistem akan mengarahkan pengguna ke layar I-03 (Login). |
 
 ## 6.3 Rancangan Antarmuka I-03
 
@@ -525,7 +529,10 @@ Tabel 6.3. Spesifikasi Objek Antarmuka I-03
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
+| i_email_usn | String input | * Email/Username | Pengguna dapat mengetik di dalam kotak input ini. |
+| i_password | Password input | * Password | Pengguna dapat mengetik di dalam kotak input ini, dengan inputnya disembunyikan. |
+| b_login | Button | Log in | Jika ditekan, sistem akan memeriksa email/username dan password pada database pengguna. Jika terdapat pengguna yang sesuai, pengguna akan diarahkan ke layar I-04 (Main Menu). Jika tidak, layar akan menampilkan error message. |
+| b_join | Button | Join Now | Jika ditekan, sistem akan mengarahkan pengguna ke layar I-02 (Signup). |
 
 ## 6.4 Rancangan Antarmuka I-04
 
@@ -672,7 +679,7 @@ Tabel 6.11. Rancangan Antarmuka Keseluruhan
 | *[I-02]* | <img alt="Signup" src="./assets/diagram/UI/Signup.png" width="400"> |
 | *[I-03]* | <img alt="Login" src="./assets/diagram/UI/Login.png" width="400"> |
 | *[I-04]* | <img alt="Main Menu" src="./assets/diagram/UI/Main Menu.png" width="400"> |
-| *[I-05]* | <img alt="Filter Challenges modal" src="./assets/diagram/UI/Filter Challenged.png" width="400"> |
+| *[I-05]* | <img alt="Filter Challenges modal" src="./assets/diagram/UI/Filter Challenges.png" width="400"> |
 | *[I-06]* | <img alt="Profile Options modal" src="./assets/diagram/UI/Profile Options.png" width="400"> |
 | *[I-07]* | <img alt="History" src="./assets/diagram/UI/History.png" width="400"> |
 | *[I-08]* | <img alt="Challenge Upload" src="./assets/diagram/UI/Challenge Upload.png" width="400"> |
