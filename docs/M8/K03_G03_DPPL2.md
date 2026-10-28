@@ -468,21 +468,20 @@ Tabel 5.1.1. Query Operasi [Nama Operasi]
 
 # BAB 6: Perancangan Antarmuka
 
-## 6.1 Rancangan Antarmuka [ID Layar 1]
+## 6.1 Rancangan Antarmuka I-01
 
-Masukkan versi awal prototipe antarmuka, dimana untuk setiap antarmuka/layar, tuliskan spesifikasi rinci objek yang ditampilkan dan reaksi sistem terhadap interaksi pengguna.
+**Antarmuka:** *I-01*
 
-**Antarmuka:** *[ID layar]*  
-**Nama Layar:** *[Nama layar]*
+**Nama Layar:** *Landing Page*
 
 <p align="center">
-<img alt="Contoh Logical View pada P/L E-Commerce" src="./assets/diagram/contoh-design.png" width="50%">
+<img alt="Landing Page" src="./assets/diagram/UI/Landing Page.png" width="50%">
 </p>
 <p align="center">
-<i>Gambar 6.1. Rancangan Antarmuka [ID Layar] - [Nama Layar]</i>
+<i>Gambar 6.1. Rancangan Antarmuka I-01 - Landing Page</i>
 </p>
 
-Tabel 6.1. Spesifikasi Objek Antarmuka [ID Layar]
+Tabel 6.1. Spesifikasi Objek Antarmuka I-01
 
 | Id_Objek | Jenis | Konten | Keterangan |
 | :--- | :--- | :--- | :--- |
@@ -490,22 +489,196 @@ Tabel 6.1. Spesifikasi Objek Antarmuka [ID Layar]
 | *[ID objek]* | *[Jenis objek]* | *[Konten yang ditampilkan]* | *[Reaksi sistem atau nama file terkait beserta deskripsi ringkasnya]* |
 | *...* | *...* | *...* | *...* |
 
+## 6.2 Rancangan Antarmuka I-02
 
-## 6.X Rancangan Antarmuka [ID Layar X]
+**Antarmuka:** *I-02*
 
-*[Ulangi pola 6.1 untuk layar berikutnya sampai semua layar teridentifikasi]*
+**Nama Layar:** *Signup*
 
-## 6.Y Rancangan Antarmuka Keseluruhan
+<p align="center">
+<img alt="Signup screen" src="./assets/diagram/UI/Signup.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.2. Rancangan Antarmuka I-02 - Signup</i>
+</p>
+
+Tabel 6.2. Spesifikasi Objek Antarmuka I-02
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.3 Rancangan Antarmuka I-03
+
+**Antarmuka:** *I-03*
+
+**Nama Layar:** *Login*
+
+<p align="center">
+<img alt="Login screen" src="./assets/diagram/UI/Login.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.3. Rancangan Antarmuka I-03 - Login</i>
+</p>
+
+Tabel 6.3. Spesifikasi Objek Antarmuka I-03
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.4 Rancangan Antarmuka I-04
+
+**Antarmuka:** *I-04*
+
+**Nama Layar:** *Main Menu*
+
+<p align="center">
+<img alt="Main Menu" src="./assets/diagram/UI/Main Menu.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.4. Rancangan Antarmuka I-04 - Main Menu</i>
+</p>
+
+Tabel 6.4. Spesifikasi Objek Antarmuka I-04
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.5 Rancangan Antarmuka I-05
+
+**Antarmuka:** *I-05*
+
+**Nama Layar:** *Filter Challenges Modal*
+
+<p align="center">
+<img alt="Filter Challenges modal" src="./assets/diagram/UI/Filter Challenges.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.5. Rancangan Antarmuka I-05 - Filter Challenges</i>
+</p>
+
+Tabel 6.5. Spesifikasi Objek Antarmuka I-05
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.6 Rancangan Antarmuka I-06
+
+**Antarmuka:** *I-06*
+
+**Nama Layar:** *Profile Options Modal*
+
+<p align="center">
+<img alt="Profile Options modal" src="./assets/diagram/UI/Profile Options.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.6. Rancangan Antarmuka I-06 - Profile Options</i>
+</p>
+
+Tabel 6.6. Spesifikasi Objek Antarmuka I-06
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.7 Rancangan Antarmuka I-07
+
+**Antarmuka:** *I-07*
+
+**Nama Layar:** *History*
+
+<p align="center">
+<img alt="History" src="./assets/diagram/UI/History.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.7. Rancangan Antarmuka I-07 - History</i>
+</p>
+
+Tabel 6.7. Spesifikasi Objek Antarmuka I-07
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.8 Rancangan Antarmuka I-08
+
+**Antarmuka:** *I-08*
+
+**Nama Layar:** *Challenge Upload*
+
+<p align="center">
+<img alt="Challenge Upload" src="./assets/diagram/UI/Challenge Upload.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.8. Rancangan Antarmuka I-08 - Challenge Upload</i>
+</p>
+
+Tabel 6.8. Spesifikasi Objek Antarmuka I-08
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.9 Rancangan Antarmuka I-09
+
+**Antarmuka:** *I-09*
+
+**Nama Layar:** *Challenge Environment*
+
+<p align="center">
+<img alt="Challenge Environment" src="./assets/diagram/UI/Challenge Environment.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.9. Rancangan Antarmuka I-09 - Challenge Environment</i>
+</p>
+
+Tabel 6.9. Spesifikasi Objek Antarmuka I-09
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.10 Rancangan Antarmuka I-10
+
+**Antarmuka:** *I-10*
+
+**Nama Layar:** *Evaluation Environment*
+
+<p align="center">
+<img alt="Evaluation Environment" src="./assets/diagram/UI/Evaluation Environment.png" width="50%">
+</p>
+<p align="center">
+<i>Gambar 6.10. Rancangan Antarmuka I-10 - Evaluation Environment</i>
+</p>
+
+Tabel 6.10. Spesifikasi Objek Antarmuka I-10
+
+| Id_Objek | Jenis | Konten | Keterangan |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 6.11 Rancangan Antarmuka Keseluruhan
 
 Tuliskan daftar gambar seluruh antarmuka. Berikan ID unik untuk setiap tampilan dan gunakan ID yang sama pada subbab perancangan antarmuka masing-masing.
 
-Tabel 6.Y. Rancangan Antarmuka Keseluruhan
+Tabel 6.11. Rancangan Antarmuka Keseluruhan
 
 | No | Tampilan Antarmuka |
 | :--- | :--- |
-| *[I-01]* | <img src="./assets/diagram/contoh-design.png" alt="Contoh Desain" width="400"> |
-| *[I-02]* | *[Sisipkan gambar antarmuka I-02]* |
-| *[I-XX]* | *[Sisipkan gambar antarmuka berikutnya]* |
+| *[I-01]* | <img alt="Landing Page" src="./assets/diagram/UI/Landing Page.png" width="400"> |
+| *[I-02]* | <img alt="Signup" src="./assets/diagram/UI/Signup.png" width="400"> |
+| *[I-03]* | <img alt="Login" src="./assets/diagram/UI/Login.png" width="400"> |
+| *[I-04]* | <img alt="Main Menu" src="./assets/diagram/UI/Main Menu.png" width="400"> |
+| *[I-05]* | <img alt="Filter Challenges modal" src="./assets/diagram/UI/Filter Challenged.png" width="400"> |
+| *[I-06]* | <img alt="Profile Options modal" src="./assets/diagram/UI/Profile Options.png" width="400"> |
+| *[I-07]* | <img alt="History" src="./assets/diagram/UI/History.png" width="400"> |
+| *[I-08]* | <img alt="Challenge Upload" src="./assets/diagram/UI/Challenge Upload.png" width="400"> |
+| *[I-09]* | <img alt="Challenge Environment" src="./assets/diagram/UI/Challenge Environment.png" width="400"> |
+| *[I-10]* | <img alt="Evaluation Environment" src="./assets/diagram/UI/Evaluation Environment.png" width="400"> |
+
 
 <br>
 
