@@ -488,20 +488,20 @@ Tabel 5.3.2. Atribut Kelas Tantangan
 
 ### 5.3.1 Algoritma/Query
 
-Bagian ini diisi untuk kerangka algoritma proses yang dianggap cukup penting. Algoritma dapat dituliskan sebagai *pseudocode*. Implementasi *skeleton code* juga dapat digunakan untuk kelas yang sudah terdefinisi pada bahasa pemrograman tertentu.
-
 **Nama Kelas:** Tantangan
 **Nama Operasi:** + publikasikan(): void
-**ID Algoritma:** AG-01
+**ID Algoritma:** Algo-01
 
 ```text
     public publikasikan()
-    IF status == 'DRAF' THEN
-        status = 'TERPUBLIKASI';
-        simpanTantangan();
-    ELSE
-        TampilkanPesan("Tantangan tidak dapat dipublikasikan.");
-    ENDIF
+    BEGIN
+        IF status == 'DRAF' THEN
+            status = 'TERPUBLIKASI'
+            simpanTantangan()
+        ELSE
+            TampilkanPesan("Tantangan tidak dapat dipublikasikan.")
+        ENDIF
+    END
 ```
 
 ## 5.4 Kelas WindowEdit
@@ -536,6 +536,60 @@ Tabel 5.5.1. Operasi Kelas EditController
 | ambilDaftarTantangan(idUser: String): List<Tantangan> | public | Mengambil daftar tantangan yang dibuat oleh pengguna tertentu |
 | validasiBerkas(berkas: File): Boolean | public | Memvalidasi format dan isi berkas yang diunggah |
 | simpanTantangan(berkas: File): Boolean | public | Mengontrol proses penyimpanan data dan berkas tantangan |
+
+### 5.5.1 Algoritma/Query
+
+**Nama Kelas:** EditController
+**Nama Operasi:** + validasiBerkas(berkas: File): Boolean
+**ID Algoritma:** Algo-02
+
+```text
+    public validasiBerkas(berkas)
+    BEGIN
+        IF status == NULL THEN
+            RETURN FALSE
+        ENDIF
+
+        IF extension(berkas) != ".zip" AND extension(berkas) != ".tar.gz" THEN
+            TampilkanPesan("Format berkas harus .zip atau .tar.gz")
+            RETURN FALSE
+        ENDIF
+
+        IF size(berkas) > MAX_FILE_SIZE THEN
+            TampilkanPesan("Ukuran berkas melebihi batas maksimum")
+            RETURN FALSE
+        ENDIF
+
+        RETURN TRUE
+    END
+```
+
+### 5.5.2 Algoritma/Query
+
+**Nama Kelas:** EditController
+**Nama Operasi:** + simpanTantangan(berkas: File): Boolean
+**ID Algoritma:** Algo-03
+
+```text
+    public simpanTantangan(berkas)
+    BEGIN
+        IF !validasiBerkas(berkas) THEN
+            RETURN FALSE
+        ENDIF
+
+        DATABASE.exec("INSERT INTO tantangan (idTantangan, judul, deskripsi, berkasTantangan, status) VALUES ({}, {}, {}, {}, 'DRAF')",
+                      idTantangan, judul, deskripsi, berkasTantangan, status)
+
+        RETURN TRUE
+    END
+```
+
+Tabel 5.5.2. Query Operasi simpanTantangan
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| Q-01 | INSERT INTO tantangan (idTantangan, judul, deskripsi, berkasTantangan, status) VALUES ({}, {}, {}, {}, 'DRAF') | Memasukkan record tantangan baru ke database |
+
 
 ## 5.6 Kelas WindowEnvironment
 
@@ -586,6 +640,36 @@ Tabel 5.7.1. Operasi Kelas EnvironmentController
 | akhiriPengerjaan(): void | public | Mengakhiri sesi pengerjaan tantangan |
 | initiateRepo(idTantangan: String): void | public | Menginisialisasi repositori untuk tantangan terkait |
 
+### 5.7.1 Algoritma/Query
+
+**Nama Kelas:** EnvironmentController
+**Nama Operasi:** + validasiSolusi(): Boolean
+**ID Algoritma:** Algo-04
+
+```text
+    public validasiSolusi()
+    BEGIN
+        scriptUji = DATABASE.exec("SELECT berkasTantangan FROM tantangan where idTantangan = ?", idTantangan)
+        hasil = JalankanPengujian(scriptUji)
+
+        IF hasil == SUKSES THEN
+           DATABASE.exec("UPDATE riwayatTantangan SET statusPengerjaan = 'SELESAI', skor = 100 WHERE idRiwayat = ?", idCurrent)
+           RETURN TRUE
+        ELSE
+           DATABASE.exec("UPDATE riwayatTantangan SET statusPengerjaan = 'GAGAL', skor = 0 WHERE idRiwayat = ?", idCurrent)
+           RETURN FALSE
+        ENDIF
+    END
+```
+
+Tabel 5.7.2. Query Operasi validasiSolusi
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| Q-02 | SELECT berkasTantangan FROM tantangan where idTantangan = ? | Mencari berkas dari tantangan yang dipilih |
+| Q-03 | UPDATE riwayatTantangan SET statusPengerjaan = ?, skor = ? WHERE idRiwayat = ? | Memperbarui status pengerjaan dan skor pelajar ke database |
+
+
 ## 5.8 Kelas WindowRiwayat
 
 **Nama Kelas:** WindowRiwayat
@@ -627,6 +711,25 @@ Tabel 5.9.2. Atribut Kelas RiwayatTantangan
 | skor | private | Integer |
 | riwayatKonsol | private | String |
 
+### 5.9.1 Algoritma/Query
+
+**Nama Kelas:** RiwayatTantangan
+**Nama Operasi:** + ambilDataRiwayat(): List<RiwayatTantangan>
+**ID Algoritma:** Algo-05
+
+```text
+    public ambilDataRiwayat()
+    BEGIN
+        listRiwayat = DATABASE.exec("SELECT idRiwayat, statusPengerjaan, skor, riwayatKonsol FROM riwayatTantangan WHERE idUser = ?", idUser)
+        RETURN listRiwayat
+    END
+```
+
+Tabel 5.9.2. Query Operasi ambilDataRiwayat
+
+| No Query | Query | Keterangan |
+| :--- | :--- | :--- |
+| Q-04 | SELECT idRiwayat, statusPengerjaan, skor, riwayatKonsol FROM riwayatTantangan WHERE idUser = ? | Mengambil daftar riwayat pengerjaan berdasarkan id pengguna |
 
 <!-- Ignore this, this is for copy pasting
 
