@@ -129,5 +129,6 @@
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *26-10-2026* | *Ananda Aulia Nurramadhan* | *Menambahkan informasi yang sudah ada* | *0,5* | *Done* | *-* |
 | *28-10-2026* | *Steve Bradley Hoeij* | *Mengisi algoritma dan query bagi method-method yang menarik* | *3* | *Done* | *-* |
+| *28-10-2026* | *Dominick Vincent Devict* | *Mengerjakan rancangan tampangan UI dan spesifikasi I-01 - I-05, I-07, I-10* | *5* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 8:** -
