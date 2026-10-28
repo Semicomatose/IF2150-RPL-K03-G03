@@ -128,5 +128,6 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *26-10-2026* | *Ananda Aulia Nurramadhan* | *Menambahkan informasi yang sudah ada* | *0,5* | *Done* | *-* |
+| *28-10-2026* | *Steve Bradley Hoeij* | *Mengisi algoritma dan query bagi method-method yang menarik* | *3* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 8:** -
