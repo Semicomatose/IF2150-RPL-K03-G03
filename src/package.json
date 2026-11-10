@@ -1,0 +1,31 @@
+{
+	"name": "commitment-issues",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"cli": "node cli.js",
+		"test:git": "node scripts/test-git.js",
+		"test:challenge-session": "node scripts/test-challenge-session.js",
+		"test:db": "node scripts/test-db.js",
+		"test:package": "node scripts/test-package-storage.js"
+	},
+	"dependencies": {
+		"@xterm/addon-fit": "^0.11.0",
+		"@xterm/xterm": "^6.0.0",
+		"adm-zip": "^0.6.1",
+		"dotenv": "^18.0.9",
+		"pg": "^8.23.1",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"ws": "^8.22.2"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-react": "^6.3.0",
+		"vite": "^8.3.7"
+	}
+}

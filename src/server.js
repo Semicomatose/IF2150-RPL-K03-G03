@@ -1,0 +1,112 @@
+import http from "node:http";
+import { WebSocketServer } from "ws";
+import fs from "node:fs/promises";
+import { initializeChallengeSession } from "./backend/services/challengeSessionService.js";
+import { createRestrictedTerminalSession } from "./backend/services/terminalService.js";
+
+const sessions = new Map();
+
+function send(res, status, data) {
+	res.writeHead(status, { "Content-Type": "application/json" });
+	res.end(JSON.stringify(data));
+}
+
+async function readBody(req) {
+	let body = "";
+
+	for await (const chunk of req) {
+		body += chunk;
+		if (body.length > 16_384) {
+			throw new Error("Request body too large");
+		}
+	}
+
+	return JSON.parse(body || "{}");
+}
+
+const server = http.createServer(async (req, res) => {
+	try {
+		const url = new URL(req.url, "http://localhost");
+
+		if (req.method === "POST" && url.pathname === "/api/sessions") {
+			const { challengeId } = await readBody(req);
+
+			if (!challengeId) {
+				return send(res, 400, { error: "challengeId is required" });
+			}
+
+			const session = await initializeChallengeSession(challengeId);
+			sessions.set(session.sessionId, {
+				directory: session.repositoryDirectory,
+				tempDir: session.tempDir,
+				sockets: new Set(),
+				lastActivityAt: Date.now()
+			});
+
+			return send(res, 201, { sessionId: session.sessionId });
+		}
+
+		const match = url.pathname.match(/^\/api\/sessions\/([a-f0-9-]+)$/);
+
+		if (req.method === "DELETE" && match) {
+			const session = sessions.get(match[1]);
+			if (!session) {
+				return send(res, 404, { error: "Session not found" });
+			}
+
+			for (const ws of session.sockets) {
+				ws.close(1000, "Session closed");
+			}
+
+			sessions.delete(match[1]);
+
+			await fs.rm(session.tempDir, {
+				recursive: true,
+				force: true
+			});
+
+			return send(res, 200, { massage: "Session closed" });
+		}
+
+		return send(res, 404, { error: "Route not found" });
+	} catch (error) {
+		console.error(error);
+		return send(res, 400, { error: error.message });
+	}
+});
+
+const wss = new WebSocketServer({ noServer: true, maxPayload: 4096 });
+
+server.on("upgrade", async (req, socket, head) => {
+	const url = new URL(req.url, "http://localhost");
+
+	const match = url.pathname.match(/^\/api\/sessions\/([a-f0-9-]+)\/terminal$/);
+
+	if (!match) {
+		socket.destroy();
+		return;
+	}
+
+	const sessionId = match[1];
+	const session = sessions.get(sessionId);
+	if (!session) {
+		socket.destroy();
+		return;
+	}
+
+	wss.handleUpgrade(req, socket, head, (ws) => {
+		session.sockets.add(ws);
+		session.lastActivityAt = Date.now();
+		createRestrictedTerminalSession(ws, session.directory);
+		ws.on("close", () => {
+			session.sockets.delete(ws);
+		});
+		ws.on("error", (error) => {
+			console.error("Websocket error:", error.message);
+		});
+	});
+});
+
+server.listen(3000, "127.0.0.1", () => {
+	console.log("Server running at http://localhost:3000");
+});
