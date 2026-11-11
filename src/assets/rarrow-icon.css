@@ -1,0 +1,19 @@
+/* > */
+
+position: absolute;
+width: 11px;
+height: 35px;
+left: 601px;
+top: 137px;
+
+font-family: 'Anonymous Pro';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 35px;
+/* identical to box height, or 175% */
+display: flex;
+align-items: center;
+letter-spacing: -0.02em;
+
+color: #FFFFFF;

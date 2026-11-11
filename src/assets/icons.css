@@ -1,0 +1,282 @@
+/* I give up on the email one */
+.email-icon {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 19.57px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    background: #EEEFFF;
+    border: 1.61px solid #0B0B0D;
+    border-radius: 1.61px 1.61px 3.22px 3.22px;
+    overflow: hidden;
+}
+
+.email-icon::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 13.04px;
+    left: -1.61px;
+    top: -1.61px;
+    background: #EEEFFF;
+    border-bottom: 1px solid #0B0B0D;
+    box-sizing: border-box;
+}
+
+.email-icon::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 1.5px;
+    top: 0px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 8px solid #0B0B0D;
+}
+
+
+.password-icon {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 17.81px;
+    flex-shrink: 0;
+}
+.password-icon::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 12.19px;
+    left: 0px;
+    top: 5.62px;
+    background: #EEEFFF;
+    border-radius: 2px 2px 3px 3px;
+}
+.password-icon::after {
+    content: "";
+    position: absolute;
+    width: 11.25px;
+    height: 9.38px;
+    left: 1.88px;
+    top: 0px;
+    border: 3px solid #EEEFFF;
+    border-radius: 50% 50% 0 0;
+    box-sizing: border-box;
+}
+
+
+.username-icon {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 22.75px;
+    flex-shrink: 0;
+}
+.username-icon::before {
+    content: "";
+    position: absolute;
+    width: 8.75px;
+    height: 8.75px;
+    left: 2.62px;
+    top: 0px;
+    background: #EEEFFF;
+    border-radius: 50%;
+}
+.username-icon::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 13.12px;
+    left: 0px;
+    top: 9.62px;
+    background: #EEEFFF;
+    border-radius: 4px 4px 0 0;
+}
+
+
+.default-profile-pic {
+    position: relative;
+    display: inline-block;
+    width: 197px;
+    height: 197px;
+    flex-shrink: 0;
+    background: #EEEFFF;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.default-profile-pic::before {
+    content: "";
+    position: absolute;
+    width: 90.29px;
+    height: 90.29px;
+    left: 53.35px;
+    top: 8.75px;
+    background: #353646;
+    border-radius: 50%;
+}
+.default-profile-pic::after {
+    content: "";
+    position: absolute;
+    width: 144.47px;
+    height: 135.44px;
+    left: 26.27px;
+    top: 108.08px;
+    background: #353646;
+    border-radius: 50% 50% 0 0;
+}
+
+
+.star-icon {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background: #FFE17E;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+
+.rarrow-icon {
+    position: relative;
+    display: inline-block;
+    width: 11px;
+    height: 35px;
+    flex-shrink: 0;
+    font-family: 'Anonymous Pro', monospace;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+
+.magnifying-glass-icon {
+    position: relative;
+    display: inline-block;
+    width: 30.38px;
+    height: 31px;
+    flex-shrink: 0;
+}
+.magnifying-glass-icon::before {
+    content: "";
+    position: absolute;
+    width: 20.17px;
+    height: 20.17px;
+    left: 1.86px;
+    top: 0px;
+    background: #0B0B0D;
+    border: 2.63px solid #EEEFFF;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transform: rotate(-45deg);
+}
+.magnifying-glass-icon::after {
+    content: "";
+    position: absolute;
+    width: 16.66px;
+    height: 3.51px;
+    left: 0px;
+    top: 16.74px;
+    background: #EEEFFF;
+    transform: rotate(-45deg);
+}
+
+
+.filter-icon {
+    position: relative;
+    display: inline-block;
+    width: 19px;
+    height: 12px;
+    flex-shrink: 0;
+}
+.filter-icon::before {
+    content: "";
+    position: absolute;
+    width: 19px;
+    height: 3.43px;
+    left: 0px;
+    top: 0px;
+    background: #EEEFFF;
+}
+.filter-icon::after {
+    content: "";
+    position: absolute;
+    width: 12.92px;
+    height: 3.43px;
+    left: 3.04px;
+    top: 4.29px;
+    background: #EEEFFF;
+    box-shadow: 0 4.28px 0 #EEEFFF;
+}
+
+
+.profile-icon {
+    position: relative;
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    background: #353646;
+    border: 3.80px solid #EEEFFF;
+    border-radius: 4px;
+}
+
+
+.history-icon {
+    position: relative;
+    display: inline-block;
+    width: 17px;
+    height: 18px;
+    flex-shrink: 0;
+    background: #EEEFFF;
+    border-radius: 1px 1px 2px 0px;
+}
+.history-icon::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    left: 0px;
+    top: 0px;
+    background: #EEEFFF;
+    border-radius: 50%;
+}
+
+
+.logout-icon {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18.56px;
+    flex-shrink: 0;
+    background: #353646;
+    border: 1.13px solid rgba(229, 86, 88, 0.81);
+    box-sizing: border-box;
+}
+.logout-icon::after {
+    content: "";
+    position: absolute;
+    width: 10.12px;
+    height: 1.12px;
+    left: 7.88px;
+    top: 12.38px;
+    border: 1.13px solid #EEEFFF;
+    box-sizing: border-box;
+}
+
+
+.git-logo {
+    position: relative;
+    display: inline-block;
+    width: 188px;
+    height: 188px;
+    flex-shrink: 0;
+    background: url('../assets/github-white.png') no-repeat center center;
+    background-size: contain;
+}

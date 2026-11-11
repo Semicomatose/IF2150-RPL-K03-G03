@@ -1,0 +1,31 @@
+.user-icon {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 22.75px;
+    flex-shrink: 0;
+}
+
+/* Ellipse 5 (The Head) */
+.user-icon::before {
+    content: "";
+    position: absolute;
+    width: 8.75px;
+    height: 8.75px;
+    left: 2.62px; /* Adjusted relative to the parent container */
+    top: 0px;
+    background: #EEEFFF;
+    border-radius: 50%;
+}
+
+/* Vector 3 (The Body) */
+.user-icon::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 13.12px;
+    left: 0px;
+    top: 9.62px;
+    background: #EEEFFF;
+    border-radius: 4px 4px 0 0;
+}

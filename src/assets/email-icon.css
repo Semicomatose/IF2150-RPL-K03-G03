@@ -1,0 +1,52 @@
+/* Mail */
+
+position: absolute;
+width: 25px;
+height: 19.57px;
+left: 502px;
+top: 318px;
+
+
+
+/* Rectangle 6 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 25px;
+height: 19.57px;
+left: 502px;
+top: 318px;
+
+background: #EEEFFF;
+border: 1.6087px solid #0B0B0D;
+border-radius: 1.6087px 1.6087px 3.21739px 3.21739px;
+
+
+/* Vector 2 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 25px;
+height: 13.04px;
+left: 502px;
+top: 323.43px;
+
+border: 1px solid #0B0B0D;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector 1 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 25px;
+height: 13.04px;
+left: 502px;
+top: 318px;
+
+background: #EEEFFF;
+border: 1px solid #0B0B0D;
+

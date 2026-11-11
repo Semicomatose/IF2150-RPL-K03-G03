@@ -1,0 +1,76 @@
+/* History */
+
+position: absolute;
+width: 17px;
+height: 18px;
+left: 1155px;
+top: 114px;
+
+
+
+/* Scroll */
+
+position: absolute;
+width: 17px;
+height: 18px;
+left: 1155px;
+top: 114px;
+
+
+
+/* Ellipse 19 */
+
+position: absolute;
+width: 6px;
+height: 6px;
+left: 1155px;
+top: 114px;
+
+background: #EEEFFF;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Rectangle 24 */
+
+position: absolute;
+width: 14px;
+height: 18px;
+left: 1158px;
+top: 114px;
+
+background: #EEEFFF;
+border-radius: 1px 1px 2px 0px;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Text */
+
+position: absolute;
+width: 8.5px;
+height: 8.5px;
+left: 1161.5px;
+top: 120.5px;
+
+
+
+/* Vector 9 */
+
+position: absolute;
+width: 8.47px;
+height: 3.5px;
+left: 1161.53px;
+top: 120.5px;
+
+border: 1px solid #353646;
+
+
+/* Vector 10 */
+
+position: absolute;
+width: 8.5px;
+height: 2.5px;
+left: 1161.5px;
+top: 126.5px;
+
+border: 1px solid #353646;
+

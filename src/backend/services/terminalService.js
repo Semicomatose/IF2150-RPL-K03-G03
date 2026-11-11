@@ -261,7 +261,7 @@ async function runCommand(root, cwd, args) {
 	}
 }
 
-function createRestrictedTerminalSession(ws, repositoryDirectory) {
+function createRestrictedTerminalSession(ws, repositoryDirectory, { onCommand } = {}) {
 	let root;
 	let cwd;
 	let input = "";
@@ -294,19 +294,39 @@ function createRestrictedTerminalSession(ws, repositoryDirectory) {
 			return;
 		}
 
+		let commandOutput = "";
+		let result;
+
 		try {
 			const args = parseArgs(trimmed);
-			const result = await runCommand(root, cwd, args);
+			result = await runCommand(root, cwd, args);
 
 			if (result?.cwd) {
 				cwd = result.cwd;
 			} else if (result?.clear) {
+				commandOutput = "";
 				send(ws, "output", "\x1b[2J\x1b[H");
-			} else if (typeof result === "string" && result) {
-				send(ws, "output", result + "\r\n");
+			} else if (typeof result === "string") {
+				commandOutput = result;
+				if (result) {
+					send(ws, "output", result + "\r\n");
+				}
 			}
 		} catch (error) {
-			send(ws, "output", `Error: ${error.message}\r\n`);
+			commandOutput = `Error: ${error.message}`;
+			send(ws, "output", commandOutput + "\r\n");
+		}
+
+		// Save the command and its output, even if the command failed.
+		if (typeof onCommand === "function") {
+			try {
+				await onCommand({
+					command: trimmed.slice(0, 10_000),
+					output: commandOutput.slice(0, MAX_OUTPUT)
+				});
+			} catch (error) {
+				console.error("Failed to save terminal history:", error);
+			}
 		}
 
 		send(ws, "output", prompt());

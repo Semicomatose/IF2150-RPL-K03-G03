@@ -1,0 +1,36 @@
+/* Group 2 */
+
+position: absolute;
+width: 30.38px;
+height: 31px;
+left: 388px;
+top: 365px;
+
+
+
+/* Rectangle 14 */
+
+position: absolute;
+width: 16.66px;
+height: 3.51px;
+left: 388px;
+top: 381.74px;
+
+background: #EEEFFF;
+transform: rotate(-45deg);
+
+
+/* Ellipse 14 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 20.17px;
+height: 20.17px;
+left: 389.86px;
+top: 365px;
+
+background: #0B0B0D;
+border: 2.63044px solid #EEEFFF;
+transform: rotate(-45deg);
+

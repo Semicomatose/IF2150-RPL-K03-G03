@@ -1,0 +1,117 @@
+/* Gear */
+
+position: absolute;
+width: 19px;
+height: 19px;
+left: 1156px;
+top: 83px;
+
+
+
+/* Polygon 3 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 15.55px;
+height: 15.55px;
+left: 1157.73px;
+top: 84.73px;
+
+background: #353646;
+border: 3.80005px solid #EEEFFF;
+
+
+/* Rectangle 16 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1162.91px;
+top: 83px;
+
+background: #EEEFFF;
+
+
+/* Rectangle 18 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1169.82px;
+top: 89.91px;
+
+background: #EEEFFF;
+transform: rotate(90deg);
+
+
+/* Rectangle 20 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1156.95px;
+top: 93.72px;
+
+background: #EEEFFF;
+transform: rotate(-135deg);
+
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1166.72px;
+top: 93.72px;
+
+background: #EEEFFF;
+transform: rotate(135deg);
+
+
+/* Rectangle 17 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1162.91px;
+top: 96.82px;
+
+background: #EEEFFF;
+
+
+/* Rectangle 19 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1156px;
+top: 89.91px;
+
+background: #EEEFFF;
+transform: rotate(90deg);
+
+
+/* Rectangle 21 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1166.72px;
+top: 83.95px;
+
+background: #EEEFFF;
+transform: rotate(-135deg);
+
+
+/* Rectangle 23 */
+
+position: absolute;
+width: 5.18px;
+height: 5.18px;
+left: 1156.95px;
+top: 83.95px;
+
+background: #EEEFFF;
+transform: rotate(135deg);
+

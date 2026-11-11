@@ -1,43 +1,131 @@
 import React, { useEffect, useState, useRef } from "react";
+import ProfileModal from "./ProfileModal.jsx";
+import FilterModal from "./FilterModal.jsx";
+import HistoryModal from "./HistoryModal.jsx";
 import "./main-page.css";
+import "./modals.css";
 
-export default function MainPage({ username = "Username" }) {
+export default function MainPage() {
+    const [username, setUsername] = useState("");
 	const [challenges, setChallenges] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [authenticated, setAuthenticated] = useState(false);
+	const [history, setHistory] = useState([]);
+	const [historyLoading, setHistoryLoading] = useState(false);
+
+	const [isProfileOpen, setIsProfileOpen] = useState(false);
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+
 	const profileRef = useRef(null);
+
+	async function fetchHistory() {
+		setHistoryLoading(true);
+
+		try {
+			const response = await fetch("/api/history", {
+				credentials: "same-origin"
+			});
+
+			if (response.status === 401) {
+				window.location.replace("/login");
+				return;
+			}
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				throw new Error(data.error || "Failed to load history.");
+			}
+
+			setHistory(data);
+		} catch (err) {
+			setError(err.message);
+		} finally {
+			setHistoryLoading(false);
+		}
+	}
+
+	async function openHistory() {
+		setMenuOpen(false);
+		setIsHistoryOpen(true);
+		await fetchHistory();
+	}
+
+	async function handleLogout() {
+		try {
+			const response = await fetch("/api/logout", {
+				method: "POST",
+				credentials: "same-origin"
+			});
+
+			if (!response.ok) {
+				throw new Error("Logout failed.");
+			}
+
+			window.location.replace("/login");
+		} catch (err) {
+			setError(err.message);
+		}
+	}
 
 	useEffect(() => {
 		let active = true;
 
-		async function fetchChallenges() {
+		async function initializePage() {
 			try {
-				const response = await fetch("/api/challenges");
+				const authResponse = await fetch("/api/me", {
+					credentials: "same-origin"
+				});
 
-				if (!response.ok) {
+				if (authResponse.status === 401) {
+					window.location.replace("/login");
+					return;
+				}
+
+				if (!authResponse.ok) {
+					throw new Error("Failed to verify login.");
+				}
+
+				const authData = await authResponse.json();
+				if (!active) return;
+
+				setUsername(authData.user.username);
+				setAuthenticated(true);
+
+				const challengeResponse = await fetch("/api/challenges", {
+					credentials: "same-origin"
+				});
+
+				if (!challengeResponse.ok) {
 					throw new Error("Failed to load challenges.");
 				}
 
-				const data = await response.json();
-
+				const challengeData = await challengeResponse.json();
 				if (active) {
-					setChallenges(data);
+					setChallenges(challengeData);
 				}
 			} catch (err) {
-				if (active) setError(err.message);
+				if (active) {
+					setError(err.message);
+				}
 			} finally {
-				if (active) setLoading(false);
+				if (active) {
+					setLoading(false);
+				}
 			}
 		}
 
-		fetchChallenges();
+		initializePage();
 
 		function handleClickOutside(event) {
 			if (profileRef.current && !profileRef.current.contains(event.target)) {
 				setMenuOpen(false);
 			}
 		}
+
 		document.addEventListener("mousedown", handleClickOutside);
 
 		return () => {
@@ -48,6 +136,14 @@ export default function MainPage({ username = "Username" }) {
 
 	const availableChallenges = challenges.filter(c => !c.isUserCreated);
 	const yourChallenges = challenges.filter(c => c.isUserCreated);
+
+	if (error) {
+		return <p className="status-message error">{error}</p>;
+	}
+
+	if (loading || !authenticated) {
+		return <p className="status-message">Loading your account...</p>;
+	}
 
 	return (
 		<div className="main-menu-wrapper">
@@ -63,19 +159,19 @@ export default function MainPage({ username = "Username" }) {
 						onClick={() => setMenuOpen(!menuOpen)}
 						aria-label="User Menu"
 					>
-						<img src="../assets/user.jpg" className="user-avatar-icon" />
+						<img src="./assets/user.jpg" className="user-avatar-icon" />
 					</button>
 
 					{menuOpen && (
 						<div className="profile-dropdown-menu">
-							<a href="/profile" className="dropdown-item">
-								<span className="item-icon"></span> Profile
-							</a>
-							<a href="/history" className="dropdown-item">
-								<span className="item-icon"></span> History
-							</a>
-							<button className="dropdown-item logout-item" onClick={() => alert("Logging out...")}>
-								<span className="item-icon"></span> Logout
+							<button className="dropdown-item" onClick={() => { setMenuOpen(false); setIsProfileOpen(true); }}>
+								<span className="profile-icon"></span> Profile
+							</button>
+							<button className="dropdown-item" onClick={openHistory}>
+								<span className="history-icon"></span> History
+							</button>
+							<button className="dropdown-item logout-item" onClick={handleLogout}>
+								<span className="logout-icon"></span> Logout
 							</button>
 						</div>
 					)}
@@ -93,9 +189,8 @@ export default function MainPage({ username = "Username" }) {
 						<section className="challenge-section">
 							<div className="section-title-wrapper">
 								<h2>Available Challenges</h2>
-								<span className="filter-icon">filter</span>
+								<span className="filter-icon" onClick={() => setIsFilterOpen(true)}></span>
 							</div>
-
 							<div className="horizontal-scroll-container">
 								{availableChallenges.map((challenge, index) => (
 									<a
@@ -159,6 +254,16 @@ export default function MainPage({ username = "Username" }) {
 					</>
 				)}
 			</main>
+
+			<ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} userInfo={{ username }} />
+			<FilterModal isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)} />
+			<HistoryModal
+				isOpen={isHistoryOpen}
+				onClose={() => setIsHistoryOpen(false)}
+				historyList={history}
+				userChallenges={yourChallenges}
+				loading={historyLoading}
+			/>
 		</div>
 	);
 }
