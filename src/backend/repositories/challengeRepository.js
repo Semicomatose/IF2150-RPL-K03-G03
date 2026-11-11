@@ -17,6 +17,16 @@ export async function saveChallengePackage({
 	return result.rows[0];
 }
 
+export async function getChallengeDetails(id) {
+	const result = await pool.query(`
+		SELECT id, title, description, difficulty
+		FROM challenges
+		WHERE id = $1
+	`, [id]);
+
+	return result.rows[0] ?? null;
+}
+
 export async function getChallengePackage(id) {
 	const result = await pool.query(`
 		SELECT package_data
@@ -29,12 +39,21 @@ export async function getChallengePackage(id) {
 
 export async function listChallenges() {
 	const result = await pool.query(`
-		SELECT c.id, c.title, c.difficulty, c.status, c.created_at, u.username
-		AS creator
-		FROM challenges c
-		JOIN users u ON u.id = c.creator_id
-		ORDER BY c.created_at DESC
+	SELECT
+		c.id,
+		c.title,
+		c.description,
+		c.difficulty,
+		c.status,
+		c.created_at,
+		u.username AS creator,
+		FALSE AS "isUserCreated",
+		(c.status = 'TERPUBLIKASI') AS "isPublished"
+	FROM challenges c
+	JOIN users u ON u.id = c.creator_id
+	WHERE c.status = 'TERPUBLIKASI'
+	ORDER BY c.created_at DESC
 	`);
 
-	return result.rows;
+    return result.rows;
 }

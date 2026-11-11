@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ChallengeTerminal from "./components/terminal/ChallengeTerminal.jsx";
 
-export default function ChallengePage() {
+export default function ChallengePage({ challengeId }) {
 	const [sessionId, setSessionId] = useState(null);
+	const [challenge, setChallenge] = useState(null);
 	const [error, setError] = useState("");
 
 	useEffect(() => {
 		let active = true;
-		let createdSessionId;
+		let createdSessionId = null;
 
 		async function createSession() {
 			try {
@@ -17,7 +18,7 @@ export default function ChallengePage() {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
-						challengeId: 11
+						challengeId: Number(challengeId)
 					})
 				});
 
@@ -32,11 +33,18 @@ export default function ChallengePage() {
 					throw new Error("Backend did not return a session ID.");
 				}
 
-				if (active) {
-					setSessionId(createdSessionId);
+				if (!active) {
+					await fetch(`/api/sessions/${createdSessionId}`, {
+						method: "DELETE"
+					});
+					return;
 				}
+
+				setSessionId(createdSessionId);
 			} catch (err) {
-				if (active) setError(err.message);
+				if (active) {
+					setError(err.message);
+				}
 			}
 		}
 
@@ -51,7 +59,41 @@ export default function ChallengePage() {
 				}).catch(console.error);
 			}
 		};
-	}, []);
+	}, [challengeId]);
+
+	useEffect(() => {
+		let active = true;
+
+		async function fetchChallenge() {
+			try {
+				const response = await fetch(`/api/challenges/${challengeId}`);
+
+				if (!response.ok) {
+					throw new Error("Failed to fetch challenge details.");
+				}
+
+				const data = await response.json();
+
+				if (active) {
+					setChallenge(data);
+				}
+			} catch (err) {
+				if (active) {
+					setError(err.message);
+				}
+			}
+		}
+
+		fetchChallenge();
+
+		return () => {
+			active = false;
+		};
+	}, [challengeId]);
+
+	function exitChallenge() {
+		window.location.href = "/";
+	}
 
 	if (error) return <p>Session error: {error}</p>;
 	if (!sessionId) return <p>Creating challenge session...</p>;
@@ -59,18 +101,30 @@ export default function ChallengePage() {
 	return (
 		<div className="challenge-page-wrapper">
 			<header className="challenge-header">
-				<div className="header-brand">
-					<span className="logo-icon">⚡</span>
-					<span className="logo-text">commitment<strong>Issues</strong></span>
-				</div>
+				<a href="/" className="header-brand">
+					<img src="../assets/logo.svg" className="logo-icon" />
+					<span className="logo-text">
+													commitment<strong>Issues</strong>
+					</span>
+				</a>
+
 				<div className="header-profile">
 					<div className="user-avatar" />
 				</div>
 			</header>
 
 			<div className="challenge-title-bar">
-				<button className="close-btn" aria-label="Close">✕</button>
-				<h1 className="challenge-title">-- Challenge Name --</h1>
+				<button
+					className="close-btn"
+					aria-label="Exit challenge"
+					onClick={exitChallenge}
+				>
+					 ✕
+				</button>
+
+				<h1 className="challenge-title">
+					{challenge?.title ?? "Loading challenge..."}
+				</h1>
 			</div>
 
 			<main className="challenge-content-grid">
@@ -78,30 +132,15 @@ export default function ChallengePage() {
 					<div className="card-header">
 						<h2>Description</h2>
 					</div>
+
 					<div className="card-body">
 						<p className="description-text">
-							Lorem ipsum dolor sit amet consectetur adipiscing elit. Arcu tincidunt
-							eiusmod curae nullam augue magna. Ea excepteur mollit viverra qui nibh
-							reprehenderit est egestas molestie cillum suscipit ante aliquip donec
-							tortor. Feugiat lacus pariatur laborum faucibus duis augue qui dolore
-							anim ligula ante aute.
-						</p>
-						<p className="description-text">
-							Anim nibh arcu fugiat reprehenderit suspendisse tempus qui voluptate
-							volutpat voluptate donec vel potenti. Fugiat dolor mauris mollit
-							tempor habitant lobortis enim. Est in tempor magna condimentum
-							scelerisque ad irure varius. Aliquip anim pharetra egestas esse
-							laboris esse posuere id est nulla tincidunt molestie suspendisse
-							incididunt enim.
+							{challenge?.description ?? "Loading description..."}
 						</p>
 
-						<div className="objectives-section">
-							<h3>Objectives</h3>
-							<ul className="objectives-list">
-								<li className="objective-satisfied">Example satisfied objective</li>
-								<li className="objective-unsatisfied">Example unsatisfied objective</li>
-							</ul>
-						</div>
+						<p className="description-text">
+															Difficulty: {challenge?.difficulty ?? "..."}
+						</p>
 
 						<div className="description-actions">
 							<button className="text-action-btn">Hint</button>
@@ -111,7 +150,10 @@ export default function ChallengePage() {
 				</section>
 
 				<section className="terminal-column">
-					<ChallengeTerminal sessionId={sessionId} height="400px" />
+					<ChallengeTerminal
+						sessionId={sessionId}
+						height="400px"
+					/>
 
 					<div className="action-buttons-row">
 						<button className="btn btn-blue">Restart</button>

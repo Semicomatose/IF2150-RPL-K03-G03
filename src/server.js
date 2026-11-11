@@ -4,6 +4,8 @@ import fs from "node:fs/promises";
 import { initializeChallengeSession } from "./backend/services/challengeSessionService.js";
 import { createRestrictedTerminalSession } from "./backend/services/terminalService.js";
 import { authenticateLogin } from "./backend/services/authService.js";
+import { getChallengeDetails } from "./backend/repositories/challengeRepository.js";
+import { listChallenges } from "./backend/repositories/challengeRepository.js";
 
 const sessions = new Map();
 
@@ -41,6 +43,55 @@ const server = http.createServer(async (req, res) => {
 				message: "Login successful",
 				user
 			});
+        }
+
+		if (req.method === "GET" && url.pathname === "/api/challenges") {
+			try {
+				const challenges = await listChallenges();
+				res.writeHead(200, { "Content-Type": "application/json" });
+				res.end(JSON.stringify(challenges));
+			} catch (error) {
+				console.error("Failed to fetch challenges:", error);
+				res.writeHead(500, { "Content-Type": "application/json" });
+				res.end(JSON.stringify({ message: "Failed to load challenges." }));
+			}
+			return;
+		}
+
+		if (req.method === "GET") {
+			const match = url.pathname.match(/^\/api\/challenges\/(\d+)$/);
+
+			if (match) {
+				try {
+					const challenge = await getChallengeDetails(match[1]);
+
+					if (!challenge) {
+						res.writeHead(404, {
+							"Content-Type": "application/json"
+						});
+						res.end(JSON.stringify({
+							message: "Challenge not found"
+						}));
+						return;
+					}
+
+					res.writeHead(200, {
+						"Content-Type": "application/json"
+					});
+					res.end(JSON.stringify(challenge));
+					return;
+				} catch (error) {
+					console.error("Failed to fetch challenge:", error);
+
+					res.writeHead(500, {
+						"Content-Type": "application/json"
+					});
+					res.end(JSON.stringify({
+						message: "Failed to fetch challenge"
+					}));
+					return;
+				}
+			}
 		}
 
 		if (req.method === "POST" && url.pathname === "/api/sessions") {
@@ -61,10 +112,11 @@ const server = http.createServer(async (req, res) => {
 			return send(res, 201, { sessionId: session.sessionId });
 		}
 
-		const match = url.pathname.match(/^\/api\/sessions\/([a-f0-9-]+)$/);
+		const deleteMatch = url.pathname.match(/^\/api\/sessions\/([a-f0-9-]+)$/);
 
-		if (req.method === "DELETE" && match) {
-			const session = sessions.get(match[1]);
+		if (req.method === "DELETE" && deleteMatch) {
+			const sessionId = deleteMatch[1];
+			const session = sessions.get(sessionId);
 			if (!session) {
 				return send(res, 404, { error: "Session not found" });
 			}
@@ -73,7 +125,7 @@ const server = http.createServer(async (req, res) => {
 				ws.close(1000, "Session closed");
 			}
 
-			sessions.delete(match[1]);
+			sessions.delete(sessionId);
 
 			await fs.rm(session.tempDir, {
 				recursive: true,

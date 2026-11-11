@@ -74,10 +74,10 @@ export default function ChallengeTerminal({sessionId, height = "400px", wsUrl}) 
 		const resizeObserver = new ResizeObserver(() => {
 			clearTimeout(resizeTimer);
 			resizeTimer = setTimeout(() => {
-				if (fitAddon) {
+				if (containerRef.current) {
 					fitAddon.fit();
 				}
-			}, 50);
+			}, 100);
 		});
 
 		resizeObserver.observe(containerRef.current);
@@ -96,7 +96,9 @@ export default function ChallengeTerminal({sessionId, height = "400px", wsUrl}) 
 			<div className="terminal-header">
 				<span className="terminal-title">Terminal</span>
 			</div>
-			<div ref={containerRef} className="terminal-container" style={{ height }} />
+			<div ref={containerRef}
+				 className="terminal-container"
+				 style={{ height: "400px", minHeight: 0 }} />
 		</div>
 	);
 }

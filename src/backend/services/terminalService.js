@@ -278,7 +278,7 @@ function createRestrictedTerminalSession(ws, repositoryDirectory) {
 		if (!stat) throw new Error("Challenge repository is not available.");
 
 		send(ws, "output", "Challenge terminal ready. Type help to see commands.\r\n");
-		send(ws, "output", `${path.basename(root)} $ `);
+		send(ws, "output", prompt());
 	}
 
 	function prompt() {

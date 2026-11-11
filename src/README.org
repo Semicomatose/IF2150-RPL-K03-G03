@@ -1,0 +1,23 @@
+* Backend
+
+Start this first.
+
+#+begin_src bash
+  npm run start
+#+end_src
+
+* Frontend
+
+Start this after the backend.
+
+#+begin_src bash
+  npm run dev
+#+end_src
+
+* Developrer CLI
+
+Use this to interact with the database directly.
+
+#+begin_src bash
+  npm run cli
+#+end_src
