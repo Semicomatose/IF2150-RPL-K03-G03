@@ -1,93 +1,75 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import fs from "node:fs/promises";
 
 const execFileAsync = promisify(execFile);
 
-async function runGit(directory, args) {
-	return execFileAsync("git", args, {
-		cwd: directory,
-		timeout: 10_000,
-		maxBuffer: 50 * 1024,
-		windowsHide: true
-	});
+function getOutput(stdout, stderr) {
+	return [stdout, stderr]
+		.map(value => String(value ?? "").trim())
+		.filter(Boolean)
+		.join("\n");
 }
 
-export async function verifyChallengeRepository(directory) {
-	const checks = [];
-
+export async function verifyChallengeRepository({
+	repositoryDirectory,
+	scriptPath
+}) {
 	try {
-		await runGit(directory, ["fsck", "--full"]);
-		checks.push({
-			name: "Repository integrity",
-			passed: true,
-			message: "Git repository structure is valid."
-		});
-	} catch {
-		checks.push({
-			name: "Repository integrity",
+		await fs.access(scriptPath);
+
+		let result;
+		try {
+			result = await execFileAsync(
+				"bash",
+				[scriptPath],
+				{
+					cwd: repositoryDirectory,
+					timeout: 30_000,
+					maxBuffer: 1024 * 1024,
+					windowsHide: true
+				}
+			);
+		} catch (executionError) {
+			const exitCode = executionError.code;
+			const output = getOutput(executionError.stdout, executionError.stderr);
+
+			if (typeof exitCode === "number" && Number.isInteger(exitCode) &&
+				exitCode >= 0 && exitCode <= 100) {
+				return {
+					ok: true,
+					passed: exitCode === 100,
+					score: exitCode,
+					output
+				};
+			}
+
+			return {
+				ok: false,
+				passed: false,
+				score: 0,
+				error: typeof exitCode === "number"
+					? `verify.sh exited with invalid score code ${exitCode}. Expected 0–100.`
+					: executionError.killed
+						? "Verification script timed out."
+						: `Could not execute verify.sh: ${executionError.message}`,
+				output
+			};
+		}
+
+		return {
+			ok: true,
 			passed: false,
-			message: "Git repository structure is corrupted."
-		});
-	}
-
-	try {
-		const { stdout } = await runGit(directory, [
-			"status",
-			"--porcelain",
-			"--untracked-files=all"
-		]);
-
-		const clean = stdout.trim().length === 0;
-
-		checks.push({
-			name: "Working tree",
-			passed: clean,
-			message: clean
-				? "Working tree is clean."
-				: "There are uncommitted or untracked changes."
-		});
-	} catch {
-		checks.push({
-			name: "Working tree",
+			score: 0,
+			output: getOutput(result.stdout, result.stderr)
+		};
+	} catch (error) {
+		return {
+			ok: false,
 			passed: false,
-			message: "Could not inspect the working tree."
-		});
+			score: 0,
+			error: `Verification error: ${error.message}`,
+			output: ""
+		};
 	}
-
-	try {
-		const { stdout } = await runGit(directory, [
-			"branch",
-			"--show-current"
-		]);
-
-		const branch = stdout.trim();
-		const valid = branch === "main" || branch === "master";
-
-		checks.push({
-			name: "Current branch",
-			passed: valid,
-			message: valid
-				? `Current branch is ${branch}.`
-				: `Expected main or master, but found "${branch || "detached HEAD"}".`
-		});
-	} catch {
-		checks.push({
-			name: "Current branch",
-			passed: false,
-			message: "Could not determine the current branch."
-		});
-	}
-
-	const passed = checks.every((check) => check.passed);
-
-	return {
-		passed,
-		score: passed ? 100 : 0,
-		checks,
-		output: checks
-			.map((check) =>
-				`${check.passed ? "[PASS]" : "[FAIL]"} ${check.name}: ${check.message}`
-			)
-			.join("\n")
-	};
 }

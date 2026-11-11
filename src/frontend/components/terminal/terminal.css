@@ -162,6 +162,22 @@ body {
 	color: #ffffff;
 }
 
+.verification-output {
+    background: #151515;
+    color: #e0e0e0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.verification-output pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-family: monospace;
+    font-size: 13px;
+    margin: 0;
+}
+
 .terminal-column {
 	display: flex;
 	flex-direction: column;

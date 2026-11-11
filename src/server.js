@@ -1,4 +1,5 @@
 import http from "node:http";
+import path from "node:path";
 import fs from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { WebSocketServer } from "ws";
@@ -288,22 +289,17 @@ const server = http.createServer(async (req, res) => {
 				});
 			}
 
-			const verification = await verifyChallengeRepository(
-				session.directory
-			);
+			const verification = await verifyChallengeRepository({
+				repositoryDirectory: session.directory,
+				scriptPath: path.join(session.tempDir, "verify.sh")
+			});
 
 			const attempt = await finishAttempt({
 				attemptId: session.attemptId,
 				studentId: user.id,
-				status: verification.passed ? "SELESAI" : "GAGAL",
+				status: verification.ok ? "SELESAI" : "GAGAL",
 				score: verification.score
 			});
-
-			if (!attempt) {
-				return send(res, 409, {
-					error: "This attempt is no longer active."
-				});
-			}
 
 			session.submitted = true;
 
@@ -314,9 +310,7 @@ const server = http.createServer(async (req, res) => {
 			session.sockets.clear();
 
 			return send(res, 200, {
-				message: verification.passed
-					? "Challenge completed successfully!"
-					: "Challenge verification failed.",
+				message: "Challenge submitted.",
 				attempt,
 				verification
 			});

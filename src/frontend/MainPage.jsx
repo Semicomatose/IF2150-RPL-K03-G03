@@ -165,13 +165,13 @@ export default function MainPage() {
 					{menuOpen && (
 						<div className="profile-dropdown-menu">
 							<button className="dropdown-item" onClick={() => { setMenuOpen(false); setIsProfileOpen(true); }}>
-								<span className="profile-icon"></span> Profile
+								<img src="./assets/Gear.png" className="item-icon" /> Profile
 							</button>
 							<button className="dropdown-item" onClick={openHistory}>
-								<span className="history-icon"></span> History
+								<img src="./assets/History.png" className="item-icon" /> History
 							</button>
 							<button className="dropdown-item logout-item" onClick={handleLogout}>
-								<span className="logout-icon"></span> Logout
+								<img src="./assets/Exit.png" className="item-icon" /> Logout
 							</button>
 						</div>
 					)}
