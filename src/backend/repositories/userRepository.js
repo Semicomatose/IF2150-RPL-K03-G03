@@ -9,3 +9,13 @@ export async function createUser({ username, email, passwordHash, role }) {
 
 	return result.rows[0];
 }
+
+export async function findUser(identifier) {
+	const result = await pool.query(`
+		SELECT id, username, email, password_hash
+		FROM users
+		WHERE email = $1 OR username = $1
+	`, [identifier]);
+
+	return result.rows[0] || null;
+}

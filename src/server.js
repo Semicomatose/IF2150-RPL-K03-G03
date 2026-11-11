@@ -3,6 +3,7 @@ import { WebSocketServer } from "ws";
 import fs from "node:fs/promises";
 import { initializeChallengeSession } from "./backend/services/challengeSessionService.js";
 import { createRestrictedTerminalSession } from "./backend/services/terminalService.js";
+import { authenticateLogin } from "./backend/services/authService.js";
 
 const sessions = new Map();
 
@@ -27,6 +28,20 @@ async function readBody(req) {
 const server = http.createServer(async (req, res) => {
 	try {
 		const url = new URL(req.url, "http://localhost");
+
+		if (req.method === "POST" && url.pathname === "/api/login") {
+			const { identifier, password } = await readBody(req);
+
+			if (!identifier || !password) {
+				return send(res, 400, { error: "Identifier and password are required" });
+			}
+
+			const user = await authenticateLogin(identifier, password);
+			return send(res, 200, {
+				message: "Login successful",
+				user
+			});
+		}
 
 		if (req.method === "POST" && url.pathname === "/api/sessions") {
 			const { challengeId } = await readBody(req);
@@ -65,13 +80,19 @@ const server = http.createServer(async (req, res) => {
 				force: true
 			});
 
-			return send(res, 200, { massage: "Session closed" });
+			return send(res, 200, { message: "Session closed" });
 		}
 
 		return send(res, 404, { error: "Route not found" });
 	} catch (error) {
 		console.error(error);
-		return send(res, 400, { error: error.message });
+
+		let status = 400;
+		if (error.message.includes("Invalid")) {
+			status = 401;
+		}
+
+		return send(res, status, { error: error.message });
 	}
 });
 
