@@ -1,60 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./modals.css";
 
-export default function FilterModal({ isOpen, onClose, onApplyFilters }) {
-	const [difficultyRange, setDifficultyRange] = useState({ min: 4, max: 9 });
-	const [searchQuery, setSearchQuery] = useState("");
+export default function FilterModal({ isOpen, onClose, onApplyFilters, initialQuery = "" }) {
+	const [searchQuery, setSearchQuery] = useState(initialQuery);
+
+	useEffect(() => {
+		if (isOpen) setSearchQuery(initialQuery);
+	}, [isOpen, initialQuery]);
 
 	if (!isOpen) return null;
 
-	const handleSave = () => {
-		if (onApplyFilters) {
-			onApplyFilters({ difficultyRange, searchQuery });
-		}
+	function handleSave(event) {
+		event.preventDefault();
+		onApplyFilters?.({ searchQuery: searchQuery.trim() });
 		onClose();
-	};
+	}
+
+	function clearFilters() {
+		setSearchQuery("");
+		onApplyFilters?.({ searchQuery: "" });
+		onClose();
+	}
 
 	return (
-		<div className="modal-overlay">
-			<div className="modal-container filter-modal">
+		<div className="modal-overlay" onMouseDown={(event) => {
+			if (event.target === event.currentTarget) onClose();
+		}}>
+			<section className="modal-container filter-modal" role="dialog" aria-modal="true" aria-labelledby="filter-modal-title">
 				<div className="modal-header">
-					<h2>-- Filter Challenges --</h2>
-					<button className="close-modal-btn" onClick={onClose}>✕</button>
+					<h2 id="filter-modal-title">-- Filter Challenges --</h2>
+					<button className="close-modal-btn" onClick={onClose} aria-label="Close filters">✕</button>
 				</div>
-				<div className="modal-body filter-body">
+				<form className="modal-body filter-body" onSubmit={handleSave}>
 					<div className="filter-group">
-						<label>Difficulty</label>
-						<div className="range-slider-wrapper">
-							<div className="slider-labels">
-								<span>{difficultyRange.min}</span>
-								<span>{difficultyRange.max}</span>
-							</div>
-							<div className="slider-track-line">
-								<div className="slider-thumb min-thumb"></div>
-								<div className="slider-thumb max-thumb"></div>
-							</div>
-						</div>
-					</div>
-
-					<div className="filter-group">
-						<label>Name Search</label>
+						<label htmlFor="challenge-search">Search challenges</label>
 						<div className="search-input-group">
-							<span className="search-icon-placeholder"></span>
 							<input
-								type="text"
+								id="challenge-search"
+								type="search"
 								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
+								onChange={(event) => setSearchQuery(event.target.value)}
+								placeholder="Search by title, description, or creator"
+								autoFocus
 							/>
 						</div>
 					</div>
-
 					<div className="filter-action-footer">
-						<button className="btn-primary" onClick={handleSave}>
-							Save Filters
-						</button>
+						<button type="button" className="btn-secondary" onClick={clearFilters}>Clear</button>
+						<button type="submit" className="btn-primary">Apply filters</button>
 					</div>
-				</div>
-			</div>
+				</form>
+			</section>
 		</div>
 	);
 }

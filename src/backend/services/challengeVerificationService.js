@@ -6,56 +6,37 @@ const execFileAsync = promisify(execFile);
 
 function getOutput(stdout, stderr) {
 	return [stdout, stderr]
-		.map(value => String(value ?? "").trim())
+		.map((value) => String(value ?? "").trim())
 		.filter(Boolean)
-		.join("\n");
+		.join("\n")
+		.slice(0, 50 * 1024);
 }
 
-export async function verifyChallengeRepository({
-	repositoryDirectory,
-	scriptPath
-}) {
+/*
+ * verify.sh communicates its score through its exit code:
+ * 0 = zero points, 1..99 = partial score, 100 = passed.
+ * A regular successful shell exit (0) is therefore a valid score of zero.
+ */
+export async function verifyChallengeRepository({ repositoryDirectory, scriptPath }) {
 	try {
 		await fs.access(scriptPath);
+	} catch {
+		return {
+			ok: false,
+			passed: false,
+			score: 0,
+			error: "Verification script (verify.sh) was not found.",
+			output: ""
+		};
+	}
 
-		let result;
-		try {
-			result = await execFileAsync(
-				"bash",
-				[scriptPath],
-				{
-					cwd: repositoryDirectory,
-					timeout: 30_000,
-					maxBuffer: 1024 * 1024,
-					windowsHide: true
-				}
-			);
-		} catch (executionError) {
-			const exitCode = executionError.code;
-			const output = getOutput(executionError.stdout, executionError.stderr);
-
-			if (typeof exitCode === "number" && Number.isInteger(exitCode) &&
-				exitCode >= 0 && exitCode <= 100) {
-				return {
-					ok: true,
-					passed: exitCode === 100,
-					score: exitCode,
-					output
-				};
-			}
-
-			return {
-				ok: false,
-				passed: false,
-				score: 0,
-				error: typeof exitCode === "number"
-					? `verify.sh exited with invalid score code ${exitCode}. Expected 0–100.`
-					: executionError.killed
-						? "Verification script timed out."
-						: `Could not execute verify.sh: ${executionError.message}`,
-				output
-			};
-		}
+	try {
+		const result = await execFileAsync("bash", [scriptPath], {
+			cwd: repositoryDirectory,
+			timeout: 30_000,
+			maxBuffer: 1024 * 1024,
+			windowsHide: true
+		});
 
 		return {
 			ok: true,
@@ -63,13 +44,28 @@ export async function verifyChallengeRepository({
 			score: 0,
 			output: getOutput(result.stdout, result.stderr)
 		};
-	} catch (error) {
+	} catch (executionError) {
+		const exitCode = executionError.code;
+		const output = getOutput(executionError.stdout, executionError.stderr);
+
+		if (typeof exitCode === "number" && Number.isInteger(exitCode) &&
+			exitCode >= 0 && exitCode <= 100) {
+			return {
+				ok: true,
+				passed: exitCode === 100,
+				score: exitCode,
+				output
+			};
+		}
+
 		return {
 			ok: false,
 			passed: false,
 			score: 0,
-			error: `Verification error: ${error.message}`,
-			output: ""
+			error: executionError.killed
+				? "Verification script timed out."
+				: `Could not execute verify.sh: ${executionError.message}`,
+			output
 		};
 	}
 }

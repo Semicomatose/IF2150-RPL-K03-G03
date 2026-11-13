@@ -7,30 +7,38 @@ export default function SignupPage() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
 
-	const handleSignup = async (e) => {
-		e.preventDefault();
+	async function handleSignup(event) {
+		event.preventDefault();
+		setError("");
+
 		if (password !== confirmPassword) {
 			setError("Passwords do not match.");
 			return;
 		}
 
+		setLoading(true);
 		try {
 			const response = await fetch("/api/auth/signup", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
+				credentials: "same-origin",
 				body: JSON.stringify({ email, username, password })
 			});
+			const data = await response.json();
 
 			if (!response.ok) {
-				throw new Error(await response.text() || "Signup failed.");
+				throw new Error(data.error || "Signup failed.");
 			}
 
-			window.location.href = "/login";
+			window.location.replace("/login");
 		} catch (err) {
-			setError(err.message);
+			setError(err.message || "Signup failed.");
+		} finally {
+			setLoading(false);
 		}
-	};
+	}
 
 	return (
 		<div className="auth-page-wrapper">
@@ -45,67 +53,47 @@ export default function SignupPage() {
 				</div>
 
 				<form onSubmit={handleSignup} className="auth-form">
-					{error && <p className="auth-error">{error}</p>}
+					{error && <p className="auth-error" role="alert">{error}</p>}
 
 					<div className="input-row-wrapper">
 						<div className="input-group">
-							<span className="email-icon"></span>
-							<input
-								type="email"
-								placeholder="* Email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
+							<span className="email-icon" aria-hidden="true"></span>
+							<input type="email" placeholder="* Email" value={email}
+								   onChange={(event) => setEmail(event.target.value)} maxLength={255} required />
 						</div>
 						<div className="connection-line-top"></div>
 					</div>
 
 					<div className="input-row-wrapper">
 						<div className="input-group">
-							<span className="username-icon"></span>
-							<input
-								type="text"
-								placeholder="* Username"
-								value={username}
-								onChange={(e) => setUsername(e.target.value)}
-								required
-							/>
+							<span className="username-icon" aria-hidden="true"></span>
+							<input type="text" placeholder="* Username" value={username}
+								   onChange={(event) => setUsername(event.target.value)} minLength={3} maxLength={50} required />
 						</div>
 						<div className="connection-line-mid-1"></div>
 					</div>
 
 					<div className="input-row-wrapper">
 						<div className="input-group">
-							<span className="password-icon"></span>
-							<input
-								type="password"
-								placeholder="* Password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								required
-							/>
+							<span className="password-icon" aria-hidden="true"></span>
+							<input type="password" placeholder="* Password" value={password}
+								   onChange={(event) => setPassword(event.target.value)} minLength={8} required />
 						</div>
 						<div className="connection-line-mid-2"></div>
 					</div>
 
 					<div className="input-row-wrapper">
 						<div className="input-group">
-							<span className="password-icon"></span>
-							<input
-								type="password"
-								placeholder="* Confirm Password"
-								value={confirmPassword}
-								onChange={(e) => setConfirmPassword(e.target.value)}
-								required
-							/>
+							<span className="password-icon" aria-hidden="true"></span>
+							<input type="password" placeholder="* Confirm Password" value={confirmPassword}
+								   onChange={(event) => setConfirmPassword(event.target.value)} minLength={8} required />
 						</div>
 						<div className="connection-line-bottom"></div>
 					</div>
 
 					<div className="auth-action-container">
-						<button type="submit" className="auth-submit-btn">
-							Create Account
+						<button type="submit" className="auth-submit-btn" disabled={loading}>
+							{loading ? "Creating account..." : "Create Account"}
 						</button>
 						<div className="auth-switch-link">
 							Already have an account? <a href="/login">Log in</a>

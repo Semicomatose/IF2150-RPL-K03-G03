@@ -199,20 +199,22 @@
     content: "";
     position: absolute;
     width: 19px;
-    height: 3.43px;
+    height: 2.43px;
     left: 0px;
     top: 0px;
     background: #EEEFFF;
+    border-radius: 1px;
 }
 .filter-icon::after {
     content: "";
     position: absolute;
     width: 12.92px;
-    height: 3.43px;
+    height: 2.43px;
     left: 3.04px;
     top: 4.29px;
     background: #EEEFFF;
     box-shadow: 0 4.28px 0 #EEEFFF;
+    border-radius: 1px;
 }
 
 

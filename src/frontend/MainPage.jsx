@@ -7,6 +7,7 @@ import "./modals.css";
 
 export default function MainPage() {
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
 	const [challenges, setChallenges] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
@@ -14,6 +15,7 @@ export default function MainPage() {
 	const [authenticated, setAuthenticated] = useState(false);
 	const [history, setHistory] = useState([]);
 	const [historyLoading, setHistoryLoading] = useState(false);
+    const [challengeSearch, setChallengeSearch] = useState("");
 
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -93,6 +95,7 @@ export default function MainPage() {
 				if (!active) return;
 
 				setUsername(authData.user.username);
+                setEmail(authData.user.email || "");
 				setAuthenticated(true);
 
 				const challengeResponse = await fetch("/api/challenges", {
@@ -134,8 +137,13 @@ export default function MainPage() {
 		};
 	}, []);
 
-	const availableChallenges = challenges.filter(c => !c.isUserCreated);
-	const yourChallenges = challenges.filter(c => c.isUserCreated);
+	const matchesSearch = (challenge) => {
+        const query = challengeSearch.toLocaleLowerCase();
+        return !query || [challenge.title, challenge.description, challenge.creator]
+            .some(value => String(value ?? "").toLocaleLowerCase().includes(query));
+    };
+    const availableChallenges = challenges.filter(c => !c.isUserCreated && matchesSearch(c));
+    const yourChallenges = challenges.filter(c => c.isUserCreated && matchesSearch(c));
 
 	if (error) {
 		return <p className="status-message error">{error}</p>;
@@ -189,7 +197,7 @@ export default function MainPage() {
 						<section className="challenge-section">
 							<div className="section-title-wrapper">
 								<h2>Available Challenges</h2>
-								<span className="filter-icon" onClick={() => setIsFilterOpen(true)}></span>
+								<button className="filter-icon" style={{ border: 'none', background: 'none' }} onClick={() => setIsFilterOpen(true)} aria-label="Filter challenges"></button>
 							</div>
 							<div className="horizontal-scroll-container">
 								{availableChallenges.map((challenge, index) => (
@@ -225,7 +233,20 @@ export default function MainPage() {
 										className="menu-card"
 									>
 										<div className="card-top-bar">
-											<div className="hexagon-badge">{challenge.codeNumber || index + 1}</div>
+											<svg class="hexagon-badge" width="32" height="32" viewBox="0 -0.5 32 34">
+												<polygon points="8,0 24,0 32,16 24,32 8,32 0,16"
+														 fill="#1c1e29"
+														 stroke="#474a5f"
+														 stroke-width="1" />
+
+												<text x="16" y="17"
+													  fill="#ffffff"
+													  font-size="14"
+													  font-weight="bold"
+													  text-anchor="middle"
+													  dominant-baseline="middle">{challenge.codeNumber || index + 1}</text>
+											</svg>
+
 											<div className="card-header-info">
 												<h3>{challenge.title}</h3>
 												<span className="creator-text">by: {challenge.creator || "ChallengeMaker"}</span>
@@ -255,8 +276,13 @@ export default function MainPage() {
 				)}
 			</main>
 
-			<ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} userInfo={{ username }} />
-			<FilterModal isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)} />
+			<ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} userInfo={{ username, email }} />
+			<FilterModal
+				isOpen={isFilterOpen}
+				onClose={() => setIsFilterOpen(false)}
+				initialQuery={challengeSearch}
+				onApplyFilters={({ searchQuery }) => setChallengeSearch(searchQuery)}
+			/>
 			<HistoryModal
 				isOpen={isHistoryOpen}
 				onClose={() => setIsHistoryOpen(false)}

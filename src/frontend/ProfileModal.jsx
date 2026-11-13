@@ -5,54 +5,32 @@ export default function ProfileModal({ isOpen, onClose, userInfo = {} }) {
 	if (!isOpen) return null;
 
 	return (
-		<div className="modal-overlay">
-			<div className="modal-container profile-modal">
+		<div className="modal-overlay" onMouseDown={(event) => {
+			if (event.target === event.currentTarget) onClose();
+		}}>
+			<section className="modal-container profile-modal" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
 				<div className="modal-header">
-					<h2>-- Options --</h2>
-					<button className="close-modal-btn" onClick={onClose}>✕</button>
+					<h2 id="profile-modal-title">-- Account --</h2>
+					<button className="close-modal-btn" onClick={onClose} aria-label="Close account details">✕</button>
 				</div>
-				<div className="modal-body profile-body">
-					<div className="profile-avatar-section">
-						<div className="large-avatar-circle" />
-						<div className="profile-action-links">
-							<button className="text-link">Edit</button>
-							<button className="text-link">Delete</button>
-						</div>
-					</div>
-
+				<div className="modal-body profile-body profile-body-readonly">
 					<div className="profile-info-table">
 						<div className="profile-row">
-							<div className="profile-row-label">
-								<span className="icon-placeholder"></span> Username
-							</div>
-							<div className="profile-row-value">
-								<span>{userInfo.username || "Username"}</span>
-								<button className="edit-link">Edit</button>
-							</div>
+							<div className="profile-row-label">Username</div>
+							<div className="profile-row-value">{userInfo.username || "Not available"}</div>
 						</div>
-
 						<div className="profile-row">
-							<div className="profile-row-label">
-								<span className="icon-placeholder"></span> Email
-							</div>
-							<div className="profile-row-value">
-								<span>{userInfo.email || "lorem@ipsum.com"}</span>
-								<button className="edit-link">Edit</button>
-							</div>
+							<div className="profile-row-label">Email</div>
+							<div className="profile-row-value">{userInfo.email || "Not available"}</div>
 						</div>
-
 						<div className="profile-row">
-							<div className="profile-row-label">
-								<span className="icon-placeholder"></span> Password
-							</div>
-							<div className="profile-row-value">
-								<span>********</span>
-								<button className="edit-link">Edit</button>
-							</div>
+							<div className="profile-row-label">Role</div>
+							<div className="profile-row-value">{userInfo.role || "Not available"}</div>
 						</div>
+						<p className="profile-readonly-note">Account details are read-only.</p>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	);
 }

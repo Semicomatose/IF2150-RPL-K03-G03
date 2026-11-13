@@ -1,6 +1,6 @@
 import { pool } from "../db.js";
 
-export async function createUser({ username, email, passwordHash, role }) {
+export async function createUser({ username, email, passwordHash, role = "PELAJAR" }) {
 	const result = await pool.query(`
 		INSERT INTO users (username, email, password_hash, role)
 		VALUES ($1, $2, $3, $4)
@@ -12,9 +12,10 @@ export async function createUser({ username, email, passwordHash, role }) {
 
 export async function findUser(identifier) {
 	const result = await pool.query(`
-		SELECT id, username, email, password_hash
+		SELECT id, username, email, password_hash, role, created_at
 		FROM users
-		WHERE email = $1 OR username = $1
+		WHERE LOWER(email) = LOWER($1) OR LOWER(username) = LOWER($1)
+		LIMIT 1
 	`, [identifier]);
 
 	return result.rows[0] || null;
