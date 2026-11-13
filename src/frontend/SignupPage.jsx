@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../assets/logo.svg";
 import "./auth.css";
 
 export default function SignupPage() {
@@ -32,7 +33,13 @@ export default function SignupPage() {
 				throw new Error(data.error || "Signup failed.");
 			}
 
-			window.location.replace("/login");
+			const loginResponse = await fetch("/api/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				credentials: "same-origin",
+				body: JSON.stringify({ identifier: username, password })
+			});
+			window.location.replace(loginResponse.ok ? "/" : "/login");
 		} catch (err) {
 			setError(err.message || "Signup failed.");
 		} finally {
@@ -43,7 +50,7 @@ export default function SignupPage() {
 	return (
 		<div className="auth-page-wrapper">
 			<div className="auth-brand-header">
-				<img src="../assets/logo.svg" className="logo-icon" alt="Logo" />
+				<img src={logo} className="logo-icon" alt="Logo" />
 				<span className="logo-text">commitment<strong>Issues</strong></span>
 			</div>
 
@@ -68,7 +75,7 @@ export default function SignupPage() {
 						<div className="input-group">
 							<span className="username-icon" aria-hidden="true"></span>
 							<input type="text" placeholder="* Username" value={username}
-								   onChange={(event) => setUsername(event.target.value)} minLength={3} maxLength={50} required />
+								   onChange={(event) => setUsername(event.target.value)} minLength={3} maxLength={12} required />
 						</div>
 						<div className="connection-line-mid-1"></div>
 					</div>

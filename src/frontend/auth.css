@@ -113,35 +113,34 @@ body {
 	content: "";
 	position: absolute;
 	right: -24px;
-	top: 50%;
+	top: -20px;
+	bottom: 0;
 	width: 24px;
-	height: 1px;
-	background-color: #38bdf8;
+	background:
+		linear-gradient(#38bdf8, #38bdf8) right top / 1px 100% no-repeat,
+		linear-gradient(#38bdf8, #38bdf8) left 0 top calc(50% + 10px) / 100% 1px no-repeat;
 	z-index: 1;
+}
+
+.input-row-wrapper:first-of-type::after {
+	top: 50%;
+	background:
+		linear-gradient(#38bdf8, #38bdf8) right top / 1px 100% no-repeat,
+		linear-gradient(#38bdf8, #38bdf8) left top / 100% 1px no-repeat;
 }
 
 .input-row-wrapper::before {
 	content: "";
 	position: absolute;
-	right: -24px;
+	right: 0;
 	top: 50%;
 	width: 8px;
 	height: 8px;
 	background-color: #ffffff;
 	border: 2px solid #38bdf8;
 	border-radius: 50%;
-	transform: translate(3px, -50%);
+	transform: translate(50%, -50%);
 	z-index: 3;
-}
-
-.auth-form::after {
-	content: "";
-	position: absolute;
-	right: 24px;
-	top: 65px;
-	bottom: 95px;
-	width: 1px;
-	background-color: #38bdf8;
 }
 
 .auth-action-container {
@@ -152,13 +151,26 @@ body {
 	position: relative;
 }
 
+/* 44px = gap .auth-form (20px) + margin-top container ini (24px) */
 .auth-action-container::before {
 	content: "";
 	position: absolute;
-	top: -24px;
-	right: calc(50% - 24px);
+	top: -44px;
+	left: 50%;
+	right: -24px;
+	height: 32px;
+	border-right: 1px solid #38bdf8;
+	border-bottom: 1px solid #38bdf8;
+	box-sizing: border-box;
+}
+
+.auth-action-container::after {
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: 50%;
 	width: 1px;
-	height: 24px;
+	height: 12px;
 	background-color: #38bdf8;
 }
 

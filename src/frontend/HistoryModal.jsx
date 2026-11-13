@@ -1,156 +1,97 @@
-
 import React from "react";
+import HexBadge from "./HexBadge.jsx";
+import { difficultyLabel, difficultyLevel } from "./difficulty.js";
 import "./modals.css";
 
+const STATUS_LABELS = {
+	SELESAI: "Finished",
+	GAGAL: "Failed",
+	BERLANGSUNG: "On Progress"
+};
+
+const CHALLENGE_STATUS_LABELS = {
+	DRAF: "Not Published",
+	TERPUBLIKASI: "Published",
+	DIJADWALKAN_HAPUS: "Scheduled for Deletion"
+};
+
 function formatDate(date) {
-	if (!date) return "Not submitted";
+	if (!date) return "";
 
 	const parsed = new Date(date);
+	if (Number.isNaN(parsed.getTime())) return "";
 
-	if (Number.isNaN(parsed.getTime())) return "Unknown date";
-
-	return parsed.toLocaleString();
-}
-
-function getStatusLabel(status) {
-	switch (status) {
-		case "SELESAI":
-			return "Completed";
-		case "GAGAL":
-			return "Failed";
-		case "BERLANGSUNG":
-			return "In progress";
-		default:
-			return status || "Unknown";
-	}
+	return parsed.toLocaleString(undefined, {
+		year: "2-digit",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit"
+	});
 }
 
 export default function HistoryModal({
 	isOpen,
 	onClose,
 	historyList = [],
-	userChallenges = [],
-	loading = false
+	challenges = [],
+	loading = false,
+	error = ""
 }) {
 	if (!isOpen) return null;
 
+	const challengeById = new Map(challenges.map((challenge) => [String(challenge.id), challenge]));
+	const userChallenges = challenges.filter((challenge) => challenge.isUserCreated);
+
+	function renderList(items, emptyMessage, renderItem) {
+		if (loading) return <p className="history-empty">Loading history...</p>;
+		if (error) return <p className="history-empty error" role="alert">{error}</p>;
+		if (items.length === 0) return <p className="history-empty">{emptyMessage}</p>;
+		return items.map(renderItem);
+	}
+
 	return (
-		<div className="modal-overlay history-overlay">
+		<div className="modal-overlay history-overlay" role="dialog" aria-modal="true" aria-label="History">
 			<div className="history-top-bar">
-				<button
-					className="close-modal-btn white-close"
-					onClick={onClose}
-					aria-label="Close history"
-				>
-					✕
-				</button>
+				<button className="close-modal-btn white-close" onClick={onClose} aria-label="Close history">✕</button>
 			</div>
 
 			<div className="history-content-wrapper">
-				{/* Student attempt history */}
 				<div className="history-column">
-					<h2 className="history-section-title">
-						Challenge History
-					</h2>
+					<h2 className="history-section-title">Challenge History</h2>
 
 					<div className="history-list-box">
-						{loading ? (
-							<p className="history-empty">
-								Loading history...
-							</p>
-						) : historyList.length === 0 ? (
-							<p className="history-empty">
-								You haven't attempted any challenges yet.
-							</p>
-						) : (
-							historyList.map((item) => (
-								<div
-									className="history-row-item"
-									key={item.id}
-								>
-									<svg class="hexagon-badge" width="32" height="32" viewBox="0 -0.5 32 34">
-										<polygon points="8,0 24,0 32,16 24,32 8,32 0,16"
-												 fill="#1c1e29"
-												 stroke="#474a5f"
-												 stroke-width="1" />
-
-										<text x="16" y="17"
-											  fill="#ffffff"
-											  font-size="14"
-											  font-weight="bold"
-											  text-anchor="middle"
-											  dominant-baseline="middle">{item.score ?? 0}</text>
-									</svg>
-
-									<div className="history-item-details">
-										<span className="history-item-title">
-											{item.title || "Untitled challenge"}
-										</span>
-
-										<span className="history-item-status">
-											{getStatusLabel(item.status)}
-											{" · "}
-											{formatDate(
-												item.submittedAt ||
-												item.startedAt
-											)}
-										</span>
-									</div>
-
+						{renderList(historyList, "You haven't attempted any challenges yet.", (item) => {
+							const difficulty = challengeById.get(String(item.challengeId))?.difficulty;
+							return (
+								<a className="history-row-item" key={item.id} href={`/challenges/${item.challengeId}`}>
+									<HexBadge value={difficultyLevel(difficulty) || "?"} title={difficultyLabel(difficulty)} />
+									<span className="history-item-title">{item.title || "Untitled challenge"}</span>
+									<span className="history-item-status">
+										{STATUS_LABELS[item.status] ?? item.status}
+										{item.status !== "BERLANGSUNG" && ` (${item.score ?? 0})`}
+										{" "}
+										<span className="history-item-date">{formatDate(item.submittedAt || item.startedAt)}</span>
+									</span>
 									<span className="card-chevron">›</span>
-								</div>
-							))
-						)}
+								</a>
+							);
+						})}
 					</div>
 				</div>
 
-				{/* Challenges created by this user */}
 				<div className="history-column">
-					<h2 className="history-section-title">
-						Your Challenges
-					</h2>
+					<h2 className="history-section-title">Your Challenges</h2>
 
 					<div className="history-list-box">
-						{userChallenges.length === 0 ? (
-							<p className="history-empty">
-								You haven't created any challenges yet.
-							</p>
-						) : (
-							userChallenges.map((item) => (
-								<div
-									className="history-row-item"
-									key={item.id}
-								>
-									<svg class="hexagon-badge" width="32" height="32" viewBox="0 -0.5 32 34">
-										<polygon points="8,0 24,0 32,16 24,32 8,32 0,16"
-												 fill="#1c1e29"
-												 stroke="#474a5f"
-												 stroke-width="1" />
-
-										<text x="16" y="17"
-											  fill="#ffffff"
-											  font-size="14"
-											  font-weight="bold"
-											  text-anchor="middle"
-											  dominant-baseline="middle">{item.difficulty?.slice(0, 1) || "C"}</text>
-									</svg>
-
-									<div className="history-item-details">
-										<span className="history-item-title">
-											{item.title || "Untitled challenge"}
-										</span>
-
-										<span className="history-item-status">
-											{item.difficulty || "Unspecified difficulty"}
-											{" · "}
-											{item.status || "Unknown status"}
-										</span>
-									</div>
-
-									<span className="card-chevron">›</span>
-								</div>
-							))
-						)}
+						{renderList(userChallenges, "You haven't created any challenges yet.", (item) => (
+							<a className="history-row-item" key={item.id} href={`/challenges/${item.id}/evaluate`}>
+								<HexBadge value={difficultyLevel(item.difficulty) || "?"} title={difficultyLabel(item.difficulty)} />
+								<span className="history-item-title">{item.title || "Untitled challenge"}</span>
+								<span className="history-item-status">{CHALLENGE_STATUS_LABELS[item.status] ?? item.status}</span>
+								<span className="card-chevron">›</span>
+							</a>
+						))}
 					</div>
 				</div>
 			</div>

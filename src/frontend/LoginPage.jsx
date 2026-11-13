@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../assets/logo.svg";
 import "./auth.css";
 
 export default function LoginPage() {
@@ -36,7 +37,7 @@ export default function LoginPage() {
 	return (
 		<div className="auth-page-wrapper">
 			 <div className="auth-brand-header">
-				<img src="../assets/logo.svg" className="logo-icon" alt="Logo" />
+				<img src={logo} className="logo-icon" alt="Logo" />
 				<span className="logo-text">commitment<strong>Issues</strong></span>
 			</div>
 
@@ -78,7 +79,7 @@ export default function LoginPage() {
 
 					<div className="auth-action-container">
 						<button type="submit" disabled={loading} className="auth-submit-btn">
-							{loading ? "Logging in..." : "Login"}
+							{loading ? "Logging in..." : "Log In"}
 						</button>
 						<div className="auth-switch-link">
 															  Don’t have an account? <a href="/signup">Sign up</a>

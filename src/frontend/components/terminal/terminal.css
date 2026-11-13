@@ -39,6 +39,9 @@
 
 .close-btn:disabled { opacity: .45; cursor: not-allowed; }
 
+.evaluation-title-bar { flex-direction: column; gap: 6px; }
+.challenge-subtitle { margin: 0; color: #e5e7eb; font-size: 13px; }
+
 .challenge-title {
 	margin: 0;
 	color: #fff;
@@ -125,6 +128,7 @@
 }
 .text-action-btn:hover { color: #fff; }
 .text-action-btn:disabled { opacity: .45; cursor: not-allowed; }
+.hint-text { color: #fde68a; }
 
 .terminal-column { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .challenge-terminal { width: 100%; display: flex; flex-direction: column; box-sizing: border-box; }
@@ -154,6 +158,8 @@
 }
 .btn-blue { background: #1ea5ff; color: #fff; }
 .btn-blue:hover { background: #0093f5; }
+.btn-red { background: #c53035; color: #fff; }
+.btn-red:hover { background: #a8262b; }
 .btn:disabled { opacity: .55; cursor: not-allowed; }
 
 .submission-result {

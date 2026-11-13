@@ -1,41 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChallengeTerminal from "./components/terminal/ChallengeTerminal.jsx";
-import ProfileModal from "./ProfileModal.jsx";
-import HistoryModal from "./HistoryModal.jsx";
+import AppHeader from "./AppHeader.jsx";
+import useChallengeSession from "./useChallengeSession.js";
+import { difficultyLabel } from "./difficulty.js";
 import "./main-page.css";
 
 export default function ChallengePage({ challengeId }) {
-    const [sessionId, setSessionId] = useState(null);
+    const { sessionId, setSessionId, error: sessionError } = useChallengeSession(challengeId);
     const [challenge, setChallenge] = useState(null);
     const [error, setError] = useState("");
     const [result, setResult] = useState(null);
     const [busy, setBusy] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-    const [history, setHistory] = useState([]);
-    const [userChallenges, setUserChallenges] = useState([]);
-    const [historyLoading, setHistoryLoading] = useState(false);
+    const [showHint, setShowHint] = useState(false);
     const [userInfo, setUserInfo] = useState({ username: "", email: "", role: "" });
-    const profileRef = useRef(null);
-    const currentSessionIdRef = useRef(null);
-
-    useEffect(() => {
-        currentSessionIdRef.current = sessionId;
-    }, [sessionId]);
-
-    // If the user navigates away without using the explicit exit button,
-    // close the active attempt instead of leaving it running until idle cleanup.
-    useEffect(() => () => {
-        const activeSessionId = currentSessionIdRef.current;
-        if (activeSessionId) {
-            fetch(`/api/sessions/${activeSessionId}`, {
-                method: "DELETE",
-                credentials: "same-origin",
-                keepalive: true
-            }).catch(() => {});
-        }
-    }, []);
 
     useEffect(() => {
         let active = true;
@@ -80,98 +57,6 @@ export default function ChallengePage({ challengeId }) {
         loadUser();
         return () => { active = false; };
     }, []);
-
-    useEffect(() => {
-        let active = true;
-        let createdSessionId = null;
-
-        async function createSession() {
-            try {
-                const response = await fetch("/api/sessions", {
-                    method: "POST",
-                    credentials: "same-origin",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ challengeId: Number(challengeId) })
-                });
-                if (response.status === 401) {
-                    window.location.replace("/login");
-                    return;
-                }
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error || "Failed to create challenge session.");
-
-                createdSessionId = data.sessionId;
-                if (!active) {
-                    await fetch(`/api/sessions/${createdSessionId}`, {
-                        method: "DELETE",
-                        credentials: "same-origin"
-                    });
-                    return;
-                }
-                setSessionId(createdSessionId);
-            } catch (err) {
-                if (active) setError(err.message);
-            }
-        }
-
-        createSession();
-        return () => {
-            active = false;
-            if (createdSessionId) {
-                fetch(`/api/sessions/${createdSessionId}`, {
-                    method: "DELETE",
-                    credentials: "same-origin"
-                }).catch((err) => console.error("Session cleanup failed:", err));
-            }
-        };
-    }, [challengeId]);
-
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (profileRef.current && !profileRef.current.contains(event.target)) setMenuOpen(false);
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-    async function openHistory() {
-        setMenuOpen(false);
-        setIsHistoryOpen(true);
-        setHistoryLoading(true);
-        try {
-            const response = await fetch("/api/history", { credentials: "same-origin" });
-            if (response.status === 401) {
-                window.location.replace("/login");
-                return;
-            }
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.error || "Failed to load history.");
-            setHistory(data);
-
-            const challengesResponse = await fetch("/api/challenges", { credentials: "same-origin" });
-            if (challengesResponse.ok) {
-                const challengesData = await challengesResponse.json();
-                setUserChallenges(challengesData.filter((item) => item.isUserCreated));
-            }
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setHistoryLoading(false);
-        }
-    }
-
-    async function handleLogout() {
-        try {
-            const response = await fetch("/api/logout", { method: "POST", credentials: "same-origin" });
-            if (!response.ok) {
-                const data = await response.json().catch(() => ({}));
-                throw new Error(data.error || "Logout failed.");
-            }
-            window.location.replace("/login");
-        } catch (err) {
-            setError(err.message);
-        }
-    }
 
     async function closeCurrentSession() {
         if (!sessionId) return;
@@ -236,8 +121,9 @@ export default function ChallengePage({ challengeId }) {
         }
     }
 
-    if (error && !sessionId) {
-        return <p className="status-message error" role="alert">{error}</p>;
+    const pageError = sessionError || error;
+    if (pageError && !sessionId) {
+        return <p className="status-message error" role="alert">{pageError}</p>;
     }
     if (!sessionId) {
         return <p className="status-message">Creating challenge session...</p>;
@@ -245,34 +131,11 @@ export default function ChallengePage({ challengeId }) {
 
     return (
         <div className="challenge-page-wrapper">
-            <header className="challenge-header">
-                <a href="/" className="header-brand">
-                    <img src="../assets/logo.svg" className="logo-icon" alt="" />
-                    <span className="logo-text">commitment<strong>Issues</strong></span>
-                </a>
-                <div className="header-profile-container" ref={profileRef}>
-                    <button className="user-avatar-btn" onClick={() => setMenuOpen((open) => !open)} aria-label="User menu" aria-expanded={menuOpen}>
-                        <img src="../assets/user.jpg" className="user-avatar-icon" alt="" />
-                    </button>
-                    {menuOpen && (
-                        <div className="profile-dropdown-menu">
-                            <button className="dropdown-item" onClick={() => { setMenuOpen(false); setIsProfileOpen(true); }}>
-                                <img src="../assets/Gear.png" className="item-icon" alt="" /> Profile
-                            </button>
-                            <button className="dropdown-item" onClick={openHistory}>
-                                <img src="../assets/History.png" className="item-icon" alt="" /> History
-                            </button>
-                            <button className="dropdown-item logout-item" onClick={handleLogout}>
-                                <img src="../assets/Exit.png" className="item-icon" alt="" /> Logout
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </header>
+            <AppHeader user={userInfo} />
 
             <div className="challenge-title-bar">
                 <button className="close-btn" aria-label="Exit challenge" onClick={exitChallenge} disabled={busy}>✕</button>
-                <h1 className="challenge-title">{challenge?.title ?? "Loading challenge..."}</h1>
+                <h1 className="challenge-title">{challenge ? `-- ${challenge.title} --` : "Loading challenge..."}</h1>
             </div>
 
             <main className="challenge-content-grid">
@@ -280,9 +143,18 @@ export default function ChallengePage({ challengeId }) {
                     <div className="card-header"><h2>Description</h2></div>
                     <div className="card-body">
                         <p className="description-text">{challenge?.description ?? "Loading description..."}</p>
-                        <p className="description-text">Difficulty: {challenge?.difficulty ?? "..."}</p>
+                        <p className="description-text">Difficulty: {challenge ? difficultyLabel(challenge.difficulty) : "..."}</p>
+                        {showHint && challenge?.hint && <p className="description-text hint-text">Hint: {challenge.hint}</p>}
                         <div className="description-actions">
-                            <button className="text-action-btn" type="button" disabled title="Hints are not available yet">Hint</button>
+                            <button
+                                className="text-action-btn"
+                                type="button"
+                                onClick={() => setShowHint((shown) => !shown)}
+                                disabled={!challenge?.hint}
+                                title={challenge?.hint ? undefined : "Hints are not available yet"}
+                            >
+                                {showHint ? "Hide Hint" : "Hint"}
+                            </button>
                             <button className="text-action-btn" type="button" onClick={exitChallenge} disabled={busy}>Give Up</button>
                         </div>
                     </div>
@@ -312,9 +184,6 @@ export default function ChallengePage({ challengeId }) {
                     </div>
                 </section>
             </main>
-
-            <ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} userInfo={userInfo} />
-            <HistoryModal isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} historyList={history} userChallenges={userChallenges} loading={historyLoading} />
         </div>
     );
 }
