@@ -142,5 +142,6 @@
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *11-11-2026* | *Ananda Aulia Nurramadhan* | *Mengerjakan fungsionalitas backend user authentication* | *5* | *Done* | *-* |
+| *13-11-2026* | *Fahrezy Fitriansyah* | *Mengerjakan fungsi history dan user stats* | *4* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 9:** -
