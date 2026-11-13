@@ -31,3 +31,9 @@ export async function authenticateLogin(identifier, password) {
     const { password_hash, ...passwordlessUser } = user;
     return passwordlessUser;
 }
+
+export function hashPassword(password) {
+	const salt = crypto.randomBytes(16).toString("hex");
+	const derivedKey = crypto.scryptSync(password, salt, 64);
+	return `scrypt$${salt}$${derivedKey.toString("hex")}`;
+}
