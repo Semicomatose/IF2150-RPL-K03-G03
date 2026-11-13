@@ -86,15 +86,6 @@ body {
 	z-index: 2;
 }
 
-.input-icon-placeholder {
-	width: 16px;
-	height: 16px;
-	background-color: #ffffff;
-	display: inline-block;
-	margin-right: 14px;
-	flex-shrink: 0;
-}
-
 .input-group input {
 	background: transparent;
 	border: none;

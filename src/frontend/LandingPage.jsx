@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import logo from "../assets/logo.svg";
+import gitLogo from "../assets/git.png";
 import "./main-page.css";
 import "./auth.css";
 
@@ -22,7 +23,7 @@ export default function LandingPage() {
 			</header>
 
 			<main className="landing-content">
-				<img src={logo} className="landing-logo" alt="Commitment Issues logo" />
+				<img src={gitLogo} className="landing-logo" alt="Git logo" />
 				<h1 className="landing-tagline">
 					<span>Learn <span className="landing-accent">git</span> from zero through</span>
 					<strong>handmade, practical, interactive challenges</strong>

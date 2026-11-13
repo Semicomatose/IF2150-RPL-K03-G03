@@ -5,6 +5,7 @@ import HexBadge from "./HexBadge.jsx";
 import { difficultyLabel, difficultyLevel } from "./difficulty.js";
 import "./main-page.css";
 import "./modals.css";
+import "./creator-ui.css";
 
 const STATUS_PILLS = {
 	TERPUBLIKASI: { className: "published", label: "Published" },
@@ -110,7 +111,7 @@ export default function MainPage() {
 			<main className="main-menu-content">
 				<h1 className="welcome-greeting">Welcome, <strong>{user.username}</strong>!</h1>
 
-				<section className="challenge-section">
+				{user.role === "PELAJAR" && <section className="challenge-section">
 					<div className="section-title-wrapper">
 						<h2>Available Challenges</h2>
 						<button
@@ -132,10 +133,13 @@ export default function MainPage() {
 							</p>
 						)}
 					</div>
-				</section>
+				</section>}
 
-				<section className="challenge-section">
-					<h2 className="centered-section-title">Your Challenges</h2>
+				{user.role === "PEMBUAT" && <section className="challenge-section">
+					<div className="section-title-wrapper">
+						<h2 className="centered-section-title">Your Challenges</h2>
+						<a className="creator-dashboard-link" href="/creator">Manage challenges &amp; attempts</a>
+					</div>
 
 					<div className="horizontal-scroll-container">
 						{yourChallenges.map((challenge) => (
@@ -149,7 +153,7 @@ export default function MainPage() {
 							</div>
 						</a>
 					</div>
-				</section>
+				</section>}
 			</main>
 
 			<FilterModal

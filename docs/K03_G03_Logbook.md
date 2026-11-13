@@ -1,4 +1,4 @@
-# Logbook Pekerjaan 
+# Logbook Pekerjaan
 
 ## Tugas Besar IF2150 - Rekayasa Perangkat Lunak
 
@@ -38,8 +38,8 @@
 ### Milestone 1
 **Periode:** [27-08-2026] - [02-09-2026]
 
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
-| :--- | :--- | :--- | :--- | :--- | :--- | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | *30-08-2026* | *Steve Bradley Hoeij* | *Mengisi informasi dasar di template* | *0,1* | *Done* | *-* |
 | *30-08-2026* | *Ananda Aulia Nurramadhan* | *Membuat analisis latar belakang masalah (bab 1.1)* | *2* | *Done* | *-* |
 | *30-08-2026* | *Steve Bradley Hoeij* | *Menulis Bab 1.2, 2.1, 2.2, 3.1, 3.2, serta membuat activity diagram* | *3* | *Done* | *-* |
@@ -52,8 +52,8 @@
 ### Milestone 2
 **Periode:** [03-09-2026] - [09-09-2026]
 
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
-| :--- | :--- | :--- | :--- | :--- | :--- | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | *06-09-2026* | *Ananda Aulia Nurramadhan* | *Menyusun deskripsi umum (bab 1)* | *1* | *Done* | *-* |
 | *08-09-2026—09-09-2026* | *Zidane Uland Fakhry* | *Menyusun Bab 2* | *4* | *On Progress* | *Susah menentukan kategori masing-masing* |
 | *09-09-2026* | *Steve Bradley Hoeij* | *Merevisi Bab 1.1 dengan menambahkan perspektif dari masing-masing pengguna, merevisi Bab 2.3 agar menggunakan pola EARS, dan mengisi kebutuhan nonfungsional* | *2* | *Done* | *-* |
@@ -65,8 +65,8 @@
 ### Milestone 3
 **Periode:** [10-09-2026] - [16-09-2026]
 
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
-| :--- | :--- | :--- | :--- | :--- | :--- | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | *11-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi identitas pada template* | *0,25* | *Done* | *-* |
 | *16-09-2026* | *Dominick Vincent Devict* | *Menyusun Bab 3.4, UC1 sampai UC4* | *3* | *On Progress* | *Belum yakin mengenai bayangan aplikasi* |
 
@@ -77,8 +77,8 @@
 ### Milestone 4
 **Periode:** [17-09-2026] - [23-09-2026]
 
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
-| :--- | :--- | :--- | :--- | :--- | :--- | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | *20-09-2026* | *Ananda Aulia Nurramadhan* | *Memperbarui dokumen (logbook, deklarasi penggunaan AI), mengisi bab 1 dan 2* | *0,2* | *Done* | *-* |
 | *23-09-2026* | *Dominick Vincent Devict dan Ananda Aulia Nurramadhan* | *Menyusun Diagram Kelas untuk UC01, UC02, UC03, UC04* | *3* | *Done* | *-* |
 | *23-09-2026* | *Steve Bradley Hoeij* | *Mengisi diagram kelas di Bab 4.1, Bab 4.2, Bab 4.3, dan Bab 5 dengan hasil diskusi* | *4* | *Done* | *Tidak yakin terhadap metode/operasi yang diekspos pada UC03 dan UC04* |
@@ -90,8 +90,8 @@
 ### Milestone 5
 **Periode:** [24-09-2026] - [30-09-2026]
 
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
-| :--- | :--- | :--- | :--- | :--- | :--- | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | *26-09-2026* | *Ananda Aulia Nurramadhan* | *Mengisi informasi dasar dan menyalin informasi yang sudah ada dari milestone sebelumnya* | *0,75* | *Done* | *-* |
 | *29-09-2026* | *Dominick Vincent Devict* | *Mengisi Bab 1.1 dan 1.2* | *0.5* | *Done* | *-* |
 | *29-09-2026* | *Dominick Vincent Devict* | *Mengisi Bab 2.2 dan 2.4* | *2* | *Done* | *-* |
@@ -103,7 +103,7 @@
 
 ### Milestone 6
 **Periode:** [1-10-2026] - [7-10-2026]
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *06-10-2026* | _Dominick Vincent Devict_ | *Mengisi informasi dasar dan mulai mengerjakan Bab 1* | *2* | *On Progress* | *Tidak begitu paham cara menyusun architecture pattern/style yang baik dan benar* |
 
@@ -113,7 +113,7 @@
 
 ### Milestone 7
 **Periode:** [8-10-2026] - [21-10-2026]
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *19-10-2026* | *Ananda Aulia Nurramadhan* | *Menyesuaikan template dengan informasi yang sudah ada dari milestone terdahulu* | *0,75* | *Done* | *-* |
 | *21-10-2026* | *Ananda Aulia Nurramadhan* | *Mendesain logo P/L* | *2* | *Done* | *-* |
@@ -126,7 +126,7 @@
 
 ### Milestone 8
 **Periode:** [22-10-2026] - [28-10-2026]
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *26-10-2026* | *Ananda Aulia Nurramadhan* | *Menambahkan informasi yang sudah ada* | *0,5* | *Done* | *-* |
 | *28-10-2026* | *Steve Bradley Hoeij* | *Mengisi algoritma dan query bagi method-method yang menarik* | *3* | *Done* | *-* |
@@ -139,9 +139,11 @@
 
 ### Milestone 9
 **Periode:** [29-10-2026] - [13-11-2026]
-| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | *11-11-2026* | *Ananda Aulia Nurramadhan* | *Mengerjakan fungsionalitas backend user authentication* | *5* | *Done* | *-* |
+| *11-11-2026* | *Steve Bradley Hoeij* | *Mengerjakan pengerjaan tantangan dan cli git* | *8* | *Done* | *-* |
 | *13-11-2026* | *Fahrezy Fitriansyah* | *Mengerjakan fungsi history dan user stats* | *4* | *Done* | *-* |
+| *13-11-2026* | *Steve Bradley Hoeij* | *Melakukan finishing dan integration setiap fitur dan melakukan final review* | *5* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 9:** -

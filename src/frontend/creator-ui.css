@@ -1,0 +1,9 @@
+.creator-dashboard-link { color: #38bdf8; text-decoration: none; font-size: 12px; }
+.creator-dashboard-link:hover { text-decoration: underline; }
+button.menu-card { font: inherit; text-align: left; cursor: pointer; }
+.challenge-upload-layout { max-height: calc(100vh - 32px); overflow-y: auto; }
+@media (max-width: 700px) {
+	.challenge-upload-layout { padding: 16px !important; gap: 14px !important; }
+	.upload-dropzone { min-height: 150px !important; padding: 20px !important; }
+	.challenge-upload-layout .auth-form { padding: 18px !important; }
+}

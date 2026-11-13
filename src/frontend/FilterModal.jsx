@@ -83,6 +83,7 @@ export default function FilterModal({ isOpen, onClose, onApplyFilters, initialFi
 						<div className="search-input-group">
 							<span className="magnifying-glass-icon search-icon" aria-hidden="true"></span>
 							<input
+								style={{outline: 0}}
 								id="challenge-search"
 								type="search"
 								value={filters.searchQuery}
