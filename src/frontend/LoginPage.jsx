@@ -59,7 +59,6 @@ export default function LoginPage() {
 								required
 							/>
 						</div>
-						<div className="connection-line-top"></div>
 					</div>
 
 					<div className="input-row-wrapper">
@@ -73,7 +72,6 @@ export default function LoginPage() {
 								required
 							/>
 						</div>
-						<div className="connection-line-bottom"></div>
 					</div>
 
 					<div className="auth-action-container">

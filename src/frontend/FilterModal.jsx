@@ -36,6 +36,7 @@ export default function FilterModal({ isOpen, onClose, onApplyFilters, initialQu
 						<label htmlFor="challenge-search">Search challenges</label>
 						<div className="search-input-group">
 							<input
+								style={{outline: 0}}
 								id="challenge-search"
 								type="search"
 								value={searchQuery}

@@ -122,3 +122,29 @@ export async function initializeChallengeSession(challengeId, userId) {
 		throw error;
 	}
 }
+
+// Validate the uploaded package before it is persisted, using the same archive
+// safety checks as session extraction. The outer ZIP must contain repo.zip.
+export async function validateChallengePackageBuffer(packageBuffer) {
+	if (!Buffer.isBuffer(packageBuffer) || packageBuffer.length === 0 || packageBuffer.length > MAX_PACKAGE_BYTES) {
+		throw new Error("Challenge package must be a non-empty ZIP no larger than 25 MB.");
+	}
+	const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "challenge-upload-check-"));
+	try {
+		const archivePath = path.join(tempDir, "challenge.zip");
+		await fs.writeFile(archivePath, packageBuffer);
+		await validateZipArchive(archivePath);
+		await extractZip(archivePath, tempDir);
+		const repoZipPath = path.join(tempDir, "repo.zip");
+		await fs.access(repoZipPath);
+		const repoCheckDir = path.join(tempDir, "repo-check");
+		await fs.mkdir(repoCheckDir);
+		await extractZip(repoZipPath, repoCheckDir);
+		await fs.access(path.join(repoCheckDir, "repo"));
+		return true;
+	} catch (error) {
+		throw new Error(`Invalid challenge package: ${error.message}`);
+	} finally {
+		await fs.rm(tempDir, { recursive: true, force: true });
+	}
+}

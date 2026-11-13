@@ -86,15 +86,6 @@ body {
 	z-index: 2;
 }
 
-.input-icon-placeholder {
-	width: 16px;
-	height: 16px;
-	background-color: #ffffff;
-	display: inline-block;
-	margin-right: 14px;
-	flex-shrink: 0;
-}
-
 .input-group input {
 	background: transparent;
 	border: none;
@@ -109,57 +100,12 @@ body {
 	color: #6b7280;
 }
 
-.input-row-wrapper::after {
-	content: "";
-	position: absolute;
-	right: -24px;
-	top: 50%;
-	width: 24px;
-	height: 1px;
-	background-color: #38bdf8;
-	z-index: 1;
-}
-
-.input-row-wrapper::before {
-	content: "";
-	position: absolute;
-	right: -24px;
-	top: 50%;
-	width: 8px;
-	height: 8px;
-	background-color: #ffffff;
-	border: 2px solid #38bdf8;
-	border-radius: 50%;
-	transform: translate(3px, -50%);
-	z-index: 3;
-}
-
-.auth-form::after {
-	content: "";
-	position: absolute;
-	right: 24px;
-	top: 65px;
-	bottom: 95px;
-	width: 1px;
-	background-color: #38bdf8;
-}
-
 .auth-action-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-top: 24px;
 	position: relative;
-}
-
-.auth-action-container::before {
-	content: "";
-	position: absolute;
-	top: -24px;
-	right: calc(50% - 24px);
-	width: 1px;
-	height: 24px;
-	background-color: #38bdf8;
 }
 
 .auth-submit-btn {

@@ -1,127 +1,127 @@
 /* Challenge-page styles are scoped to avoid changing the auth and home pages. */
 .challenge-page-wrapper {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	background: #0b0c10;
-	color: #fff;
-	font-family: monospace, "Courier New", monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #0b0c10;
+    color: #fff;
+    font-family: monospace, "Courier New", monospace;
 }
 
 .challenge-header {
-	min-height: 50px;
-	background: #0d0f14;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 24px;
-	border-bottom: 1px solid #1a1d24;
-	box-sizing: border-box;
+    min-height: 50px;
+    background: #0d0f14;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid #1a1d24;
+    box-sizing: border-box;
 }
 
 .challenge-title-bar {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 24px 64px 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 64px 16px;
 }
 
 .close-btn {
-	position: absolute;
-	left: 32px;
-	background: none;
-	border: 0;
-	color: #fff;
-	font-size: 24px;
-	cursor: pointer;
+    position: absolute;
+    left: 32px;
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .close-btn:disabled { opacity: .45; cursor: not-allowed; }
 
 .challenge-title {
-	margin: 0;
-	color: #fff;
-	font-size: clamp(18px, 2.2vw, 22px);
-	font-weight: 500;
-	letter-spacing: .5px;
-	text-align: center;
-	overflow-wrap: anywhere;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 500;
+    letter-spacing: .5px;
+    text-align: center;
+    overflow-wrap: anywhere;
 }
 
 .challenge-content-grid {
-	display: grid;
-	grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr);
-	align-items: start;
-	gap: 24px;
-	width: min(1400px, 100%);
-	margin: 0 auto;
-	padding: 0 32px 32px;
-	box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: 24px;
+    width: min(1400px, 100%);
+    margin: 0 auto;
+    padding: 0 32px 32px;
+    box-sizing: border-box;
 }
 
 .card-container, .challenge-terminal {
-	min-width: 0;
-	border: 1px solid #232733;
-	border-radius: 8px;
-	background: #0b0c10;
-	overflow: hidden;
+    min-width: 0;
+    border: 1px solid #232733;
+    border-radius: 8px;
+    background: #0b0c10;
+    overflow: hidden;
 }
 
 .card-container { display: flex; flex-direction: column; }
 
 .card-header, .terminal-header {
-	min-height: 42px;
-	display: flex;
-	align-items: center;
-	padding: 0 16px;
-	background: #12141d;
-	border-bottom: 1px solid #232733;
-	box-sizing: border-box;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: #12141d;
+    border-bottom: 1px solid #232733;
+    box-sizing: border-box;
 }
 
 .card-header h2, .terminal-title {
-	margin: 0;
-	color: #fff;
-	font-size: 17px;
-	font-weight: 500;
+    margin: 0;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
 }
 
 .card-body {
-	min-height: 360px;
-	padding: 20px;
-	background: #252838;
-	color: #d1d5db;
-	display: flex;
-	flex-direction: column;
-	box-sizing: border-box;
+    min-height: 360px;
+    padding: 20px;
+    background: #252838;
+    color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 .description-text {
-	margin: 0 0 16px;
-	color: #d0d3dc;
-	font-size: 13px;
-	line-height: 1.65;
-	overflow-wrap: anywhere;
-	white-space: pre-wrap;
+    margin: 0 0 16px;
+    color: #d0d3dc;
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
 }
 
 .description-actions {
-	margin-top: auto;
-	padding-top: 24px;
-	display: flex;
-	justify-content: flex-end;
-	gap: 20px;
+    margin-top: auto;
+    padding-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
 }
 
 .text-action-btn {
-	background: none;
-	border: 0;
-	color: #aab5c5;
-	font: inherit;
-	font-size: 14px;
-	text-decoration: underline;
-	cursor: pointer;
+    background: none;
+    border: 0;
+    color: #aab5c5;
+    font: inherit;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 .text-action-btn:hover { color: #fff; }
 .text-action-btn:disabled { opacity: .45; cursor: not-allowed; }
@@ -130,72 +130,72 @@
 .challenge-terminal { width: 100%; display: flex; flex-direction: column; box-sizing: border-box; }
 .terminal-header { flex-shrink: 0; }
 .terminal-container {
-	width: 100%;
-	min-width: 0;
-	min-height: 280px;
-	max-height: 70vh;
-	padding: 10px;
-	box-sizing: border-box;
-	overflow: hidden;
-	background: #080a0f;
+    width: 100%;
+    min-width: 0;
+    min-height: 280px;
+    max-height: 70vh;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #080a0f;
 }
 .terminal-container .xterm { width: 100%; height: 100%; }
 .terminal-container .xterm-screen { max-width: 100%; }
 
 .action-buttons-row { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; }
 .btn {
-	padding: 11px 28px;
-	border: 0;
-	border-radius: 4px;
-	font: inherit;
-	font-size: 15px;
-	font-weight: 600;
-	cursor: pointer;
+    padding: 11px 28px;
+    border: 0;
+    border-radius: 4px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
 }
 .btn-blue { background: #1ea5ff; color: #fff; }
 .btn-blue:hover { background: #0093f5; }
 .btn:disabled { opacity: .55; cursor: not-allowed; }
 
 .submission-result {
-	min-width: 0;
-	padding: 16px;
-	border: 1px solid #232733;
-	border-radius: 8px;
-	background: #12141d;
-	color: #e5e7eb;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid #232733;
+    border-radius: 8px;
+    background: #12141d;
+    color: #e5e7eb;
 }
 .submission-result h3 { margin: 0 0 8px; font-size: 16px; }
 .verification-output {
-	max-width: 100%;
-	padding: 14px;
-	border-radius: 6px;
-	background: #080a0f;
-	color: #e0e0e0;
-	overflow: auto;
+    max-width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    background: #080a0f;
+    color: #e0e0e0;
+    overflow: auto;
 }
 .verification-output pre {
-	margin: 0;
-	white-space: pre-wrap;
-	overflow-wrap: anywhere;
-	font: 12px/1.5 monospace;
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: 12px/1.5 monospace;
 }
 .status-message { padding: 24px; color: #aeb7c5; text-align: center; }
 .status-message.error { color: #f87171; }
 
 @media (max-width: 850px) {
-	.challenge-content-grid {
-		grid-template-columns: minmax(0, 1fr);
-		padding: 0 20px 24px;
-	}
-	.card-body { min-height: 0; }
-	.challenge-title-bar { padding-top: 20px; }
-	.close-btn { left: 16px; }
+    .challenge-content-grid {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 0 20px 24px;
+    }
+    .card-body { min-height: 0; }
+    .challenge-title-bar { padding-top: 20px; }
+    .close-btn { left: 16px; }
 }
 @media (max-width: 520px) {
-	.challenge-header { padding: 0 14px; }
-	.challenge-title-bar { padding: 18px 48px 14px; }
-	.challenge-content-grid { gap: 16px; padding: 0 12px 20px; }
-	.card-body { padding: 16px; }
-	.action-buttons-row { display: grid; grid-template-columns: 1fr 1fr; }
-	.btn { padding: 11px 12px; }
+    .challenge-header { padding: 0 14px; }
+    .challenge-title-bar { padding: 18px 48px 14px; }
+    .challenge-content-grid { gap: 16px; padding: 0 12px 20px; }
+    .card-body { padding: 16px; }
+    .action-buttons-row { display: grid; grid-template-columns: 1fr 1fr; }
+    .btn { padding: 11px 12px; }
 }

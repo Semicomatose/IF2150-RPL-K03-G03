@@ -59,7 +59,7 @@ export default function SignupPage() {
 						<div className="input-group">
 							<span className="email-icon" aria-hidden="true"></span>
 							<input type="email" placeholder="* Email" value={email}
-								   onChange={(event) => setEmail(event.target.value)} maxLength={255} required />
+								onChange={(event) => setEmail(event.target.value)} maxLength={255} required />
 						</div>
 						<div className="connection-line-top"></div>
 					</div>
@@ -68,7 +68,7 @@ export default function SignupPage() {
 						<div className="input-group">
 							<span className="username-icon" aria-hidden="true"></span>
 							<input type="text" placeholder="* Username" value={username}
-								   onChange={(event) => setUsername(event.target.value)} minLength={3} maxLength={50} required />
+								onChange={(event) => setUsername(event.target.value)} minLength={3} maxLength={50} required />
 						</div>
 						<div className="connection-line-mid-1"></div>
 					</div>
@@ -77,7 +77,7 @@ export default function SignupPage() {
 						<div className="input-group">
 							<span className="password-icon" aria-hidden="true"></span>
 							<input type="password" placeholder="* Password" value={password}
-								   onChange={(event) => setPassword(event.target.value)} minLength={8} required />
+								onChange={(event) => setPassword(event.target.value)} minLength={8} required />
 						</div>
 						<div className="connection-line-mid-2"></div>
 					</div>
@@ -86,7 +86,7 @@ export default function SignupPage() {
 						<div className="input-group">
 							<span className="password-icon" aria-hidden="true"></span>
 							<input type="password" placeholder="* Confirm Password" value={confirmPassword}
-								   onChange={(event) => setConfirmPassword(event.target.value)} minLength={8} required />
+								onChange={(event) => setConfirmPassword(event.target.value)} minLength={8} required />
 						</div>
 						<div className="connection-line-bottom"></div>
 					</div>

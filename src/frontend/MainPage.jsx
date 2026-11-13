@@ -2,12 +2,16 @@ import React, { useEffect, useState, useRef } from "react";
 import ProfileModal from "./ProfileModal.jsx";
 import FilterModal from "./FilterModal.jsx";
 import HistoryModal from "./HistoryModal.jsx";
+import UploadModal from "./UploadModal.jsx";
 import "./main-page.css";
 import "./modals.css";
+import "./creator-ui.css";
 
 export default function MainPage() {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
+	const [role, setRole] = useState("");
+	const [isUploadOpen, setIsUploadOpen] = useState(false);
 	const [challenges, setChallenges] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState("");
@@ -15,7 +19,7 @@ export default function MainPage() {
 	const [authenticated, setAuthenticated] = useState(false);
 	const [history, setHistory] = useState([]);
 	const [historyLoading, setHistoryLoading] = useState(false);
-    const [challengeSearch, setChallengeSearch] = useState("");
+	const [challengeSearch, setChallengeSearch] = useState("");
 
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -95,7 +99,8 @@ export default function MainPage() {
 				if (!active) return;
 
 				setUsername(authData.user.username);
-                setEmail(authData.user.email || "");
+				setEmail(authData.user.email || "");
+				setRole(authData.user.role || "");
 				setAuthenticated(true);
 
 				const challengeResponse = await fetch("/api/challenges", {
@@ -138,12 +143,12 @@ export default function MainPage() {
 	}, []);
 
 	const matchesSearch = (challenge) => {
-        const query = challengeSearch.toLocaleLowerCase();
-        return !query || [challenge.title, challenge.description, challenge.creator]
-            .some(value => String(value ?? "").toLocaleLowerCase().includes(query));
-    };
-    const availableChallenges = challenges.filter(c => !c.isUserCreated && matchesSearch(c));
-    const yourChallenges = challenges.filter(c => c.isUserCreated && matchesSearch(c));
+		const query = challengeSearch.toLocaleLowerCase();
+		return !query || [challenge.title, challenge.description, challenge.creator]
+			.some(value => String(value ?? "").toLocaleLowerCase().includes(query));
+	};
+	const availableChallenges = challenges.filter(c => !c.isUserCreated && matchesSearch(c));
+	const yourChallenges = challenges.filter(c => c.isUserCreated && matchesSearch(c));
 
 	if (error) {
 		return <p className="status-message error">{error}</p>;
@@ -194,10 +199,15 @@ export default function MainPage() {
 
 				{!loading && !error && (
 					<>
-						<section className="challenge-section">
+						{role === "PELAJAR" && <section className="challenge-section">
 							<div className="section-title-wrapper">
 								<h2>Available Challenges</h2>
-								<button className="filter-icon" style={{ border: 'none', background: 'none' }} onClick={() => setIsFilterOpen(true)} aria-label="Filter challenges"></button>
+								<button type="button"
+										className="filter-icon"
+										style={{background: 'none', border: 'none'}}
+										onClick={() => setIsFilterOpen(true)}
+										aria-label="Filter challenges">
+								</button>
 							</div>
 							<div className="horizontal-scroll-container">
 								{availableChallenges.map((challenge, index) => (
@@ -207,12 +217,24 @@ export default function MainPage() {
 										className="menu-card"
 									>
 										<div className="card-top-bar">
-											<div className="hexagon-badge">{index + 1}</div>
+											<svg class="hexagon-badge" width="32" height="32" viewBox="0 -0.5 32 34">
+												<polygon points="8,0 24,0 32,16 24,32 8,32 0,16"
+														 fill="#1c1e29"
+														 stroke="#474a5f"
+														 stroke-width="1" />
+
+												<text x="16" y="17"
+													  fill="#ffffff"
+													  font-size="14"
+													  font-weight="bold"
+													  text-anchor="middle"
+													  dominant-baseline="middle">{index + 1}</text>
+											</svg>
 											<div className="card-header-info">
 												<h3>{challenge.title}</h3>
 												<span className="creator-text">by: {challenge.creator || "ChallengeMaker"}</span>
 											</div>
-											<span className="card-chevron">›</span>
+											<span className="card-chevron">&gt;</span>
 										</div>
 										<div className="card-body-content">
 											<p>{challenge.description}</p>
@@ -220,15 +242,18 @@ export default function MainPage() {
 									</a>
 								))}
 							</div>
-						</section>
+						</section>}
 
-						<section className="challenge-section">
-							<h2 className="centered-section-title">Your Challenges</h2>
+						{role === "PEMBUAT" && <section className="challenge-section">
+							<div className="section-title-wrapper">
+								<h2 className="centered-section-title">Your Challenges</h2>
+								<a className="creator-dashboard-link" href="/creator">Manage challenges &amp; attempts</a>
+							</div>
 
 							<div className="horizontal-scroll-container">
 								{yourChallenges.map((challenge, index) => (
 									<a
-										href={`/challenges/${challenge.id}`}
+										href={`/creator/evaluate/${challenge.id}`}
 										key={challenge.id}
 										className="menu-card"
 									>
@@ -251,7 +276,7 @@ export default function MainPage() {
 												<h3>{challenge.title}</h3>
 												<span className="creator-text">by: {challenge.creator || "ChallengeMaker"}</span>
 											</div>
-											<span className="card-chevron">›</span>
+											<span className="card-chevron">&gt;</span>
 										</div>
 										<div className="card-body-content">
 											<p>{challenge.description}</p>
@@ -264,14 +289,14 @@ export default function MainPage() {
 									</a>
 								))}
 
-								<a href="/create-challenge" className="menu-card create-card">
+								<button type="button" onClick={() => setIsUploadOpen(true)} className="menu-card create-card">
 									<div className="create-card-content">
 										<span className="plus-icon">+</span>
 										<span>Create New Challenge</span>
 									</div>
-								</a>
+								</button>
 							</div>
-						</section>
+						</section>}
 					</>
 				)}
 			</main>
@@ -283,6 +308,7 @@ export default function MainPage() {
 				initialQuery={challengeSearch}
 				onApplyFilters={({ searchQuery }) => setChallengeSearch(searchQuery)}
 			/>
+			{role === "PEMBUAT" && <UploadModal isOpen={isUploadOpen} onClose={() => setIsUploadOpen(false)} onUploadSuccess={() => window.location.reload()} />}
 			<HistoryModal
 				isOpen={isHistoryOpen}
 				onClose={() => setIsHistoryOpen(false)}

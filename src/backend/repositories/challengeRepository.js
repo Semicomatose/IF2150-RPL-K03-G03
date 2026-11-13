@@ -116,3 +116,50 @@ export async function getStudentHistory(studentId) {
 
 	return result.rows;
 }
+
+
+export async function listCreatorChallenges(creatorId) {
+	const result = await pool.query(`
+		SELECT c.id, c.title, c.description, c.difficulty, c.status, c.created_at,
+			   COUNT(a.id)::int AS "attemptCount",
+			   COUNT(a.id) FILTER (WHERE a.status = 'SELESAI')::int AS "completedCount",
+			   ROUND(AVG(a.score) FILTER (WHERE a.status IN ('SELESAI','GAGAL')))::int AS "averageScore"
+		FROM challenges c
+		LEFT JOIN attempts a ON a.challenge_id = c.id
+		WHERE c.creator_id = $1
+		GROUP BY c.id
+		ORDER BY c.created_at DESC
+	`, [creatorId]);
+	return result.rows;
+}
+
+export async function updateCreatorChallenge({ id, creatorId, title, description, difficulty }) {
+	const result = await pool.query(`
+		UPDATE challenges SET title = $1, description = $2, difficulty = $3, updated_at = CURRENT_TIMESTAMP
+		WHERE id = $4 AND creator_id = $5 AND status <> 'DIJADWALKAN_HAPUS'
+		RETURNING id, title, description, difficulty, status, updated_at
+	`, [title, description, difficulty, id, creatorId]);
+	return result.rows[0] ?? null;
+}
+
+export async function updateChallengeStatus({ id, creatorId, status }) {
+	const result = await pool.query(`
+		UPDATE challenges SET status = $1, updated_at = CURRENT_TIMESTAMP
+		WHERE id = $2 AND creator_id = $3
+		RETURNING id, title, status
+	`, [status, id, creatorId]);
+	return result.rows[0] ?? null;
+}
+
+export async function getCreatorChallengeAttempts(challengeId, creatorId) {
+	const result = await pool.query(`
+		SELECT a.id, u.username AS student, a.status, a.score,
+			   a.started_at AS "startedAt", a.submitted_at AS "submittedAt"
+		FROM attempts a
+		JOIN users u ON u.id = a.student_id
+		JOIN challenges c ON c.id = a.challenge_id
+		WHERE c.id = $1 AND c.creator_id = $2
+		ORDER BY a.started_at DESC
+	`, [challengeId, creatorId]);
+	return result.rows;
+}
