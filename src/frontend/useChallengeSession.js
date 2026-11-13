@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
-function deleteSession(sessionId, options = {}) {
-	return fetch(`/api/sessions/${sessionId}`, {
+function deleteSession(basePath, sessionId, options = {}) {
+	return fetch(`${basePath}/${sessionId}`, {
 		method: "DELETE",
 		credentials: "same-origin",
 		...options
 	});
 }
 
-export default function useChallengeSession(challengeId) {
+export default function useChallengeSession(challengeId, basePath = "/api/sessions") {
 	const [sessionId, setSessionId] = useState(null);
 	const [error, setError] = useState("");
 	const currentSessionIdRef = useRef(null);
@@ -24,7 +24,7 @@ export default function useChallengeSession(challengeId) {
 			const activeSessionId = currentSessionIdRef.current;
 			if (activeSessionId) {
 				currentSessionIdRef.current = null;
-				deleteSession(activeSessionId, { keepalive: true }).catch(() => {});
+				deleteSession(basePath, activeSessionId, { keepalive: true }).catch(() => {});
 			}
 		}
 
@@ -33,7 +33,7 @@ export default function useChallengeSession(challengeId) {
 			window.removeEventListener("pagehide", closeActiveSession);
 			closeActiveSession();
 		};
-	}, []);
+	}, [basePath]);
 
 	useEffect(() => {
 		let active = true;
@@ -41,7 +41,7 @@ export default function useChallengeSession(challengeId) {
 
 		async function createSession() {
 			try {
-				const response = await fetch("/api/sessions", {
+				const response = await fetch(basePath, {
 					method: "POST",
 					credentials: "same-origin",
 					headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ export default function useChallengeSession(challengeId) {
 
 				createdSessionId = data.sessionId;
 				if (!active) {
-					await deleteSession(createdSessionId);
+					await deleteSession(basePath, createdSessionId);
 					return;
 				}
 				setSessionId(createdSessionId);
@@ -69,10 +69,10 @@ export default function useChallengeSession(challengeId) {
 		return () => {
 			active = false;
 			if (createdSessionId) {
-				deleteSession(createdSessionId).catch((err) => console.error("Session cleanup failed:", err));
+				deleteSession(basePath, createdSessionId).catch((err) => console.error("Session cleanup failed:", err));
 			}
 		};
-	}, [challengeId]);
+	}, [challengeId, basePath]);
 
 	return { sessionId, setSessionId, error };
 }

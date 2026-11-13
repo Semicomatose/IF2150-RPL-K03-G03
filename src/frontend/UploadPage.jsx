@@ -91,6 +91,14 @@ export default function UploadPage() {
 	if (!user) {
 		return <p className={`status-message${error ? " error" : ""}`}>{error || "Loading your account..."}</p>;
 	}
+	if (user.role !== "PEMBUAT") {
+		return (
+			<div className="status-message error" role="alert">
+				<p>Only challenge creators can upload challenges.</p>
+				<a href="/" className="status-link">Back to main menu</a>
+			</div>
+		);
+	}
 
 	return (
 		<div className="main-menu-wrapper">

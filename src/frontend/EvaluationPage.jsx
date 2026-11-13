@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import ChallengeTerminal from "./components/terminal/ChallengeTerminal.jsx";
 import AppHeader from "./AppHeader.jsx";
 import useChallengeSession from "./useChallengeSession.js";
-import { updateChallenge } from "./challengeApi.js";
+import { changeChallengeStatus, getCreatorChallenge } from "./challengeApi.js";
 import { difficultyLabel } from "./difficulty.js";
 import "./main-page.css";
-import "./modals.css";
 
 const STATUS_LABELS = {
 	DRAF: "Not Published",
@@ -13,103 +12,46 @@ const STATUS_LABELS = {
 	DIJADWALKAN_HAPUS: "Scheduled for Deletion"
 };
 
-function HintModal({ initialHint, onClose, onSave }) {
-	const [hint, setHint] = useState(initialHint);
-	const [saving, setSaving] = useState(false);
-	const [error, setError] = useState("");
-
-	async function handleSubmit(event) {
-		event.preventDefault();
-		setSaving(true);
-		setError("");
-		try {
-			await onSave(hint.trim());
-			onClose();
-		} catch (err) {
-			setError(err.message);
-		} finally {
-			setSaving(false);
-		}
-	}
-
-	return (
-		<div className="modal-overlay" onMouseDown={(event) => {
-			if (event.target === event.currentTarget) onClose();
-		}}>
-			<section className="modal-container hint-modal" role="dialog" aria-modal="true" aria-labelledby="hint-modal-title">
-				<div className="modal-header">
-					<h2 id="hint-modal-title">-- Edit Hint --</h2>
-					<button className="close-modal-btn" onClick={onClose} aria-label="Close hint editor">✕</button>
-				</div>
-				<form className="modal-body filter-body" onSubmit={handleSubmit}>
-					{error && <p className="modal-error" role="alert">{error}</p>}
-					<textarea
-						className="hint-textarea"
-						value={hint}
-						onChange={(event) => setHint(event.target.value)}
-						placeholder="Write a hint for this challenge"
-						maxLength={300}
-						rows={5}
-						autoFocus
-					/>
-					<div className="filter-action-footer">
-						<button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
-						<button type="submit" className="btn-primary" disabled={saving}>{saving ? "Saving..." : "Save Hint"}</button>
-					</div>
-				</form>
-			</section>
-		</div>
-	);
-}
-
 function EvaluationEnvironment({ challenge: initialChallenge, user }) {
-	const { sessionId, error: sessionError } = useChallengeSession(initialChallenge.id);
+	const { sessionId, error: sessionError } = useChallengeSession(initialChallenge.id, "/api/creator/sessions");
 	const [challenge, setChallenge] = useState(initialChallenge);
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState("");
-	const [isHintOpen, setIsHintOpen] = useState(false);
 
 	const isPublished = challenge.status === "TERPUBLIKASI";
 	const isScheduledForDeletion = challenge.status === "DIJADWALKAN_HAPUS";
+	const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
 
-	async function changeStatus(status, confirmMessage) {
-		if (busy || !window.confirm(confirmMessage)) return false;
+	async function runAction(action, confirmMessage) {
+		if (busy || !window.confirm(confirmMessage)) return null;
 		setBusy(true);
 		setError("");
 		try {
-			await updateChallenge(challenge.id, { status });
-			setChallenge((current) => ({ ...current, status }));
-			return true;
+			const updated = await changeChallengeStatus(challenge.id, action);
+			if (updated) setChallenge((current) => ({ ...current, status: updated.status }));
+			return updated;
 		} catch (err) {
 			setError(err.message);
-			return false;
+			return null;
 		} finally {
 			setBusy(false);
 		}
 	}
 
-	async function togglePublish() {
+	function togglePublish() {
 		if (isPublished) {
-			await changeStatus("DRAF", "Unpublish this challenge? Students will no longer see it.");
+			runAction("unpublish", "Unpublish this challenge? Students will no longer see it.");
 		} else {
-			await changeStatus("TERPUBLIKASI", "Publish this challenge? Students will be able to attempt it.");
+			runAction("publish", "Publish this challenge? Students will be able to attempt it.");
 		}
 	}
 
 	async function deleteChallenge() {
-		const deleted = await changeStatus("DIJADWALKAN_HAPUS", "Delete this challenge? It will be scheduled for deletion.");
-		if (deleted) window.location.assign("/");
+		const updated = await runAction("schedule-delete", "Delete this challenge? It will be scheduled for deletion.");
+		if (updated) window.location.assign("/");
 	}
 
-	async function saveHint(hint) {
-		await updateChallenge(challenge.id, { hint });
-		setChallenge((current) => ({ ...current, hint }));
-	}
-
-	async function exitEvaluation() {
-		if (sessionId) {
-			await fetch(`/api/sessions/${sessionId}`, { method: "DELETE", credentials: "same-origin" }).catch(() => {});
-		}
+	function exitEvaluation() {
 		window.location.assign("/");
 	}
 
@@ -132,17 +74,23 @@ function EvaluationEnvironment({ challenge: initialChallenge, user }) {
 							Difficulty: {difficultyLabel(challenge.difficulty)}
 							<br />
 							Status: {STATUS_LABELS[challenge.status] ?? challenge.status}
+							<br />
+							Attempts: {challenge.attemptCount ?? 0} · Average score: {challenge.averageScore ?? "-"}
 						</p>
-						{challenge.hint && <p className="description-text hint-text">Hint: {challenge.hint}</p>}
 						<div className="description-actions">
-							<button className="text-action-btn" type="button" onClick={() => setIsHintOpen(true)} disabled={busy}>Edit Hint</button>
+							<button className="text-action-btn" type="button" disabled title="Hints are not available yet">Edit Hint</button>
 						</div>
 					</div>
 				</section>
 
 				<section className="terminal-column">
 					{sessionId ? (
-						<ChallengeTerminal key={sessionId} sessionId={sessionId} height="min(52vh, 520px)" />
+						<ChallengeTerminal
+							key={sessionId}
+							sessionId={sessionId}
+							height="min(52vh, 520px)"
+							wsUrl={`${protocol}//${window.location.host}/api/creator/sessions/${sessionId}/terminal`}
+						/>
 					) : (
 						<p className={`status-message${sessionError ? " error" : ""}`} role={sessionError ? "alert" : undefined}>
 							{sessionError || "Preparing test terminal..."}
@@ -159,10 +107,6 @@ function EvaluationEnvironment({ challenge: initialChallenge, user }) {
 					</div>
 				</section>
 			</main>
-
-			{isHintOpen && (
-				<HintModal initialHint={challenge.hint ?? ""} onClose={() => setIsHintOpen(false)} onSave={saveHint} />
-			)}
 		</div>
 	);
 }
@@ -177,28 +121,25 @@ export default function EvaluationPage({ challengeId }) {
 
 		async function loadPage() {
 			try {
-				const [userResponse, challengeResponse] = await Promise.all([
-					fetch("/api/me", { credentials: "same-origin" }),
-					fetch(`/api/challenges/${challengeId}`, { credentials: "same-origin" })
-				]);
-				if (userResponse.status === 401 || challengeResponse.status === 401) {
+				const response = await fetch("/api/me", { credentials: "same-origin" });
+				if (response.status === 401) {
 					window.location.replace("/login");
 					return;
 				}
+				const data = await response.json();
+				if (!response.ok) throw new Error(data.error || "Failed to load account.");
+				if (data.user.role !== "PEMBUAT") {
+					throw new Error("Only challenge creators can open the evaluation view.");
+				}
 
-				const userData = await userResponse.json();
-				if (!userResponse.ok) throw new Error(userData.error || "Failed to load account.");
-				const challengeData = await challengeResponse.json();
-				if (!challengeResponse.ok) throw new Error(challengeData.error || "Failed to fetch challenge details.");
-
-				// GET /api/challenges/:id belum mengirim creator_id, jadi kepemilikan dicek lewat username pembuat.
-				if (challengeData.creator !== userData.user.username) {
-					throw new Error("Only the creator of this challenge can open the evaluation view.");
+				const ownedChallenge = await getCreatorChallenge(challengeId);
+				if (!ownedChallenge) {
+					throw new Error("Challenge not found or you are not its creator.");
 				}
 
 				if (active) {
-					setUser(userData.user);
-					setChallenge(challengeData);
+					setUser(data.user);
+					setChallenge(ownedChallenge);
 				}
 			} catch (err) {
 				if (active) setError(err.message);

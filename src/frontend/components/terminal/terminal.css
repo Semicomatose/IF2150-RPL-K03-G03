@@ -128,7 +128,6 @@
 }
 .text-action-btn:hover { color: #fff; }
 .text-action-btn:disabled { opacity: .45; cursor: not-allowed; }
-.hint-text { color: #fde68a; }
 
 .terminal-column { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .challenge-terminal { width: 100%; display: flex; flex-direction: column; box-sizing: border-box; }
