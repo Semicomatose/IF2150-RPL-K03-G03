@@ -134,3 +134,40 @@ server.on("upgrade", async (req, socket, head) => {
 server.listen(3000, "127.0.0.1", () => {
 	console.log("Server running at http://localhost:3000");
 });
+
+const userMatch = url.pathname.match(/^\/api\/users\/(\d+)$/);
+if (userMatch) {
+	const userId = Number(userMatch[1]);
+
+	if (req.method === "GET") {
+		const user = await findUserById(userId);
+		if (!user) return send(res, 404, { error: "User not found" });
+		return send(res, 200, { user });
+	}
+
+	if (req.method === "PATCH") {
+		const body = await readBody(req);
+		const updates = {};
+
+		if (body.username !== undefined) updates.username = body.username;
+		if (body.email !== undefined) updates.email = body.email;
+		if (body.avatar_url !== undefined) updates.avatar_url = body.avatar_url;
+		if (body.password) {
+			updates.password_hash = hashPassword(body.password);
+		}
+
+		const updatedUser = await updateUserProfile(userId, updates);
+		return send(res, 200, { user: updatedUser });
+	}
+}
+
+const userChallengesMatch = url.pathname.match(/^\/api\/users\/(\d+)\/challenges$/);
+if (req.method === "GET" && userChallengesMatch) {
+	const userId = Number(userChallengesMatch[1]);
+	const [history, created] = await Promise.all([
+		getChallengeHistoryByUser(userId),
+		getChallengesByCreator(userId)
+	]);
+
+	return send(res, 200, { history, created });
+}
