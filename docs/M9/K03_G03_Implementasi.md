@@ -7,34 +7,25 @@ IMPLEMENTASI PERANGKAT LUNAK
 </h1>
 <br>
 
-## *Nama Perangkat Lunak*
-### *[Logo Perangkat Lunak]*
+## *Commitment Issues*
+<img alt="Logo P/L" src="./assets/logo.svg" width="20%">
 
-### Untuk: *[Nama Asisten]*
+### Untuk: *Made Branenda Jordhy*
 
 Dipersiapkan oleh:
 | Informasi | Keterangan |
 | --- | --- |
-| Kelas | *\[Kelas\]* |
-| Kelompok | *\[Nomor Kelompok\]*  |
+| Kelas | 03 |
+| Kelompok | 03 |
 
 | NIM | Nama |
 |---|---|
-| *[NIM 1]* | *[Nama Anggota 1]* |
-| *[NIM 2]* | *[Nama Anggota 2]* |
-| *[NIM 3]* | *[Nama Anggota 3]* |
-| *[NIM 4]* | *[Nama Anggota 4]* |
-| *[NIM 5]* | *[Nama Anggota 5]* |
----
-
-> **Petunjuk pengerjaan:** *[Silahkan hapus bagian ini setelah selesai mengerjakan]*
->
-> Dokumen ini adalah **spesifikasi sekaligus template laporan singkat** Tugas 9. Bagian **Ketentuan Implementasi** (Bagian A) adalah aturan yang harus kalian ikuti, boleh dihapus dari laporan akhir. Bagian **Laporan Implementasi** (Bagian B) adalah yang **wajib kalian isi**. Gunakan nama, ID, kebutuhan, use case, dan kelas yang konsisten dengan SKPL, APL, dan DPPL.
-
----
-
-**Deadline:** Rabu, 11 November 2026, 21.50 WIB
-**Asistensi akbar:** *[Hari, DD Bulan YYYY, HH.MM WIB, lokasi/link]*
+| 13525012 | Steve Bradley Hoeij |
+| 13525072 | Fahrezy Fitriansyah |
+| 13525084 | Ariq Ulwan Hammam |
+| 13525132 | Zidane Uland Fakhry |
+| 13525135 | Ananda Aulia Nurramadhan |
+| 10124063 | Dominick Vincent Devict |
 
 ---
 
@@ -199,8 +190,8 @@ Tabel B.2. Bukti Best Practices
 
 | Praktik | Bukti | Keterangan |
 | :--- | :--- | :--- |
-| Branching | *[Tautan ke daftar branch / graph commit]* | *[Skema yang dipakai]* |
-| Semantic commit | *[Tautan ke riwayat commit]* | *[Ringkasan]* |
+| Branching | https://github.com/Semicomatose/IF2150-RPL-K03-G03/branches | Branch feature digunakan untuk pengembangan fitur secara independen sebelum diintegrasi dan di-_merge_ ke branch main. |
+| Semantic commit | https://github.com/Semicomatose/IF2150-RPL-K03-G03/commits/main | Digunakan untuk mengomunikasikan tipe dan lingkup dari commit. |
 | Track tasks | *[Tautan ke Issues/Projects]* | *[Jumlah issue, pembagian]* |
 | Pull request dan review | *[Tautan ke 2-3 PR representatif]* | *[Siapa me-review siapa]* |
 | Pengujian | *[Tautan ke `src/tests/` dan hasil test]* | *[Apa yang diuji, cara menjalankan]* |
@@ -229,8 +220,12 @@ Tabel B.4. Kontribusi Anggota
 
 | NIM | Nama | Modul / Fitur yang Dikerjakan | Persentase Kontribusi |
 | :--- | :--- | :--- | :--- |
-| *[NIM 1]* | *[Nama]* | *[Modul/fitur]* | *[%]* |
-| *...* | *...* | *...* | *...* |
+| 13525012 | Steve Bradley Hoeij | Environment tantangan, implementasi UI, integrasi fitur | ... |
+| 13525072 | Fahrezy Fitriansyah | History, user stats | ... |
+| 13525084 | Ariq Ulwan Hammam | ... | ... |
+| 13525132 | Zidane Uland Fakhry | ... | ... |
+| 13525135 | Ananda Aulia Nurramadhan | User authentication | ... |
+| 10124063 | Dominick Vincent Devict |  | Database SQL |
 
 ## B.5 Traceability Kelas Perancangan ke Implementasi
 
