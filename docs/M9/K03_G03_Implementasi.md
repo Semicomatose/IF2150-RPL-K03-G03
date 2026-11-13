@@ -220,12 +220,12 @@ Tabel B.4. Kontribusi Anggota
 
 | NIM | Nama | Modul / Fitur yang Dikerjakan | Persentase Kontribusi |
 | :--- | :--- | :--- | :--- |
-| 13525012 | Steve Bradley Hoeij | Environment tantangan, implementasi UI, integrasi fitur | ... |
+| 13525012 | Steve Bradley Hoeij | Environment tantangan, terminal, implementasi UI, integrasi fitur | ... |
 | 13525072 | Fahrezy Fitriansyah | History, user stats | ... |
 | 13525084 | Ariq Ulwan Hammam | ... | ... |
 | 13525132 | Zidane Uland Fakhry | ... | ... |
 | 13525135 | Ananda Aulia Nurramadhan | User authentication | ... |
-| 10124063 | Dominick Vincent Devict |  | Database SQL |
+| 10124063 | Dominick Vincent Devict | Database SQL | ... |
 
 ## B.5 Traceability Kelas Perancangan ke Implementasi
 
