@@ -4,6 +4,9 @@ import fs from "node:fs/promises";
 import { initializeChallengeSession } from "./backend/services/challengeSessionService.js";
 import { createRestrictedTerminalSession } from "./backend/services/terminalService.js";
 import { authenticateLogin } from "./backend/services/authService.js";
+import { authenticateLogin, hashPassword } from "./backend/services/authService.js";
+import { findUserById, updateUserProfile } from "./backend/repositories/userRepository.js";
+import { getChallengesByCreator, getChallengeHistoryByUser } from "./backend/repositories/challengeRepository.js";
 
 const sessions = new Map();
 
