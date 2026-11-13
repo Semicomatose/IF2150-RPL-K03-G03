@@ -37,7 +37,7 @@
 
 ### Log Penggunaan AI per Milestone
 
-Silakan catat penggunaan AI yang berdampak signifikan pada pengerjaan tugas (misal: *generate* fungsi algoritma yang kompleks, *generate* draf dokumen SKPL/DPPL, atau *debugging* error utama). 
+Silakan catat penggunaan AI yang berdampak signifikan pada pengerjaan tugas (misal: *generate* fungsi algoritma yang kompleks, *generate* draf dokumen SKPL/DPPL, atau *debugging* error utama).
 *Penggunaan sepele seperti memperbaiki *typo* atau auto-complete satu baris kode tidak perlu dicatat.*
 
 ### Milestone 1
@@ -83,7 +83,8 @@ Silakan catat penggunaan AI yang berdampak signifikan pada pengerjaan tugas (mis
 ### Milestone 9
 | Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
 | :--- | :--- | :--- | :--- |
-| *-* | *-* | *-* | *-* |
+| ChatGPT | Desain dan implementasi | Apa tool yang dapat digunakan untuk mengekstrak berkas challenge dari database dan bagaimana cara memisahkan sesi agar bisa terjadi secara paralel dan terisolasi? (menyertakan format berkas tantangan) | Mencoba adm-zip dan unzip |
+| Google Gemini | Membuat layout dasar UI frontend | Buatlah JSX sebagai template untuk ui seperti di gambar (disertakan gambar rancangan ui) | Menambahkan logika dan effect yang sesuai |
 
 ---
 
@@ -99,5 +100,3 @@ Kami yang bertanda tangan di bawah ini menyatakan bahwa seluruh log penggunaan A
 | <img src="./assets/ttd-anggota4.png" width="100"> | **[13525132 - Zidane Uland Fakhry]** |
 | <img src="./assets/ttd-anggota5.png" width="100"> | **[13525135 - Ananda Aulia Nurramadhan]** |
 | <img src="./assets/ttd-anggota6.png" width="100"> | **[10124063 - Dominick Vincent Devict]** |
-
-
