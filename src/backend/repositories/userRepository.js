@@ -50,3 +50,53 @@ export async function updateUserProfile(id, updates) {
 
 	return result.rows[0];
 }
+
+export async function getChallengeHistoryByUser(userId) {
+	const result = await pool.query(`
+		SELECT 
+			c.id AS challenge_id,
+			c.title,
+			c.difficulty,
+			uc.status,
+			uc.updated_at
+		FROM user_challenges uc
+		JOIN challenges c ON c.id = uc.challenge_id
+		WHERE uc.user_id = $1
+		ORDER BY uc.updated_at DESC
+	`, [userId]);
+
+	return result.rows;
+}
+
+export async function getChallengesByCreator(creatorId) {
+	const result = await pool.query(`
+		SELECT 
+			c.id,
+			c.title,
+			c.difficulty,
+			c.status,
+			c.created_at,
+			COUNT(DISTINCT uc.user_id)::int AS total_players
+		FROM challenges c
+		LEFT JOIN user_challenges uc ON uc.challenge_id = c.id
+		WHERE c.creator_id = $1
+		GROUP BY c.id
+		ORDER BY c.created_at DESC
+	`, [creatorId]);
+
+	return result.rows;
+}
+
+export async function upsertUserChallengeProgress(userId, challengeId, status) {
+	const result = await pool.query(`
+		INSERT INTO user_challenges (user_id, challenge_id, status, updated_at)
+		VALUES ($1, $2, $3, NOW())
+		ON CONFLICT (user_id, challenge_id)
+		DO UPDATE SET 
+			status = EXCLUDED.status,
+			updated_at = NOW()
+		RETURNING *
+	`, [userId, challengeId, status]);
+
+	return result.rows[0];
+}
