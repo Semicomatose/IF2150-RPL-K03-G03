@@ -31,6 +31,7 @@
 * [Milestone 6](#milestone-6)
 * [Milestone 7](#milestone-7)
 * [Milestone 8](#milestone-8)
+* [Milestone 9](#milestone-9)
 
 ---
 
@@ -133,3 +134,13 @@
 | *28-10-2026* | *Ananda Aulia Nurramadhan* | *Mengerjakan rancangan tampangan UI dan spesifikasi I-06, I-08, I-09* | *3* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 8:** -
+
+---
+
+### Milestone 9
+**Periode:** [29-10-2026] - [13-11-2026]
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* | 
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| *11-11-2026* | *Ananda Aulia Nurramadhan* | *Mengerjakan fungsionalitas backend user authentication* | *5* | *Done* | *-* |
+
+**Catatan/Evaluasi Milestone 9:** -
