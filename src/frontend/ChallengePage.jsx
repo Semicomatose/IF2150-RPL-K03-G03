@@ -12,6 +12,7 @@ export default function ChallengePage({ challengeId }) {
 	const [result, setResult] = useState(null);
 	const [busy, setBusy] = useState(false);
 	const [userInfo, setUserInfo] = useState({ username: "", email: "", role: "" });
+	const [publishMessage, setPublishMessage] = useState("");
 
 	useEffect(() => {
 		let active = true;
@@ -120,6 +121,27 @@ export default function ChallengePage({ challengeId }) {
 		}
 	}
 
+	async function handlePublish() {
+		if (busy) return;
+		setPublishMessage("");
+		setBusy(true);
+		try {
+			const response = await fetch(`/api/challenges/${challengeId}/publish`, {
+				method: "PATCH",
+				credentials: "same-origin"
+			});
+			const data = await response.json().catch(() => ({}));
+			if (!response.ok) {
+				throw new Error(data.error || "Gagal mempublikasikan tantangan.");
+			}
+			setPublishMessage(data.message || "Tantangan berhasil dipublikasikan.");
+		} catch (err) {
+			setPublishMessage(`Error: ${err.message}`);
+		} finally {
+			setBusy(false);
+		}
+	}
+
 	const pageError = sessionError || error;
 	if (pageError && !sessionId) {
 		return <p className="status-message error" role="alert">{pageError}</p>;
@@ -127,6 +149,8 @@ export default function ChallengePage({ challengeId }) {
 	if (!sessionId) {
 		return <p className="status-message">Creating challenge session...</p>;
 	}
+
+	const canPublish = userInfo.role && userInfo.role !== "PELAJAR";
 
 	return (
 		<div className="challenge-page-wrapper">
@@ -170,7 +194,15 @@ export default function ChallengePage({ challengeId }) {
 						<button className="btn btn-blue" type="button" onClick={submitChallenge} disabled={busy || !!result}>
 							{busy ? "Please wait..." : result ? "Submitted" : "Submit"}
 						</button>
+						{canPublish && (
+							<button className="btn btn-blue" type="button" onClick={handlePublish} disabled={busy}>
+								{busy ? "Please wait..." : "Publish Challenge"}
+							</button>
+						)}
 					</div>
+					{publishMessage && (
+						<p className="status-message">{publishMessage}</p>
+					)}
 				</section>
 			</main>
 		</div>

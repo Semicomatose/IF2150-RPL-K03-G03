@@ -1,9 +1,15 @@
 import { pool } from "../db.js";
 
-export async function saveChallengePackage({ creatorId, title, description, difficulty, packageData }) {
+export async function saveChallengePackage({
+	creatorId,
+	title,
+	description,
+	difficulty,
+	packageData
+}) {
 	const result = await pool.query(`
 		INSERT INTO challenges
-			(creator_id, title, description, difficulty, package_data)
+		(creator_id, title, description, difficulty, package_data)
 		VALUES ($1, $2, $3, $4, $5)
 		RETURNING id, title, difficulty, status, created_at
 	`, [creatorId, title, description, difficulty, packageData]);
@@ -98,6 +104,47 @@ export async function saveTerminalHistory({ attemptId, command, output }) {
 	`, [attemptId, command, output ?? null]);
 }
 
+// Version-A feature: archival record for each submission, alongside `attempts`.
+export async function saveStudentHistory({ challengeId, studentId, statusPengerjaan, skor, riwayatKonsol }) {
+	const result = await pool.query(`
+		INSERT INTO challenge_history
+		(challenge_id, student_id, status_pengerjaan, skor, riwayat_konsol)
+		VALUES ($1, $2, $3, $4, $5)
+		RETURNING id, created_at
+	`, [challengeId, studentId, statusPengerjaan, skor, riwayatKonsol]);
+
+	return result.rows[0];
+}
+
+// Version-A feature: strict DRAF → TERPUBLIKASI. Distinct from
+// updateChallengeStatus (which the creator dashboard uses for the full set
+// of transitions).
+export async function publishChallenge(challengeId, creatorId) {
+	const checkResult = await pool.query(
+		`SELECT status FROM challenges WHERE id = $1 AND creator_id = $2`,
+		[challengeId, creatorId]
+	);
+
+	const challenge = checkResult.rows[0];
+
+	if (!challenge) {
+		return { success: false, message: "Tantangan tidak ditemukan atau Anda bukan pembuatnya." };
+	}
+
+	if (challenge.status === "DRAF") {
+		const updateResult = await pool.query(
+			`UPDATE challenges
+			 SET status = 'TERPUBLIKASI', updated_at = CURRENT_TIMESTAMP
+			 WHERE id = $1
+			 RETURNING id, title, status`,
+			[challengeId]
+		);
+		return { success: true, data: updateResult.rows[0] };
+	}
+
+	return { success: false, message: "Tantangan tidak dapat dipublikasikan." };
+}
+
 export async function getStudentHistory(studentId) {
 	const result = await pool.query(`
 		SELECT
@@ -116,7 +163,6 @@ export async function getStudentHistory(studentId) {
 
 	return result.rows;
 }
-
 
 export async function listCreatorChallenges(creatorId) {
 	const result = await pool.query(`

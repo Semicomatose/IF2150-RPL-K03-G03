@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import { saveStudentHistory } from "../repositories/challengeRepository.js";
 
 const execFileAsync = promisify(execFile);
 const MAX_FILE_SIZE = 1024 * 1024;
@@ -102,30 +103,32 @@ async function runGit(root, args) {
 	return stdout + (stderr ? `\r\n${stderr}` : "");
 }
 
-async function runCommand(root, cwd, args) {
+async function runCommand(root, cwd, args, context = {}) {
 	const [command, ...params] = args;
+	const { challengeId, studentId, tempDir } = context;
 
 	switch (command) {
 		case "help":
 			return [
 				"Available commands:",
-				"  help					 Show this help",
-				"  pwd					 Show current directory",
-				"  ls [path]			 List files",
-				"  cd <path>			 Change directory",
-				"  cat <file>			 Read a text file",
-				"  mkdir <directory>	 Create a directory",
-				"  touch <file>			 Create an empty file",
-				"  clear				 Clear the terminal",
+				"  help                  Show this help",
+				"  pwd                   Show current directory",
+				"  ls [path]             List files",
+				"  cd <path>             Change directory",
+				"  cat <file>            Read a text file",
+				"  mkdir <directory>     Create a directory",
+				"  touch <file>          Create an empty file",
+				"  clear                 Clear the terminal",
 				"Git commands:",
-				"  diff [file]			 Show Git changes",
-				"  status				 Show Git status",
-				"  log					 Recent commits",
-				"  branch				 List branches",
-				"  add <file>			 Stage a file",
-				'  commit -m "message"	 Commit staged changes',
-				"  checkout <branch>	 Switch branches",
-				"  restore <file>		 Restore a file"
+				"  diff [file]           Show Git changes",
+				"  status                Show Git status",
+				"  log                   Recent commits",
+				"  branch                List branches",
+				"  add <file>            Stage a file",
+				'  commit -m "message"   Commit staged changes',
+				"  checkout <branch>     Switch branches",
+				"  restore <file>        Restore a file",
+				"  submit                Submit solution for grading"
 			].join("\r\n");
 		case "pwd":
 			if (params.length) throw new Error("pwd takes no arguments.");
@@ -137,7 +140,7 @@ async function runCommand(root, cwd, args) {
 			return entries.map((entry) => {
 				if (entry.isSymbolicLink()) return `${entry.name}@`;
 				return entry.isDirectory() ? `${entry.name}/` : entry.name;
-			}).sort().join("	   ") || "(empty directory)";
+			}).sort().join("       ") || "(empty directory)";
 		}
 		case "cd": {
 			if (params.length !== 1) throw new Error("Usage: cd <directory>");
@@ -212,12 +215,40 @@ async function runCommand(root, cwd, args) {
 		case "clear":
 			if (params.length) throw new Error("clear takes no arguments");
 			return { clear: true };
+		case "submit": {
+			if (params.length) throw new Error("submit takes no arguments");
+			if (!challengeId || !studentId) {
+				return "Submit is not available in this session.";
+			}
+			try {
+				const scriptPath = tempDir
+					? path.join(tempDir, "verify.sh")
+					: path.join(root, "verify.sh");
+				const { stdout } = await execFileAsync("bash", [scriptPath], { cwd: root });
+				const isSuccess = stdout.includes("PASS") || stdout.includes("SUCCESS");
+				const skor = isSuccess ? 100 : 0;
+
+				await saveStudentHistory({
+					challengeId,
+					studentId,
+					statusPengerjaan: isSuccess ? "SELESAI" : "GAGAL",
+					skor,
+					riwayatKonsol: stdout
+				});
+
+				return isSuccess
+					? "Solution verified successfully! Score: 100"
+					: "Solution verification failed. Please try again.\n" + stdout;
+			} catch (error) {
+				return `Verification error: ${error.message}`;
+			}
+		}
 		default:
 			throw new Error(`Unknown command: ${command || ""}. Type "help" for commands.`);
 	}
 }
 
-export function createRestrictedTerminalSession(ws, repositoryDirectory, { onCommand, onActivity } = {}) {
+export function createRestrictedTerminalSession(ws, repositoryDirectory, context = {}, { onCommand, onActivity } = {}) {
 	let root;
 	let cwd;
 	let input = "";
@@ -252,7 +283,7 @@ export function createRestrictedTerminalSession(ws, repositoryDirectory, { onCom
 
 		let commandOutput = "";
 		try {
-			const result = await runCommand(root, cwd, parseArgs(trimmed));
+			const result = await runCommand(root, cwd, parseArgs(trimmed), context);
 			if (result?.cwd) {
 				cwd = result.cwd;
 			} else if (result?.clear) {

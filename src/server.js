@@ -17,6 +17,8 @@ import {
 	finishAttempt,
 	getStudentHistory,
 	saveTerminalHistory,
+	saveStudentHistory,
+	publishChallenge,
 	saveChallengePackage,
 	listCreatorChallenges,
 	updateCreatorChallenge,
@@ -437,6 +439,19 @@ const server = http.createServer(async (req, res) => {
 			return send(res, 200, updated);
 		}
 
+		// Version-A feature: strict DRAF → TERPUBLIKASI publish. Coexists with
+		// the creator dashboard's POST /api/creator/challenges/:id/publish.
+		const publishMatch = url.pathname.match(/^\/api\/challenges\/([a-f0-9-]+)\/publish$/);
+		if (req.method === "PATCH" && publishMatch) {
+			const user = requireAuthentication(req);
+			requireCreator(user);
+			const result = await publishChallenge(publishMatch[1], user.id);
+			if (!result.success) {
+				throw new HttpError(400, result.message);
+			}
+			return send(res, 200, { message: "Tantangan berhasil dipublikasikan", data: result.data });
+		}
+
 		if (req.method === "GET" && url.pathname === "/api/challenges") {
 			const user = requireAuthentication(req);
 			return send(res, 200, await listChallenges(user.id));
@@ -528,6 +543,19 @@ const server = http.createServer(async (req, res) => {
 
 				if (!attempt) {
 					throw new HttpError(409, "This attempt is no longer active.");
+				}
+
+				// Version-A feature: archive each submission into `challenge_history`.
+				try {
+					await saveStudentHistory({
+						challengeId: session.challengeId,
+						studentId: user.id,
+						statusPengerjaan: verification.passed === true ? "SELESAI" : "GAGAL",
+						skor: score,
+						riwayatKonsol: verification.output || ""
+					});
+				} catch (archiveError) {
+					console.error("Failed to archive challenge_history:", archiveError);
 				}
 
 				session.submitted = true;
@@ -625,12 +653,12 @@ const server = http.createServer(async (req, res) => {
 	} catch (error) {
 		console.error(error);
 		const status = error instanceof HttpError
-			  ? error.status
-			  : error.code === "23505"
-			  ? 409
-			  : error.code === "22P02"
-			  ? 400
-			  : 500;
+			? error.status
+			: error.code === "23505"
+				? 409
+				: error.code === "22P02"
+					? 400
+					: 500;
 
 		return send(res, status, {
 			error: status === 500 && process.env.NODE_ENV === "production"
@@ -697,22 +725,30 @@ server.on("upgrade", (req, socket, head) => {
 			session.sockets.add(ws);
 			session.lastActivityAt = Date.now();
 
-			createRestrictedTerminalSession(ws, session.directory, {
-				onActivity: () => {
-					session.lastActivityAt = Date.now();
+			createRestrictedTerminalSession(
+				ws,
+				session.directory,
+				{
+					challengeId: session.challengeId,
+					studentId: session.creatorMode ? null : session.userId,
+					tempDir: session.tempDir,
+					attemptId: session.attemptId
 				},
-
-				onCommand: async ({ command, output }) => {
-					// Only student sessions save terminal history.
-					if (!session.creatorMode && session.attemptId) {
-						await saveTerminalHistory({
-							attemptId: session.attemptId,
-							command,
-							output
-						});
+				{
+					onActivity: () => {
+						session.lastActivityAt = Date.now();
+					},
+					onCommand: async ({ command, output }) => {
+						if (!session.creatorMode && session.attemptId) {
+							await saveTerminalHistory({
+								attemptId: session.attemptId,
+								command,
+								output
+							});
+						}
 					}
 				}
-			});
+			);
 
 			ws.on("close", () => session.sockets.delete(ws));
 			ws.on("error", (error) => {
