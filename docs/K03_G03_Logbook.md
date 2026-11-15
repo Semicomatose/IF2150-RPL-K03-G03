@@ -32,6 +32,7 @@
 * [Milestone 7](#milestone-7)
 * [Milestone 8](#milestone-8)
 * [Milestone 9](#milestone-9)
+* [Milestone 10](#milestone-10)
 
 ---
 
@@ -147,3 +148,13 @@
 | *13-11-2026* | *Steve Bradley Hoeij* | *Melakukan finishing dan integration setiap fitur dan melakukan final review* | *5* | *Done* | *-* |
 
 **Catatan/Evaluasi Milestone 9:** -
+
+---
+
+### Milestone 10
+**Periode:** [14-11-2026] - [20-11-2026]
+| Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| *-* | *-* | *-* | *-* | *Done/On Progress* | *-* |
+
+**Catatan/Evaluasi Milestone 10:** -

@@ -32,6 +32,7 @@
 * [Milestone 7](#milestone-7)
 * [Milestone 8](#milestone-8)
 * [Milestone 9](#milestone-9)
+* [Milestone 10](#milestone-10)
 
 ---
 
@@ -85,6 +86,11 @@ Silakan catat penggunaan AI yang berdampak signifikan pada pengerjaan tugas (mis
 | :--- | :--- | :--- | :--- |
 | ChatGPT | Desain dan implementasi | Apa tool yang dapat digunakan untuk mengekstrak berkas challenge dari database dan bagaimana cara memisahkan sesi agar bisa terjadi secara paralel dan terisolasi? (menyertakan format berkas tantangan) | Mencoba adm-zip dan unzip |
 | Google Gemini | Membuat layout dasar UI frontend | Buatlah JSX sebagai template untuk ui seperti di gambar (disertakan gambar rancangan ui) | Menambahkan logika dan effect yang sesuai |
+
+### Milestone 10
+| Tool AI | Tujuan Penggunaan | Contoh Prompt Utama | Modifikasi & Validasi Manusia |
+| :--- | :--- | :--- | :--- |
+| *-* | *-* | *-* | *-* |
 
 ---
 
