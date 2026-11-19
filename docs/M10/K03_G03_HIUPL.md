@@ -175,9 +175,29 @@ Tabel 3.2. Implementasi Modul
 
 | No | ID Kelas | Nama Modul/Kelas | Nama File Fisik | Nama File Executable |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | *[C01]* | *[Nama modul/kelas]* | *[path/ke/file]* | *[Nama file executable, atau - jika tidak ada]* |
-| 2 | *[C02]* | *[Nama modul/kelas]* | *[path/ke/file]* | *[...]* |
-| ... | *...* | *...* | *...* | *...* |
+| 1 | C01 | PembuatTantangan | src/backend/repositories/userRepository.js | - |
+| 2 | C02 | Pelajar | src/backend/repositories/userRepository.js | - |
+| 3 | C03 | Tantangan | src/backend/repositories/challengeRepository.js | - |
+| 4 | C04 | WindowEdit | src/frontend/UploadPage.jsx | - |
+| 5 | C05 | EditController | src/frontend/challengeApi.js | - |
+| 6 | C06 | WindowEnvironment | src/frontend/ChallengePage.jsx | - |
+| 7 | C07 | EnvironmentController | src/backend/services/terminalService.js | - |
+| 8 | C08 | WindowRiwayat | src/frontend/HistoryModal.jsx | - |
+| 9 | C09 | RiwayatTantangan | src/backend/repositories/challengeRepository.js | - |
+
+<!--
+| Kelas | Use Case Terkait |
+| :--- | :--- |
+| C01 - PembuatTantangan | UC01 - Mengembangkan Tantangan, UC02 - Mengevaluasi Tantangan, UC04 - Cek Riwayat |
+| C02 - Pelajar | UC03 - Mengerjakan Tantangan, UC04 - Cek Riwayat |
+| C03 - Tantangan | UC01 - Mengembangkan Tantangan, UC02 - Mengevaluasi Tantangan, UC03 - Mengerjakan Tantangan |
+| C04 - WindowEdit | UC01 - Mengembangkan Tantangan |
+| C05 - EditController | UC01 - Mengembangkan Tantangan |
+| C06 - WindowEnvironment | UC02 - Mengevaluasi Tantangan, UC03 - Mengerjakan Tantangan, UC04 - Cek Riwayat |
+| C07 - EnvironmentController | UC02 - Mengevaluasi Tantangan, UC03 - Mengerjakan Tantangan |
+| C08 - WindowRiwayat | UC04 - Cek Riwayat |
+| C09 - RiwayatTantangan | UC03 - Mengerjakan Tantangan, UC04 - Cek Riwayat |
+-->
 
 ## 3.3 Implementasi Antarmuka
 
