@@ -164,15 +164,13 @@ Tabel 3.1. Lingkungan Implementasi
 | Aspek | Keterangan |
 | :--- | :--- |
 
-| *Hardware* | *[Spesifikasi perangkat keras]* |
-
+| *Hardware* | Desktop |
 | *Operating System* | Server: NixOS 25.06. Client: lintas platform, cukup mendukung web browser Mozilla Firefox 150+. |
 | *Bahasa Pemrograman* | JavaScript di atas runtime NodeJS 24 LTS untuk sisi server; HTML, CSS, dan JavaScript untuk sisi client yang berjalan di web browser. |
 | *Framework/Library* | React JS untuk pembuatan antarmuka pengguna. |
 | *DBMS* | PostgreSQL 18, untuk data persisten: data pengguna, tantangan, riwayat pengerjaan, percobaan, nilai, dan status kelulusan. |
 | *Development Tools* | Git 2.54.0 dan GitHub untuk kendali versi kode; Nginx sebagai server web; draw.io/StarUML dan PlantUML untuk pemodelan UML. |
-
-| *Testing Tools* | *[Framework unit test, alat ukur performa, alat coverage]* |
+| *Testing Tools* | Manual (untuk pengujian use case) |
 
 ## 3.2 Implementasi Modul
 
@@ -318,24 +316,61 @@ Tabel 4.3.2. Hasil Pengujian Integrasi
 
 ## 4.4 Pengujian Use Case
 
-> Pengujian use case dilakukan pada seluruh skenario normal dan alternatif sesuai Subbab 4.4 SKPL, dengan minimal satu test case untuk setiap skenario. Kolom ID KF menunjukkan KF yang diverifikasi oleh test case tersebut.
+### 4.4.1 Use Case Mengembangkan Tantangan
 
-### 4.4.1 Use Case [Nama Use Case 1]
+**ID Use Case:** UC01
+**Nama Use Case:** Mengembangkan Tantangan
 
-**ID Use Case:** *[UC01 sesuai SKPL]*  
-**Nama Use Case:** *[Nama use case sesuai SKPL]*
-
-Tabel 4.4.1. Hasil Pengujian Use Case [UC01]
+Tabel 4.4.1. Hasil Pengujian Use Case UC01
 
 | ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| *UC01-TC01* | *KF01* | *Normal* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Login".* | *User: rpl@gmail.com<br>Pass: 123456* | *Pengguna diarahkan ke Halaman Dashboard.* | *Pengguna diarahkan ke Halaman Dashboard sesuai hasil yang diharapkan.* | *Pass* |
-| *UC01-TC02* | *KF01* | *Alternatif 1: [Nama skenario]* | *[Langkah-langkah pengujian]* | *[Data masukan]* | *[Hasil yang diharapkan]* | *[Hasil aktual]* | *[Pass/Fail. Jika Fail: penjelasan dan solusi]* |
-| *...* | *...* | *...* | *...* | *...* | *...* | *...* | *...* |
+| *UC01-TC01* | *KF01, KF03* | *Normal* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Log In".<br>4. Klik tombol "Create New Challenge".<br>5. Unggah file pada kotak "Upload your challenge here (.zip)."* | *Username: user-demo<br>Password: password123<br>File: test/challenge.zip* | *File diterima dan dapat diunggah.* | *File diterima namun tidak dapat diunggah.* | *Fail: Sistem sudah bisa menverifikasi bahwa file yang diunggah adalah file .zip, namun bermasalah dalam pemrosesan file tersebut (terlihat via pesan error "Invalid challenge package: spawn unzip ENOENT").* |
+| *UC01-TC02* | *KF01, KF03* | *Alternatif 1: Berkas Tantangan Gagal Diproses* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Log In".<br>4. Klik tombol "Create New Challenge".<br>5. Unggah file pada kotak "Upload your challenge here (.zip)."* | *Username: user-demo<br>Password: password123<br>File: (File bukan .zip)* | *Pengguna mendapatkan peringatan bahwa file tantangan tidak valid.* | *Pengguna mendapatkan peringatan bahwa file tantangan tidak valid.* | *Pass* |
 
-### 4.4.2 Use Case [Nama Use Case 2]
+### 4.4.2 Use Case Mengevaluasi Tantangan
 
-*[Lanjutkan untuk seluruh use case dengan pola yang sama, hingga 4.4.N.]*
+**ID Use Case:** UC02
+**Nama Use Case:** Mengevaluasi Tantangan
+
+Tabel 4.4.2. Hasil Pengujian Use Case UC02
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC02-TC01* | *KF02* | *Normal* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Log In".<br>4. Klik tombol tantangan "Broken Repo".<br>5. Kirim command valid melalui Terminal.<br>6. Publikasikan tantangan.* | *Username: user-demo<br>Password: password123<br>* | *Sistem akan melakukan perubahan terhadap repository sesuai command, lalu menambahkan tantangan ke bank tantangan secara publik.* | *Tantangan tidak dapat dimuat sehingga Terminal tidak dapat diakses, namun tantangan dapat dipublikasi.* | *Fail: Pemrosesan file tantangan masih bermasalah.* |
+| *UC02-TC02* | *KF02* | *Alternatif 1: Mengubah Tantangan yang Sudah Dipublikasikan* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Log In".<br>4. Klik tombol "Manage challenges & attempts".<br>5. Lakukan perubahan pada kolom Title, Description, dan/atau Difficulty.<br>6. Klik tombol "Save changes".* | *Username: user-demo<br>Password: password123<br>* | *Username: user-demo<br>Password: password123<br>* | *Perubahan pada tantangan disimpan.* | *Perubahan pada tantangan disimpan.* | *Pass* |
+| *UC02-TC03* | *KF02* | *Alternatif 2: Menghapus Tantangan yang Sudah Dipublikasikan* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Log In".<br>4. Klik tombol "Manage challenges & attempts".<br>5. Klik tombol "Schedule deletion".* | *Username: user-demo<br>Password: password123<br>* | *Tantangan dihapus dari bank tantangan.* | *-* | *-* |
+
+
+<!--
+| *UC02-TC01* | *KF01, KF03* | *Normal* | *1. Buka halaman login.<br>2. Masukkan kredensial.<br>3. Klik tombol "Log In".<br>4. Klik tombol "Create New Challenge".<br>5. Unggah file pada kotak "Upload your challenge here (.zip)."* | *Username: user-demo<br>Password: password123<br>File: test/challenge.zip* | *File diterima dan dapat diunggah.* | *File diterima namun tidak dapat diunggah.* | *Fail: Sistem sudah bisa menverifikasi bahwa file yang diunggah adalah file .zip, namun bermasalah dalam pemrosesan file tersebut (terlihat via pesan error "Invalid challenge package: spawn unzip ENOENT").* |
+| *UC02-TC02* | *KF* | *Alternatif 1: * | *Langkah* | *Input* | *Harapan* | *Hasil* | *Pass* |
+-->
+
+### 4.4.3 Use Case Mengerjakan Tantangan
+
+**ID Use Case:** UC03
+**Nama Use Case:** Mengerjakan Tantangan
+
+Tabel 4.4.3. Hasil Pengujian Use Case UC03
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC03-TC01* | *KF04, KF05, KF06, KF07, KF08, KF09, KF10* | *Normal* | *1. Buka halaman signup.<br>2. Buat akun pelajar baru.<br>3. Klik tantangan yang tersedia.<br>4. Kirim command valid via Terminal.<br>5. Klik tombol "Submit".* | *-* | *Sistem melakukan perubahan pada repository sesuai command, dan mengevaluasi environment ketika hasil pekerjaan pelajar di-submit.* | *Tantangan tidak dapat dimuat.* | *Fail: Pemrosesan file tantangan masih bermasalah.* |
+| *UC03-TC02* | *KF04* | *Alternatif 1: Pelajar Keluar di Tengah Pengerjaan* | *1. Buka halaman signup.<br>2. Buat akun pelajar baru.<br>3. Klik tantangan yang tersedia.<br>4. Keluar dari halaman pengerjaan tantangan.* | *-* | *Pelajar akan dibawa ke halaman Dashboard dan progress pengerjaan, jika ada, akan hilang.* | *Tantangan tidak dapat dimuat.* | *Fail: Pemrosesan file tantangan masih bermasalah.* |
+| *UC03-TC03* | *KF04* | *Alternatif 2: Pelajar Mengulang Pengerjaan* | *1. Buka halaman signup.<br>2. Buat akun pelajar baru.<br>3. Klik tantangan yang tersedia.<br>4. Ulang attempt pengerjaan tantangan.* | *-* | *Sistem me-reset lingkungan tantangan dan progress pelajar akan terhapus.* | *Tantangan tidak dapat dimuat.* | *Fail: Pemrosesan file tantangan masih bermasalah.* |
+
+### 4.4.4 Use Case Cek Riwayat
+
+**ID Use Case:** UC04
+**Nama Use Case:** Cek Riwayat
+
+Tabel 4.4.1. Hasil Pengujian Use Case UC04
+
+| ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| *UC04-TC01* | *KF11, KF12* | *Normal* | *1. Buka halaman signup.<br>2. Buat akun pelajar baru.<br>3. Klik icon profil.<br>4. Klik tombol "History".* | *-* | *Pengguna berada di halaman riwayat pengerjaan tantangan, dan dapat melihat tantangan yang sudah dikerjakan.* | *Pengguna berada di halaman riwayat pengerjaan tantangan, dan dapat melihat tantangan yang sudah dikerjakan.* | *Pass* |
+| *UC04-TC02* | *KF11, KF12* | *Alternatif 1: Pelajar Mengulang Tantangan* | *1. Buka halaman signup.<br>2. Buat akun pelajar baru.<br>3. Klik icon profil.<br>4. Klik tombol "History".<br>5. Klik pada tantangan yang sudah pernah dikerjakan.<br>Klik tombol kerjakan ulang.* | *-* | *Pengguna dapat mengerjakan ulangan tantangan dari halaman riwayat.* | *-* | *Fail: Tidak dapat diuji, karena tantangan tidak dapat dimuat.* |
 
 <br>
 
@@ -362,13 +397,16 @@ Tabel 4.6. Bukti Hasil Pengujian
 
 | ID Pengujian | Bukti Hasil Pengujian |
 | :--- | :--- |
-| *C02-UT01 – C02-UT08* | *[Sisipkan hasil keluaran unit test]* |
-| *C02 (coverage)* | *[Sisipkan laporan coverage kelas C02]* |
-| *INT-TC01* | *[Sisipkan bukti pengujian integrasi]* |
-| *UC01-TC01* | *[Sisipkan tangkapan layar UC01-TC01 sesuai prosedur pengujian]* |
-| *UC01-TC02* | *[Sisipkan tangkapan layar UC01-TC02 sesuai prosedur pengujian]* |
-| *KNF01-TC01* | *[Sisipkan bukti pengukuran parameter KNF01-TC01]* |
-| *...* | *...* |
+| *UC01-TC01* | <img alt="" src="./assets/UC01-TC01.png" width="700"> |
+| *UC01-TC02* | <img alt="" src="./assets/UC01-TC02.png" width="700"> |
+| *UC02-TC01* | <img alt="" src="./assets/UC02-TC02-1.png" width="700"><br><img alt="" src="./assets/UC02-TC01-2.png" width="700"> |
+| *UC02-TC02* | <img alt="" src="./assets/UC02-TC02.png" width="700"> |
+| *UC02-TC03* | - |
+| *UC03-TC01* | <img alt="" src="./assets/UC03-TC.png" width="700"> |
+| *UC03-TC02* | <img alt="" src="./assets/UC03-TC.png" width="700"> |
+| *UC03-TC03* | <img alt="" src="./assets/UC03-TC.png" width="700"> |
+| *UC04-TC01* | <img alt="" src="./assets/UC04-TC.png" width="700"> |
+| *UC04-TC02* | <img alt="" src="./assets/UC03-TC.png" width="700"> |
 
 <br>
 

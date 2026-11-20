@@ -155,6 +155,6 @@
 **Periode:** [14-11-2026] - [20-11-2026]
 | Tanggal | Nama Anggota | Deskripsi Pekerjaan | Durasi (Jam) | Status | Kendala / *Blocker* |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| *-* | *-* | *-* | *-* | *Done/On Progress* | *-* |
+| *20-11-2026* | *Ananda Aulia Nurramadhan* | *Melakukan pengujian use case* | *3* | *Done* | *Beberapa test case tidak dapat diuji* |
 
 **Catatan/Evaluasi Milestone 10:** -
