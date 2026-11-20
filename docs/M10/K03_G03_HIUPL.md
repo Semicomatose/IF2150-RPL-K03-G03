@@ -69,12 +69,12 @@ Dipersiapkan oleh:
 # BAB 1: Pendahuluan
 
 ## 1.1 Tujuan Penulisan Dokumen
-
 Dokumen HIUPL adalah dokumentasi dari hasil implementasi dan pengujian perangkat lunak _Commitment Issues_ yang dibuat sebagai titik acuan atau panduan selama proses pengembangan. Dokumen ini diperuntukan para pengembang perangkat lunak _Commitment Issues_ dan semua guru, dosen, atau pengajar lainnya yang ingin menggunakan perangkat lunak _Commitment Issues_ dalam proses pengajaran Git.
 
 ## 1.2 Lingkup Masalah
+_Commitment Issues_ merupakan aplikasi pembelajaran Git berbasis web. Aplikasi ini menyediakan tantangan yang melatih penggunaan Git dalam project nyata. Pembuat Tantangan dapat mengunggah, menguji, mengevaluasi, dan mengelola tantangan. Pelajar dapat memilih tantangan, menjalankan perintah Git pada lingkungan pengerjaan tantangan, mengirimkan solusi, dan melihat riwayat pengerjaan.
 
-Git adalah sistem kendali versi yang memungkinkan penggunanya untuk melacak perubahan pada kode dan mengatur proyek menggunakan perintah-perintah sederhana. Menurut Stack Overflow Developer Survey pada 2022 yang mengakumulasi jawaban dari 70.000 developer, 93,87% responden mengadopsi Git sebagai sistem kendali versi. _Commitment Issues_ bertujuan untuk menyediakan sarana pembelajaran interaktif yang menyimulasikan penerapan Git dalam suatu proyek yang realistis, sehingga memberikan pengalaman belajar yang lebih relevan dan mudah diterapkan bagi pelajar. Perangkat lunak ini akan berfokus untuk menguji pelajar dalam menghadapi skenario-skenario yang sering ditemukan saat menggunakan Git, contohnya penanganan konflik.
+Sistem menggunakan arsitektur client-server. Antarmuka web berkomunikasi dengan server melalui HTTP API dan WebSocket. Server mengelola autentikasi, data tantangan dan percobaan, arsip paket tantangan, sesi repository, terminal terbatas, serta verifikasi solusi. Data persisten dikelola menggunakan PostgreSQL, sedangkan repository tantangan dijalankan pada direktori sandbox di sisi server.
 
 ## 1.3 Definisi, Istilah, dan Singkatan
 
@@ -112,7 +112,14 @@ Tabel 1.4. Aturan Penomoran
 | *Test Case KNF* | *KNFXX-TCYY* | *XX adalah nomor KNF, YY adalah nomor urut test case pada KNF tersebut* |
 
 ## 1.5 Referensi
-> Cantumkan daftar buku, panduan, atau dokumentasi lain yang dirujuk dalam pembuatan dokumen dan pengembangan P/L, **minimal dokumen SKPL, APL, DPPL, dan Implementasi (Tugas 9)**. Tambahkan dokumentasi *framework*/*library*/*testing tool* atau referensi lain apabila digunakan.
+- [Dokumen SKPL](../M5/K03_G03_SKPL.md)
+- [Dokumen APL](../M6/K03_G03_APL.md)
+- [Dokumen DPPL](../M8/K03_G03_DPPL2.md)
+- [Dokumen Implementasi](../M10/K03_G03_Implementasi.md)
+- [Dokumentasi Node.js](https://nodejs.org/api)
+- [Dokumentasi React](https://react.dev)
+- [Dokumentasi PostgreSQL](https://www.postgresql.org/docs)
+- [Dokumentasi Git](https://git-scm.org/docs)
 
 - SKPL Commitment Issues
 - APL Commitment Issues
@@ -134,7 +141,8 @@ Dokumen ini terdiri atas pendahuluan dokumen (bab 1), deskripsi umum P/L (bab 2)
 
 # BAB 2: Deskripsi Umum Perangkat Lunak
 
-_Commitment Issues_ merupakan aplikasi pembelajaran Git dimana pelajar dapat mengerjakan berbagai tantangan yang didesain untuk menyimulasikan skenario-skenario realistis yang mungkin ditemukan ketika menggunakan Git. Untuk menyimpan data Pelajar, seperti biodata Pelajar dan riwayat tantangan-tantangan yang sudah pernah diselesaikan atau sedang dikerjakan, sistem akan berinteraksi dengan suatu **Database**. Sistem akan mengirimkan perubahan riwayat pelajar ke **Database** setiap kali Pelajar menyelesaikan suatu tantangan atau keluar dari tampilan pengerjaan tantangan. **Database** juga akan menyimpan data para Pembuat Tantangan, yaitu biodata pengguna dan informasi dari tantangan-tantangan yang pernah dibuat oleh Pembuat Tantangan tersebut. 
+
+_Commitment Issues_ merupakan aplikasi pembelajaran Git dimana pelajar dapat mengerjakan berbagai tantangan yang didesain untuk menyimulasikan skenario-skenario realistis yang mungkin ditemukan ketika menggunakan Git. Untuk menyimpan data Pelajar, seperti biodata Pelajar dan riwayat tantangan-tantangan yang sudah pernah diselesaikan atau sedang dikerjakan, sistem akan berinteraksi dengan suatu **Database**. Sistem akan mengirimkan perubahan riwayat pelajar ke **Database** setiap kali Pelajar menyelesaikan suatu tantangan atau keluar dari tampilan pengerjaan tantangan. **Database** juga akan menyimpan data para Pembuat Tantangan, yaitu biodata pengguna dan informasi dari tantangan-tantangan yang pernah dibuat oleh Pembuat Tantangan tersebut.
 
 Dalam menginisiasi sebuah repository untuk tantangan, sistem akan mengextract sebuah zip setup yang telah dibuat oleh Pembuat Tantangan. File zip tersebut berisikan data repositori Git untuk tantangan tersebut, beserta script-script untuk menginisiasi repository tantangan, mengulang tantangan, dan memverifikasi jawaban. Repository tantangan disimpan pada environment sandbox yang berada di server sistem.
 
@@ -157,19 +165,18 @@ Saat seorang Pelajar mengerjakan suatu tantangan atau seorang Pembuat Tantangan 
 
 ## 3.1 Lingkungan Implementasi
 
-> Tuliskan *hardware* dan *software* yang digunakan untuk implementasi, mencakup *operating system*, bahasa pemrograman beserta versinya, *framework*/*library*, DBMS, *development tools*, dan *version control*. Lingkungan ini harus konsisten dengan **Subbab 2.1 DPPL**; jelaskan jika ada perubahan. Cantumkan juga *framework* dan alat pengujian yang dipakai.
-
 Tabel 3.1. Lingkungan Implementasi
 
 | Aspek | Keterangan |
 | :--- | :--- |
-| *Hardware* | Desktop |
+| *Hardware* | HP Prodesk 600 G1 SFF Intel Core i3-4170 CPU @ 3.70GHz dengan RAM 4GB |
 | *Operating System* | Server: NixOS 25.06. Client: lintas platform, cukup mendukung web browser Mozilla Firefox 150+. |
-| *Bahasa Pemrograman* | JavaScript di atas runtime NodeJS 24 LTS untuk sisi server; HTML, CSS, dan JavaScript untuk sisi client yang berjalan di web browser. |
-| *Framework/Library* | React JS untuk pembuatan antarmuka pengguna. |
+| *Bahasa Pemrograman* | JavaScript dengan runtime NodeJS 24 LTS untuk backend; JavaScript, JSX, HTML, dan CSS untuk frontend. |
+| *Framework/Library* | React dan React DOM, Vite dan plugin React; ws untuk WebSocket; pg untuk PostgreSQL; dotenv; @xterm/xterm dan @xterm/addon-fit untuk terminal. |
 | *DBMS* | PostgreSQL 18, untuk data persisten: data pengguna, tantangan, riwayat pengerjaan, percobaan, nilai, dan status kelulusan. |
 | *Development Tools* | Git 2.54.0 dan GitHub untuk kendali versi kode; Nginx sebagai server web; draw.io/StarUML dan PlantUML untuk pemodelan UML. |
 | *Testing Tools* | Manual (untuk pengujian use case) |
+
 
 ## 3.2 Implementasi Modul
 
@@ -205,26 +212,45 @@ Tabel 3.2. Implementasi Modul
 
 ## 3.3 Implementasi Antarmuka
 
-> Daftar antarmuka yang telah diimplementasikan. Gunakan ID dan nama layar yang sama dengan ID dan nama layar pada tugas DPPL.
-
 Tabel 3.3. Implementasi Antarmuka
 
 | No | ID Antarmuka | Nama Antarmuka | Nama File Fisik | Nama File Executable |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | *[I-01]* | *[Nama layar]* | *[path/ke/file]* | *[Nama file executable, atau - jika tidak ada]* |
-| 2 | *[I-02]* | *[Nama layar]* | *[path/ke/file]* | *[...]* |
-| ... | *...* | *...* | *...* | *...* |
+| 1 | I-01 | Landing Page | frontend/LandingPage.jsx | - |
+| 2 | I-02 | Signup | frontend/SignupPage.jsx | - |
+| 3 | I-03 | Login | frontend/LoginPage.jsx | - |
+| 4 | I-04 | Main Menu | frontend/MainPage.jsx | - |
+| 5 | I-05 | Filter Challenges Modal | frontend/FilterModal.jsx | - |
+| 6 | I-06 | Profile Options Modal | frontend/ProfileModal.jsx | - |
+| 7 | I-07 | History | frontend/HistoryModal.jsx | - |
+| 8 | I-08 | Challenge Upload | frontend/UploadPage.jsx, frontend/UploadModal.jsx | - |
+| 9 | I-09 | Challenge Environment | frontend/ChallengePage.jsx, frontend/components/terminal/ChallengeTerminal.jsx | - |
+| 10 | I-10 | Evaluation Environment | frontend/EvaluationPage.jsx, src/frontend/CreatorEvaluationPage.jsx | - |
 
 ## 3.4 File Lain
-
-> Daftar file lain yang dibuat selain file kelas dan antarmuka, misalnya file *utility*, *configuration*, *database schema/seed*, *file test*, atau *data*.
 
 Tabel 3.4. File Lain
 
 | No | Nama File | Keterangan |
 | :--- | :--- | :--- |
-| 1 | *[Nama file]* | *[Fungsi file]* |
-| ... | *...* | *...* |
+| 1 | backend/db.js | Konfigurasi koneksi/pool PostgreSQL dan fungsi query. |
+| 2 | backend/services/authService.js | Pembuatan hash password dan autentikasi login. |
+| 3 | backend/services/challengeSessionService.js | Validasi paket zip, ekstraksi paket, dan inisialisasi sesi repositori tantangan. |
+| 4 | backend/services/challengeVerificationService.js | Eksekusi verify.sh dan interpretasi skor dari exit code. |
+| 5 | backend/services/gitService.js | Pembuatan sesi repositori dan eksekusi perintah Git yang diizinkan. |
+| 6 | backend/services/terminalService.js | Terminal WebSocket terbatas, validasi path, dan pemrosesan perintah. |
+| 7 | backend/repositories/userRepository.js | Query data pengguna. |
+| 8 | backend/repositories/challengeRepository.js | Query tantangan, percobaan, dan riwayat. |
+| 9 | server.js | HTTP server, API, autentikasi sesi, dan WebSocket. |
+| 10 | package.json | Metadata project, dependensi, dan perintah npm. |
+| 11 | vite.config.js | Konfigurasi Vite dan proxy API/WebSocket. |
+| 12 | scripts/test-core.test.js | Tes otomatis untuk pengujian inti. |
+| 13 | scripts/test-auth.js | Pengujian autentikasi manual. |
+| 14 | scripts/test-challenge-session.js | Pengujian sesi tantangan. |
+| 15 | scripts/test-db.js | Pengujian koneksi/database. |
+| 16 | scripts/test-git.js | Pengujian gitService. |
+| 17 | scripts/test-package-storage.js | Pengujian penyimpanan paket. |
+| 18 | README.org | Petunjuk menjalankan backend, frontend, dan CLI. |
 
 <br>
 
@@ -242,49 +268,78 @@ Tabel 4.1.1. Identifikasi Tingkat Pengujian Kelas
 
 | ID Kelas | Nama Kelas | Tingkat | Alasan | Test Case Terkait |
 | :--- | :--- | :--- | :--- | :--- |
-| *C02* | *Pesanan* | *Mendalam* | *Memuat `hitungTotal()` dan transisi status pembayaran* | *C02-UT01 s.d. C02-UT08* |
-| *C03* | *Keranjang* | *Sedang* | *Delegasi sederhana ke Produk dan Pesanan* | *C03-UT01 s.d. C03-UT03, INT-TC02* |
-| *C01* | *Pelanggan* | *Tidak perlu* | *Hanya menyimpan data akun, tanpa logika* | *-* |
-| *[CXX]* | *[Nama kelas]* | *[Mendalam/Sedang/Tidak perlu]* | *[Alasan penentuan tingkat pengujian]* | *[ID test case atau -]* |
-| *...* | *...* | *...* | *...* | *...* |
+| *C01* | PembuatTantangan | Sedang | Representasi pengguna/pembuat tantangan; operasi data didelegasikan ke repositori dan server. | - |
+| *C02* | Pelajar | Sedang | Representasi pengguna/pelajar; operasi data didelegasikan ke repositori dan server. | - |
+| *C03* | Tantangan | Sedang | Memuat penyimpanan/pengambilan tantangan, status publikasi, dan pengelolaan paket. | - |
+| *C04* | WindowEdit | Sedang | Boundary untuk input metadata dan unggah berkas. | - |
+| *C05* | EditController | Mendalam | Validasi paket dan proses penyimpanan/unggah merupakan aturan penting. | C05-UT01 s.d. C05-UT02 |
+| *C06* | WindowEnvironment | Sedang | Boundary untuk terminal, aksi pengerjaan, reset, submit, dan keluar. | - |
+| *C07* | EnvironmentController | Mendalam | Menjalankan perintah, membatasi akses repository, menginisialisasi sesi, dan memverifikasi solusi. | C07-UT01 s.d. C07-UT12 |
+| *C08* | WindowRiwayat | Sedang | Boundary untuk daftar/detail riwayat dan aksi mengerjakan ulang. | - |
+| *C09* | RiwayatTantangan | Sedang | Menyimpan/mengambil data percobaan dan riwayat terminal dari database. | - |
 
 ## 4.2 Pengujian Unit Kelas
 
 > Pengujian unit dilakukan pada kelas bertingkat Mendalam dan Sedang. Kelas Mendalam diuji pada seluruh operasi public dengan kasus normal, batas, dan negatif, serta mencapai *coverage* minimal 70%. Kelas Sedang diuji minimal dengan satu kasus normal dan satu kasus gagal pada operasi public utama.
 
-Cara menjalankan unit test: *[tuliskan perintah, mis. `pytest src/tests/`]*.
+Cara menjalankan unit test: `npm test`.
 
-Lokasi file test: *[path, mis. `src/tests/`]*.
+Lokasi file test: `src/scripts/`.
 
-### 4.2.1 Kelas [Nama Kelas 1]
+### 4.2.1 Kelas EditController
 
-**ID Kelas:** *[C02]*  
-**Nama Kelas:** *[Pesanan]*  
-**Tingkat:** *[Mendalam]*
+**ID Kelas:** C05
+**Nama Kelas:** EditController
+**Tingkat:** Mendalam
 
-Tabel 4.2.1. Hasil Pengujian Unit Kelas [C02]
+Tabel 4.2.1. Hasil Pengujian Unit Kelas C05
 
 | ID Pengujian | Operasi yang Diuji | Jenis Kasus | Prosedur/Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| *C02-UT01* | *`hitungTotal(): Decimal`* | *Normal* | *Pesanan berisi 2 item: 10.000 x 2 dan 5.000 x 1* | *Total = 25.000* | *[Hasil aktual]* | *Pass/Fail* |
-| *C02-UT02* | *`hitungTotal(): Decimal`* | *Batas* | *Pesanan berisi tepat 1 item dengan jumlah 1* | *Total = harga item tersebut* | *[...]* | *Pass/Fail* |
-| *C02-UT03* | *`hitungTotal(): Decimal`* | *Negatif* | *Pesanan tanpa item* | *Total = 0 atau melempar kesalahan sesuai rancangan* | *[...]* | *Pass/Fail* |
-| *...* | *...* | *...* | *...* | *...* | *...* | *...* |
+| C05-UT01 | `validateChallengePackageBuffer()` | Negatif/batas | Memberi string dan Buffer kosong sebagai input. | Input yang bukan Buffer dan paket kosong ditolak. | Test `package validator rejects non-Buffer and empty input` berhasil. | Pass |
+| C05-UT02 | `validateChallengePackageBuffer()` | Normal | Membuat outer ZIP berisi `repo.zip` yang memuat direktori `repo/` dan `.git`. | Paket dengan struktur repository yang valid diterima. | Test `package validator accepts outer ZIP with repo.zip containing repo/.git` berhasil. | Pass |
 
-Khusus kelas **Mendalam**:
-
-Tabel 4.2.1b. Ringkasan Cakupan Kelas [C02]
+Tabel 4.2.1b. Ringkasan Cakupan Kelas C05
 
 | Informasi | Keterangan |
 | :--- | :--- |
-| Daftar operasi public pada DPPL | *[op1(), op2(), ...]* |
-| Operasi yang diuji | *[op1(), op2(), ...]* |
-| ID Algoritma yang tercakup | *[Algo-001, ...]* |
-| Coverage (wajib ≥ 70%) | *[% baris / % cabang, alat dan bukti pada 4.6]* |
+| Daftar operasi public pada DPPL | `ambilDaftarTantangan()`, `validasiBerkas()`, `simpanTantangan()` |
+| Operasi yang diuji | Validasi paket melalui `validateChallengePackageBuffer()`; operasi simpan dan pengambilan daftar belum diuji. |
+| ID Algoritma yang tercakup | Tidak ada ID algoritma DPPL yang dapat dinyatakan tercakup sepenuhnya oleh dua test ini. |
+| Coverage (wajib ≥ 70%) | - |
 
-### 4.2.2 Kelas [Nama Kelas 2]
+### 4.2.2 Kelas EnvironmentController
 
-*[Ulangi pola 4.2.1 untuk setiap kelas bertingkat Mendalam atau Sedang.]*
+**ID Kelas:** C07
+**Nama Kelas:** EnvironmentController
+**Tingkat:** Mendalam
+
+Tabel 4.2.2. Hasil Pengujian Unit Kelas C07
+
+| ID Pengujian | Operasi yang Diuji | Jenis Kasus | Prosedur/Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| C07-UT01 | `createSession()` | Normal | Buat repository Git dengan direktori `.git`, lalu buat sesi. | Sesi dibuat dan direktori repository dikenali. | Test `git session accepts a directory containing .git` berhasil. | Pass |
+| C07-UT02 | `createSession()` | Negatif | Berikan direktori tanpa `.git`. | Operasi ditolak karena direktori bukan repository Git valid. | Test `git session rejects a directory without .git` berhasil. | Pass |
+| C07-UT03 | `runGitCommand()` | Normal | Jalankan `status` dan `log` pada repository valid. | Kedua perintah berhasil dan menghasilkan output yang sesuai. | Test `git status and log return successful output` berhasil. | Pass |
+| C07-UT04 | `runGitCommand()` | Negatif | Jalankan command `push` yang tidak diizinkan. | Command ditolak oleh allowlist. | Test `git command allowlist rejects unknown commands` berhasil. | Pass |
+| C07-UT05 | `runGitCommand()` | Negatif/boundary | Jalankan `add` dengan path `../outside` dan argumen `--force`. | Path traversal dan option injection ditolak. | Test `git add rejects path traversal and option injection` berhasil. | Pass |
+| C07-UT06 | `runGitCommand()` | Normal | Tambahkan file relatif `new.txt`. | File berhasil di-stage. | Test `git add stages a valid relative file` berhasil. | Pass |
+| C07-UT07 | `verifyChallengeRepository()` | Negatif | Berikan path `verify.sh` yang tidak ada. | Hasil menunjukkan verifikasi gagal, skor 0, dan pesan file tidak ditemukan. | Test `verification returns not-found result when verify.sh is absent` berhasil. | Pass |
+| C07-UT08 | `verifyChallengeRepository()` | Normal/batas atas | Script mencetak `all-good` lalu exit code 100. | Hasil verifikasi `ok:true`, `passed:true`, skor 100. | Test `verification interprets exit code 100 as passed` berhasil. | Pass |
+| C07-UT09 | `verifyChallengeRepository()` | Batas bawah | Script berakhir dengan exit code 0. | Hasil valid, tidak lulus, skor 0. | Test `verification interprets exit code 0 as a valid zero score` berhasil. | Pass |
+| C07-UT10 | `verifyChallengeRepository()` | Normal parsial | Script berakhir dengan exit code 65. | Hasil valid, tidak lulus, skor 65. | Test `verification preserves partial scores from exit codes 1 through 99` berhasil. | Pass |
+| C07-UT11 | `createRestrictedTerminalSession()` | Normal | Buat sesi terminal dan kirim perintah `pwd` serta `help`. | Terminal siap dan menampilkan direktori serta daftar perintah. | Test `terminal initializes and supports pwd and help` berhasil. | Pass |
+| C07-UT12 | `createRestrictedTerminalSession()` | Negatif keamanan | Kirim perintah `cd ..` dari root repository. | Terminal menolak perpindahan keluar root repository. | Test `terminal blocks attempts to leave repository root` berhasil. | Pass |
+| C07-UT13 | `createRestrictedTerminalSession()` | Negatif | Kirim payload WebSocket berupa JSON tidak valid. | Terminal menampilkan pesan input tidak valid. | Test `terminal rejects malformed input messages` berhasil. | Pass |
+
+Tabel 4.2.2b. Ringkasan Cakupan Kelas C07
+
+| Informasi | Keterangan |
+| :--- | :--- |
+| Daftar operasi public pada DPPL | `muatTantangan()`, `siapkanLingkungan()`, `eksekusiCommandUji()`, `prosesCommand()`, `validasiSolusi()`, `simpanSolusi()`, `publikasiTantangan()`, `hapusTantangan()`, `akhiriPengerjaan()`, `initiateRepo()` |
+| Operasi yang diuji | Fungsi service terkait sesi Git, eksekusi command Git, verifikasi repository, dan terminal terbatas. Tidak seluruh operasi public DPPL diuji. |
+| ID Algoritma yang tercakup | Sebagian perilaku verifikasi solusi terkait Algo-04 diuji melalui interpretasi exit code; integrasi pembaruan database pada algoritma belum diuji. |
+| Coverage (wajib ≥ 70%) | - |
 
 <br>
 
@@ -319,8 +374,6 @@ Tabel 4.3.2. Hasil Pengujian Integrasi
 
 **ID Use Case:** UC01
 **Nama Use Case:** Mengembangkan Tantangan
-
-Tabel 4.4.1. Hasil Pengujian Use Case UC01
 
 | ID Pengujian | ID KF | Skenario | Prosedur Pengujian | Masukan | Hasil yang Diharapkan | Hasil Pengujian | Kesimpulan |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
