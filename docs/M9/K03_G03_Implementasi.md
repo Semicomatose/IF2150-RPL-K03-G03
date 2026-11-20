@@ -181,8 +181,10 @@ Tabel B.1. Perubahan dari DPPL
 
 | No | Bagian DPPL | Rancangan Awal | Implementasi Akhir | Alasan |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | *[mis. Kelas C05, layar I-03, tabel `orders`]* | *[Yang direncanakan]* | *[Yang dibuat]* | *[Alasan perubahan]* |
-| *...* | *...* | *...* | *...* | *...* |
+| 1 | Kelas C01 PembuatTantangan dan C02 Pelajar | Dua kelas terpisah | Digabung dalam `src/backend/repositories/userRepository.js` dan tabel `users`, dibedakan oleh kolom `role` (`PEMBUAT`/`PELAJAR`) | Perlu dikonfirmasi tim (struktur ini ditemukan pada kode akhir) |
+| 2 | Kelas C03 Tantangan dan C09 RiwayatTantangan | Dua kelas terpisah | Digabung dalam `src/backend/repositories/challengeRepository.js` dengan tabel `challenges`, `attempts`, dan `terminal_history` | Perlu dikonfirmasi tim (struktur ini ditemukan pada kode akhir) |
+| 3 | Kelas C07 EnvironmentController | Satu kelas controller | Dipecah menjadi `terminalService.js`, `gitService.js`, `challengeSessionService.js`, `challengeVerificationService.js`, dan route pada `server.js` | Perlu dikonfirmasi tim (struktur ini ditemukan pada kode akhir) |
+| 4 | Algo-01 `publikasikan()` (Tabel 5.3.1 DPPL) | Publikasi hanya dari status `DRAF` | `updateChallengeStatus()` mengubah status tanpa memeriksa status sebelumnya | Perlu dikonfirmasi tim |
 
 ## B.2 Bukti Penerapan Best Practices
 
@@ -194,7 +196,7 @@ Tabel B.2. Bukti Best Practices
 | Semantic commit | https://github.com/Semicomatose/IF2150-RPL-K03-G03/commits/main | Digunakan untuk mengomunikasikan tipe dan lingkup dari commit. |
 | Track tasks | *[Tautan ke Issues/Projects]* | *[Jumlah issue, pembagian]* |
 | Pull request dan review | *[Tautan ke 2-3 PR representatif]* | *[Siapa me-review siapa]* |
-| Pengujian | *[Tautan ke `src/tests/` dan hasil test]* | *[Apa yang diuji, cara menjalankan]* |
+| Pengujian | https://github.com/Semicomatose/IF2150-RPL-K03-G03/tree/main/src/scripts | Unit test 9 kelas, uji integrasi 10 antarmuka, uji use case otomatis, uji KNF, dan validasi traceability pada `src/scripts/*.test.js`; dijalankan dengan `npm test` dari folder `src`. Uji yang membutuhkan PostgreSQL atau Vite otomatis dilewati bila komponen tersebut tidak tersedia. |
 
 ### B.2.1 Profiling dan Optimasi
 
@@ -235,10 +237,15 @@ Tabel B.5. Traceability Kelas Perancangan ke Implementasi
 
 | ID Kelas | Nama Kelas Perancangan | Bentuk Implementasi | Lokasi (File dan Nama) | Keterangan |
 | :--- | :--- | :--- | :--- | :--- |
-| *[C01]* | *[Nama kelas pada DPPL]* | *[mis. Kelas / Fungsi / Komponen / Route / Tabel]* | *[mis. `src/models/user.py` - `User`]* | *[Cara atribut dan operasi kelas diwujudkan; "-" jika tidak ada penjelasan tambahan]* |
-| *[C02]* | *[Nama kelas pada DPPL]* | *[Bentuk implementasi]* | *[mis. `src/components/LoginForm.tsx` - `LoginForm`]* | *[mis. atribut menjadi *state*, operasi menjadi *handler*]* |
-| *[C03]* | *[Nama kelas pada DPPL]* | *[Bentuk implementasi]* | *[mis. `src/routes/auth.js` - `POST /login`]* | *[Keterangan]* |
-| *...* | *...* | *...* | *...* | *...* |
+| C01 | PembuatTantangan | Fungsi repository, tabel, dan route | `src/backend/repositories/userRepository.js` - `createUser()`, `findUser()`; tabel `users`; `src/server.js` - `requireCreator()`, `POST /api/challenges`, route `/api/creator/*` | Atribut menjadi kolom tabel `users` dengan role `PEMBUAT`; operasi pembuat tantangan diwujudkan sebagai route yang dibatasi `requireCreator()`. |
+| C02 | Pelajar | Fungsi repository, layanan autentikasi, dan route | `src/backend/repositories/userRepository.js` - `createUser()`, `findUser()`; `src/backend/services/authService.js` - `authenticateLogin()`; `src/server.js` - `POST /api/sessions`, `POST /api/sessions/:id/submit`, `POST /api/sessions/:id/restart`, `GET /api/history` | Atribut menjadi kolom tabel `users` dengan role `PELAJAR`; `pilihTantangan()`, `kirimSolusi()`, `ulangiTantangan()`, dan `aksesRiwayat()` menjadi route tersebut. |
+| C03 | Tantangan | Fungsi repository dan tabel | `src/backend/repositories/challengeRepository.js` - `saveChallengePackage()`, `getChallengePackage()`, `getChallengeDetails()`, `listChallenges()`, `updateChallengeStatus()`, `updateCreatorChallenge()`; tabel `challenges` | Berkas tantangan disimpan pada kolom `package_data`; `publikasikan()` dan `jadwalkanHapus()` menjadi `updateChallengeStatus()` dengan status `TERPUBLIKASI` dan `DIJADWALKAN_HAPUS`. |
+| C04 | WindowEdit | Komponen React | `src/frontend/UploadPage.jsx` - `UploadPage` | Isian form menjadi *state*; `periksaValiditas()` menjadi `validatePackage()` dan `kirimBerkas()` menjadi `handleSubmit()`. |
+| C05 | EditController | Fungsi klien API dan fungsi validasi server | `src/frontend/challengeApi.js` - `uploadChallenge()`, `getCreatorChallenge()`, `changeChallengeStatus()`; `src/backend/services/challengeSessionService.js` - `validateChallengePackageBuffer()` | `validasiBerkas()` menjadi `validateChallengePackageBuffer()`, `simpanTantangan()` menjadi `uploadChallenge()` dan `POST /api/challenges`, `ambilDaftarTantangan()` menjadi `getCreatorChallenge()`. |
+| C06 | WindowEnvironment | Komponen React | `src/frontend/ChallengePage.jsx` - `ChallengePage`; `src/frontend/components/terminal/ChallengeTerminal.jsx` - `ChallengeTerminal`; `src/frontend/CreatorEvaluationPage.jsx` | `kirim()` dikirim melalui WebSocket terminal; `kirimSolusi()`, `reset()`, dan `keluar()` menjadi `submitChallenge()`, `restartChallenge()`, dan `exitChallenge()`. |
+| C07 | EnvironmentController | Fungsi service dan route | `src/backend/services/terminalService.js` - `createRestrictedTerminalSession()`; `src/backend/services/gitService.js` - `createSession()`, `runGitCommand()`; `src/backend/services/challengeSessionService.js` - `initializeChallengeSession()`; `src/backend/services/challengeVerificationService.js` - `verifyChallengeRepository()` | `prosesCommand()` menjadi terminal terbatas, `eksekusiCommandUji()` menjadi `runGitCommand()`, `siapkanLingkungan()`/`initiateRepo()` menjadi `initializeChallengeSession()`, dan `validasiSolusi()` menjadi `verifyChallengeRepository()`; publikasi, penghapusan, dan akhir sesi berada pada route `server.js` (lihat B.1 nomor 3). |
+| C08 | WindowRiwayat | Komponen React | `src/frontend/HistoryModal.jsx` - `HistoryModal` | `tampilkanDaftarRiwayat()` menjadi render daftar riwayat; `kerjakanUlang()` menjadi tautan ke `/challenges/:id`. |
+| C09 | RiwayatTantangan | Fungsi repository dan tabel | `src/backend/repositories/challengeRepository.js` - `createAttempt()`, `finishAttempt()`, `saveTerminalHistory()`, `getStudentHistory()`, `getCreatorChallengeAttempts()`; tabel `attempts` dan `terminal_history` | `simpanPengerjaan()` menjadi `createAttempt()`/`finishAttempt()` dan `ambilDataRiwayat()` menjadi `getStudentHistory()` (lihat B.1 nomor 2). |
 
 Catatan:
 - Satu kelas perancangan boleh diwujudkan oleh beberapa file/unit, dan satu file/unit boleh mewujudkan beberapa kelas perancangan. Tuliskan semuanya.

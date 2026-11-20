@@ -13,7 +13,7 @@
     "test:challenge-session": "node scripts/test-challenge-session.js",
     "test:db": "node scripts/test-db.js",
     "test:package": "node scripts/test-package-storage.js",
-    "test": "node --test scripts/*.test.js",
+    "test": "node --test --experimental-test-module-mocks scripts/*.test.js",
     "test:core": "node --test scripts/test-core.test.js"
   },
   "dependencies": {
